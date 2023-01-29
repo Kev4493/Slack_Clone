@@ -1,0 +1,30 @@
+<mat-drawer-container class="drawer-container" autosize>
+
+    <mat-drawer [opened]="true" #drawer class="sidenav" mode="side">
+        <div class="sidenav-header"></div>
+
+        <div class="sidenav-content">
+            <!-- === Alle erstellten Channels: -->
+            <app-channels></app-channels>
+        </div>
+    </mat-drawer>
+
+    <div class="toolbar-container">
+
+        <mat-toolbar>
+            <mat-icon (click)="drawer.toggle()">menu</mat-icon>
+
+            <div [matMenuTriggerFor]="menu" class="profile-container">
+                <img src="./assets/img/profilepicture.JPG" alt="">
+            </div>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="logout()">logout</button>
+            </mat-menu>
+
+        </mat-toolbar>
+
+        <!-- Hier wird die Chatroom Component gerendert: -->
+        <router-outlet></router-outlet>
+    </div>
+
+</mat-drawer-container>

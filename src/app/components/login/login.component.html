@@ -1,0 +1,57 @@
+<div class="login-container">
+
+    <div class="login-img-container">
+        <img src="./assets/img/illustrations/illustration3.png" alt="">
+    </div>
+
+    <div class="login-form-container">
+        <div class="header">
+            <p>Not a member? <span routerLink="/register">Register now</span></p>
+        </div>
+
+        <div class="header-container">
+            <h1>Welcome back!</h1>
+            <p>Pick up where you left off</p>
+        </div>
+
+        <div class="form-container">
+            <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+                <mat-form-field class="login-input" appearance="fill">
+                    <mat-label>Username</mat-label>
+                    <input matInput formControlName="email" required>
+                    <mat-error *ngIf="email?.errors?.['required']">Email is required</mat-error>
+                    <mat-error *ngIf="email?.errors?.['email']">Please enter a valid email address</mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="login-input" appearance="fill">
+                    <mat-label>Password</mat-label>
+                    <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-error *ngIf="password?.errors?.['required']">Password is required</mat-error>
+                </mat-form-field>
+
+                <div class="recovery-container">
+                    <p>Recovery Password</p>
+                </div>
+
+                <button class="sign-in-btn" mat-raised-button>Sign in</button>
+            </form>
+
+            <div class="continue-container">
+                <hr>
+                <p>Or continue with</p>
+                <hr>
+            </div>
+            
+
+            <div class="socialmedia-container">
+                <img class="socialmedia-logo" src="../../../assets/img/icons/google.png" alt="">
+                <img class="socialmedia-logo" src="../../../assets/img/icons/apple.png" alt="">
+                <img class="socialmedia-logo" src="../../../assets/img/icons/facebook.png" alt="">
+            </div>
+
+        </div>
+    </div>
+</div>

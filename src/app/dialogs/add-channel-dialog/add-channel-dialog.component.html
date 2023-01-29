@@ -1,0 +1,23 @@
+<div class="channel-dialog-container">
+
+    <mat-icon class="close-icon">close</mat-icon>
+
+    <div class="dialog-healdine">
+        <h1>Add Channels</h1>
+    </div>
+
+    <div class="dialog-description">
+        <p>Channels dienen deinem Team zur Kommunikation. Am besten sollten sie themenbezogen sein – #marketing zum
+            Beispiel.</p>
+    </div>
+
+    <div class="dialog-input">
+        <label>Name</label>
+        <input [(ngModel)]="channel.channelName" type="text">
+    </div>
+
+    <div class="button-container">
+        <button (click)="addChannel()" class="create-button" mat-raised-button>Erstellen</button>
+    </div>
+    
+</div>

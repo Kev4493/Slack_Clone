@@ -1,0 +1,48 @@
+<div class="register-container">
+
+    <div class="register-img-container">
+        <img src="./assets/img/illustrations/illustration2.png" alt="">
+    </div>
+
+    <div class="register-form-container">
+        <div class="header">
+            <p>Already registered? <span routerLink="/login">Login now</span></p>
+        </div>
+
+        <div class="header-container">
+            <h1>We're so glad to have you on board!</h1>
+            <p>Join the conversation by completing the registration form!</p>
+        </div>
+
+        <div class="form-container">
+            <form [formGroup]="registerForm" (ngSubmit)="register()">
+
+                <mat-form-field class="register-input" appearance="fill">
+                    <mat-label>Full Name</mat-label>
+                    <input matInput formControlName="displayName" required>
+                    <mat-error *ngIf="displayName?.errors?.['required']">Full Name is required</mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="register-input" appearance="fill">
+                    <mat-label>Username</mat-label>
+                    <input matInput formControlName="email" required>
+                    <mat-error *ngIf="email?.errors?.['required']">Email is required</mat-error>
+                    <mat-error *ngIf="email?.errors?.['email']">Please enter a valid email address</mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="register-input" appearance="fill">
+                    <mat-label>Password</mat-label>
+                    <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-error *ngIf="password?.errors?.['required']">Password is required</mat-error>
+                </mat-form-field>
+
+                <button class="sign-in-btn" mat-raised-button>Register</button>
+
+            </form>
+
+        </div>
+    </div>
+</div>

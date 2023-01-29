@@ -1,0 +1,16 @@
+<div class="channels-container">
+    <div class="channels-headline">
+        <p>Channels</p>
+    </div>
+
+    <div *ngFor="let channel of allChannels" class="channels-list" [routerLink]="['home/' + channel.channelId]">
+        <mat-icon>tag</mat-icon>
+        <p class="single-channel">{{ channel.channelName }}</p>
+    </div>
+
+    <div (click)="openAddChannelDialog()" class="channels-add">
+        <mat-icon>add</mat-icon>
+        <p>Add Channels</p>
+    </div>
+    
+</div>
