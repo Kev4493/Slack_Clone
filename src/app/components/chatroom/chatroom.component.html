@@ -1,3 +1,19 @@
-<p>chatroom works!</p>
+<div class="chatroom-container">
 
-hallo
+    <div class="chatroom-header">
+        <mat-icon>tag</mat-icon>
+        <p>{{ channel.channelName }}</p>
+    </div>
+    
+    <div class="chatroom-content">
+        <div class="message-input-container">
+            <!-- <div class="textformatting-container"></div> -->
+            <input type="text" placeholder="Nachricht an # {{ channel.channelName}}">
+            <div class="send-btn-container">
+                <img (click)="sendMessage()" class="send-icon" src="./assets/img/icons/send-icon.png" alt="">
+            </div>
+        </div>
+    </div>
+
+</div>
+
