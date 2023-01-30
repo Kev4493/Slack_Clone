@@ -1,18 +1,20 @@
 import { Injectable } from '@angular/core';
-import { Auth } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
 
   userLoggedIn: boolean;      // other components can check on this variable for the login status of the user
+  loggedInUserName: any;
+
 
   constructor(private router: Router, private afAuth: AngularFireAuth) {
-    this.userLoggedIn = false
 
+    this.userLoggedIn = false
     this.afAuth.onAuthStateChanged((user) => {
       if (user) {
         this.userLoggedIn = true;
@@ -21,6 +23,7 @@ export class AuthService {
       }
     });
   }
+
 
   async loginUser(email: string, password: string): Promise<any> {
     try {
@@ -36,6 +39,14 @@ export class AuthService {
   }
 
 
+  getDisplayNameFromDb() {
+    this.afAuth.user.subscribe((user) => {        // Die Funktion verwendet das "afAuth.user" Objekt und abonniert es mit einem Callback.
+      if (!user) return;                          // Innerhalb des Callbacks wird überprüft, ob ein Benutzer vorhanden ist. Wenn nicht, wird die Funktion beendet!
+      this.loggedInUserName = user.displayName;   // Wenn ein Benutzer vorhanden ist, wird der "displayName" des Benutzers als "loggedInUserName" gespeichert.
+    });
+  }
+
+
   async registerUser(user: any): Promise<any> {
     try {
       const result = await this.afAuth.createUserWithEmailAndPassword(user.email, user.password);
@@ -47,5 +58,4 @@ export class AuthService {
         return { isValid: false, message: error.message };
     }
   }
-
 }

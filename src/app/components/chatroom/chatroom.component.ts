@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 import { Channel } from 'src/models/channel.class';
 import { Message } from 'src/models/message.class';
 
@@ -15,9 +17,8 @@ export class ChatroomComponent {
 
   channel: Channel = new Channel;
   message: Message = new Message;
-
-
-  constructor(private route:ActivatedRoute, private firestore: AngularFirestore) { }
+  
+  constructor(private route:ActivatedRoute, private firestore: AngularFirestore, private afAuth: AngularFireAuth, private authService: AuthService) { }
 
 
   ngOnInit(): void {
@@ -28,6 +29,9 @@ export class ChatroomComponent {
 
       // Channelinfos aus der jeweiligen ID holen:
       this.getCurrentChannelInfos();
+
+      // Löst die Funktion im authService aus.
+      this.authService.getDisplayNameFromDb();    
     })
   }
 
@@ -43,7 +47,9 @@ export class ChatroomComponent {
     })
   }
 
+
   sendMessage() {
+    this.message.author = this.authService.loggedInUserName
     this.message.createdAt = new Date().getTime();
     console.log('Current Message is:', this.message);
   }

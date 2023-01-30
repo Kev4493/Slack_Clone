@@ -1,30 +1,26 @@
 import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
+
 export class HomeComponent {
 
-  loggedInUserName: any;
+  constructor(public router: Router, private afAuth: AngularFireAuth, public authService: AuthService) { }
+
 
   ngOnInit() {
-    this.getDisplayNameFromDb();
+    this.authService.getDisplayNameFromDb();      // Löst die Funktion im authService aus.
   }
 
-  constructor(public router: Router, private afAuth: AngularFireAuth) { }
 
   logout() {
     this.afAuth.signOut();
-  }
-
-  getDisplayNameFromDb() {
-    this.afAuth.user.subscribe((user) => {
-      this.loggedInUserName = user.displayName;
-    });
   }
 
 }
