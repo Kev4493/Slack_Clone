@@ -1,7 +1,9 @@
 <mat-drawer-container class="drawer-container" autosize>
 
     <mat-drawer [opened]="true" #drawer class="sidenav" mode="side">
-        <div class="sidenav-header"></div>
+        <div class="sidenav-header">
+            <p>What's up, {{ loggedInUserName }}</p>
+        </div>
 
         <div class="sidenav-content">
             <!-- === Alle erstellten Channels: -->

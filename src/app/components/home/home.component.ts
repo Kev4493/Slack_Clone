@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Auth } from '@angular/fire/auth';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,10 +9,22 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent {
 
-  constructor(public afAuth: Auth, public router: Router) { }
+  loggedInUserName: any;
+
+  ngOnInit() {
+    this.getDisplayNameFromDb();
+  }
+
+  constructor(public router: Router, private afAuth: AngularFireAuth) { }
 
   logout() {
     this.afAuth.signOut();
+  }
+
+  getDisplayNameFromDb() {
+    this.afAuth.user.subscribe((user) => {
+      this.loggedInUserName = user.displayName;
+    });
   }
 
 }
