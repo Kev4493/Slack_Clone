@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { Channel } from 'src/models/channel.class';
+import { Message } from 'src/models/message.class';
 
 @Component({
   selector: 'app-chatroom',
@@ -13,6 +14,7 @@ export class ChatroomComponent {
   channelId = ''
 
   channel: Channel = new Channel;
+  message: Message = new Message;
 
 
   constructor(private route:ActivatedRoute, private firestore: AngularFirestore) { }
@@ -42,7 +44,8 @@ export class ChatroomComponent {
   }
 
   sendMessage() {
-    
+    this.message.createdAt = new Date().getTime();
+    console.log('Current Message is:', this.message);
   }
 
 }

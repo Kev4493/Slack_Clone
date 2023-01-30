@@ -8,7 +8,7 @@
     <div class="chatroom-content">
         <div class="message-input-container">
             <!-- <div class="textformatting-container"></div> -->
-            <input type="text" placeholder="Nachricht an # {{ channel.channelName}}">
+            <input [(ngModel)]="message.messageText" type="text" placeholder="Nachricht an # {{ channel.channelName}}">
             <div class="send-btn-container">
                 <img (click)="sendMessage()" class="send-icon" src="./assets/img/icons/send-icon.png" alt="">
             </div>

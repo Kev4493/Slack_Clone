@@ -12,7 +12,7 @@ export class AddChannelDialogComponent {
 
   constructor(public dialog: MatDialog, private firestore: AngularFirestore) { }
 
-  channel:Channel = new Channel()
+  channel: Channel = new Channel()
 
   addChannel() {
     console.log('Current Channel is:', this.channel);
