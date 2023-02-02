@@ -8,12 +8,21 @@
     <div class="chatroom-content">
 
         <div *ngFor="let info of messagesFromDb" class="messages-container">
-            <div class="author-container">
-                <p>{{ info.author }} {{ info.createdAt | date: 'HH:mm' }} Uhr</p>
+
+            <div class="profile-picture-container">
+                <img src="./assets/img/profilepicture.JPG">
             </div>
-            <div class="message-text-container">
-                <p> {{ info.messageText }}</p>
+
+            <div class="message-infos-container">
+                <div class="author-container">
+                    <p class="author">{{ info.author }}</p>
+                    <p class="time">{{ info.createdAt | date: 'HH:mm' }} Uhr</p>
+                </div>
+                <div class="message-text-container">
+                    <p class="message-text"> {{ info.messageText }}</p>
+                </div>
             </div>
+            
         </div>
 
         <div class="message-input-container">
