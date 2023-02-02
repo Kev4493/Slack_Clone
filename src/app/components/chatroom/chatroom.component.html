@@ -6,6 +6,16 @@
     </div>
     
     <div class="chatroom-content">
+
+        <div *ngFor="let info of messagesFromDb" class="messages-container">
+            <div class="author-container">
+                <p>{{ info.author }} {{ info.createdAt | date: 'HH:mm' }} Uhr</p>
+            </div>
+            <div class="message-text-container">
+                <p> {{ info.messageText }}</p>
+            </div>
+        </div>
+
         <div class="message-input-container">
             <!-- <div class="textformatting-container"></div> -->
             <input [(ngModel)]="message.messageText" type="text" placeholder="Nachricht an # {{ channel.channelName}}">
@@ -13,6 +23,7 @@
                 <img (click)="sendMessage()" class="send-icon" src="./assets/img/icons/send-icon.png" alt="">
             </div>
         </div>
+
     </div>
 
 </div>
