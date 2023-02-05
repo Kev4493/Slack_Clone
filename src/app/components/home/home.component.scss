@@ -32,6 +32,7 @@
 
             mat-icon {
                 color: rgba(255, 255, 255, 0.7);
+                cursor: pointer;
             }
 
             .profile-container {
@@ -44,10 +45,12 @@
                     object-fit: cover;
                     object-position: top;
                     border-radius: 12px;
+                    cursor: pointer;
                 }
             }
 
         }
+
     }
 
 

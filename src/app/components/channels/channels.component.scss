@@ -17,7 +17,7 @@
 
         .single-channel {
             margin: 0;
-
+            cursor: pointer;
         }
     }
 
@@ -36,6 +36,7 @@
         display: flex;
         align-items: center;
         margin-top: 1rem;
+        cursor: pointer;
 
         p {
             margin: 0;

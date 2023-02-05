@@ -1,39 +1,62 @@
 <div class="chatroom-container">
 
     <div class="chatroom-header">
-        <mat-icon>tag</mat-icon>
-        <p>{{ channel.channelName }}</p>
+        <div class="channel-name-container">
+            <mat-icon>tag</mat-icon>
+            <p>{{ channel.channelName }}</p>
+        </div>
+        <div class="channel-settings-container">
+            <mat-icon [matMenuTriggerFor]="menu">settings</mat-icon>
+            <mat-menu #menu="matMenu">
+                <button (click)="deleteChannelFromDb()" mat-menu-item>Delete {{ channel.channelName }} Channel</button>
+            </mat-menu>
+        </div>
     </div>
-    
+
     <div class="chatroom-content">
 
         <div *ngFor="let info of messagesFromDb" class="messages-container">
 
-            <div class="profile-picture-container">
-                <img src="./assets/img/profilepicture.JPG">
+            <div class="full-message-container">
+
+                <div class="profile-picture-container">
+                    <img src="./assets/img/profilepicture.JPG">
+                </div>
+
+                <div class="message-infos-container">
+                    <div class="author-container">
+                        <p class="author">{{ info.author }}</p>
+                        <p class="time">{{ info.createdAt | date: 'HH:mm' }} Uhr</p>
+                    </div>
+                    <div class="message-text-container">
+                        <p class="message-text"> {{ info.messageText }}</p>
+                    </div>
+                </div>
+
+                <div [matMenuTriggerFor]="menu" class="message-setting-container">
+                    <mat-icon>more_vert</mat-icon>
+                    <mat-menu #menu="matMenu">
+                        <button (click)="deleteMessageFromDb()" mat-menu-item>Delete this message</button>
+                    </mat-menu>
+                </div>
+
             </div>
 
-            <div class="message-infos-container">
-                <div class="author-container">
-                    <p class="author">{{ info.author }}</p>
-                    <p class="time">{{ info.createdAt | date: 'HH:mm' }} Uhr</p>
-                </div>
-                <div class="message-text-container">
-                    <p class="message-text"> {{ info.messageText }}</p>
-                </div>
-            </div>
-            
+
         </div>
 
         <div class="message-input-container">
-            <!-- <div class="textformatting-container"></div> -->
-            <input [(ngModel)]="message.messageText" type="text" placeholder="Nachricht an # {{ channel.channelName}}">
-            <div class="send-btn-container">
-                <img (click)="sendMessage()" class="send-icon" src="./assets/img/icons/send-icon.png" alt="">
-            </div>
+            <form (ngSubmit)="sendMessage()">
+                <div class="textformatting-container"></div>
+                <input [(ngModel)]="message.messageText" name="messageText" type="text"
+                    placeholder="Nachricht an # {{ channel.channelName}}">
+
+                <div class="send-btn-container">
+                    <img (click)="sendMessage()" class="send-icon" src="./assets/img/icons/send-icon.png" alt="">
+                </div>
+            </form>
         </div>
 
     </div>
 
 </div>
-

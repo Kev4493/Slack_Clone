@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { Channel } from 'src/models/channel.class';
@@ -14,12 +15,13 @@ import { Message } from 'src/models/message.class';
 export class ChatroomComponent {
 
   channelId = ''
+  messageId = '';
 
   channel: Channel = new Channel;
   message: Message = new Message;
-  messagesFromDb;
+  messagesFromDb: any;
 
-  constructor(private route: ActivatedRoute, private firestore: AngularFirestore, private afAuth: AngularFireAuth, private authService: AuthService) { }
+  constructor(private route: ActivatedRoute, private firestore: AngularFirestore, private afAuth: AngularFireAuth, private authService: AuthService, public dialog: MatDialog) { }
 
 
   ngOnInit(): void {
@@ -52,7 +54,7 @@ export class ChatroomComponent {
 
 
   sendMessage() {
-    // Könnte evtl auch direkt ins Objekt?
+    // Könnte evtl auch direkt ins message Objekt?
     this.message.author = this.authService.loggedInUserName
     this.message.createdAt = new Date().getTime();
     this.message.messageFromChannelId = this.channelId;
@@ -67,6 +69,11 @@ export class ChatroomComponent {
     this.firestore
       .collection('messages')
       .add(this.message.toJSON())
+
+      .then((docRef) => {
+        console.log('Message ID: ', docRef.id);
+        this.message.messageFromChannelId = docRef.id;
+      });
   }
 
 
@@ -80,4 +87,18 @@ export class ChatroomComponent {
         console.log('Messages from DB:', this.messagesFromDb);
       });
   }
+
+
+  deleteMessageFromDb() {
+    this.firestore
+    .collection('messages')
+    .doc() // Message ID
+    .delete();
+  }
+
+  deleteChannelFromDb() {
+
+  }
+
+
 }
