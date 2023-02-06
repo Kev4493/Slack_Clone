@@ -36,6 +36,7 @@ export class ChatroomComponent {
       // Löst die Funktion im authService aus.
       this.authService.getDisplayNameFromDb();
 
+      // Lädt alle Messages von DB in die Var. this.messagesFromDb
       this.getMessagesFromDb()
     })
   }
@@ -70,35 +71,50 @@ export class ChatroomComponent {
       .collection('messages')
       .add(this.message.toJSON())
 
-      .then((docRef) => {
-        console.log('Message ID: ', docRef.id);
-        this.message.messageFromChannelId = docRef.id;
-      });
+    // .then((docRef) => {
+    //   console.log('Message ID: ', docRef.id);
+    //   this.message.messageFromChannelId = docRef.id;
+    // });
   }
 
+
+  // getMessagesFromDb() {
+  //   this.firestore
+  //     .collection('messages')
+  //     .ref.where('messageFromChannelId', '==', this.channelId)
+  //     .orderBy('createdAt', 'asc')
+  //     .onSnapshot(snapshot => {
+  //       this.messagesFromDb = snapshot.docs.map(doc => doc.data());
+  //       console.log('Messages from DB:', this.messagesFromDb);
+  //     });
+  // }
+  
 
   getMessagesFromDb() {
     this.firestore
-      .collection('messages')
-      .ref.where('messageFromChannelId', '==', this.channelId)
-      .orderBy('createdAt', 'asc')
-      .onSnapshot(snapshot => {
-        this.messagesFromDb = snapshot.docs.map(doc => doc.data());
+      .collection('messages', ref => ref.where('messageFromChannelId', '==', this.channelId).orderBy('createdAt', 'asc'))
+      .valueChanges({ idField: "messageId" })
+      .subscribe(messages => {
+        this.messagesFromDb = messages;
         console.log('Messages from DB:', this.messagesFromDb);
-      });
-  }
+      })
+  };
 
 
-  deleteMessageFromDb() {
+  deleteMessageFromDb(messageId: any) {
     this.firestore
     .collection('messages')
-    .doc() // Message ID
+    .doc(messageId)
     .delete();
   }
+
 
   deleteChannelFromDb() {
 
   }
-
-
 }
+
+
+
+
+

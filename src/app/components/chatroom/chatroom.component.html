@@ -15,7 +15,7 @@
 
     <div class="chatroom-content">
 
-        <div *ngFor="let info of messagesFromDb" class="messages-container">
+        <div *ngFor="let message of messagesFromDb" class="messages-container">
 
             <div class="full-message-container">
 
@@ -25,18 +25,18 @@
 
                 <div class="message-infos-container">
                     <div class="author-container">
-                        <p class="author">{{ info.author }}</p>
-                        <p class="time">{{ info.createdAt | date: 'HH:mm' }} Uhr</p>
+                        <p class="author">{{ message.author }}</p>
+                        <p class="time">{{ message.createdAt | date: 'HH:mm' }} Uhr</p>
                     </div>
                     <div class="message-text-container">
-                        <p class="message-text"> {{ info.messageText }}</p>
+                        <p class="message-text"> {{ message.messageText }}</p>
                     </div>
                 </div>
 
                 <div [matMenuTriggerFor]="menu" class="message-setting-container">
                     <mat-icon>more_vert</mat-icon>
                     <mat-menu #menu="matMenu">
-                        <button (click)="deleteMessageFromDb()" mat-menu-item>Delete this message</button>
+                        <button (click)="deleteMessageFromDb(message.messageId)" mat-menu-item>Delete this message</button>
                     </mat-menu>
                 </div>
 
