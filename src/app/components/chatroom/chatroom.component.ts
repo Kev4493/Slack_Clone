@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { Channel } from 'src/models/channel.class';
 import { Message } from 'src/models/message.class';
+import { User } from 'src/models/user.class';
 
 @Component({
   selector: 'app-chatroom',
@@ -14,30 +15,27 @@ import { Message } from 'src/models/message.class';
 })
 export class ChatroomComponent {
 
-  channelId = ''
-  messageId = '';
+  channelId: any;
 
   channel: Channel = new Channel;
   message: Message = new Message;
+  user: User = new User;
+
   messagesFromDb: any;
 
-  constructor(private route: ActivatedRoute, private firestore: AngularFirestore, private afAuth: AngularFireAuth, private authService: AuthService, public dialog: MatDialog) { }
+  constructor(private route: ActivatedRoute, private firestore: AngularFirestore, private afAuth: AngularFireAuth, private authService: AuthService, public dialog: MatDialog, private router: Router) { }
 
 
   ngOnInit(): void {
     // ID aus der aktuellen URL holen und in Variable channelId speichern:
     this.route.paramMap.subscribe(paramMap => {
       this.channelId = paramMap.get('id');
-      console.log('Current Channel ID:', this.channelId);
 
       // Channelinfos aus der jeweiligen ID holen:
       this.getCurrentChannelInfos();
 
-      // Löst die Funktion im authService aus.
-      this.authService.getDisplayNameFromDb();
-
       // Lädt alle Messages von DB in die Var. this.messagesFromDb
-      this.getMessagesFromDb()
+      this.getMessagesFromDb();
     })
   }
 
@@ -49,16 +47,16 @@ export class ChatroomComponent {
       .valueChanges()
       .subscribe((channel: any) => {
         this.channel = new Channel(channel);
-        // console.log('Retrieved current channel:', this.channel);
+        console.log('Retrieved current channel:', this.channel);
       })
   }
 
 
   sendMessage() {
-    // Könnte evtl auch direkt ins message Objekt?
-    this.message.author = this.authService.loggedInUserName
+    this.message.author = this.authService.user.userName
     this.message.createdAt = new Date().getTime();
     this.message.messageFromChannelId = this.channelId;
+    this.message.messageFromUserId = this.authService.user.userId
 
     console.log('Current Message is:', this.message);
     this.sendMessageToDb();
@@ -70,25 +68,8 @@ export class ChatroomComponent {
     this.firestore
       .collection('messages')
       .add(this.message.toJSON())
-
-    // .then((docRef) => {
-    //   console.log('Message ID: ', docRef.id);
-    //   this.message.messageFromChannelId = docRef.id;
-    // });
   }
 
-
-  // getMessagesFromDb() {
-  //   this.firestore
-  //     .collection('messages')
-  //     .ref.where('messageFromChannelId', '==', this.channelId)
-  //     .orderBy('createdAt', 'asc')
-  //     .onSnapshot(snapshot => {
-  //       this.messagesFromDb = snapshot.docs.map(doc => doc.data());
-  //       console.log('Messages from DB:', this.messagesFromDb);
-  //     });
-  // }
-  
 
   getMessagesFromDb() {
     this.firestore
@@ -101,17 +82,46 @@ export class ChatroomComponent {
   };
 
 
-  deleteMessageFromDb(messageId: any) {
-    this.firestore
-    .collection('messages')
-    .doc(messageId)
-    .delete();
+  deleteMessageFromDb(messageId: any, messageFromUserId: any) {
+    if (messageFromUserId === this.authService.user.userId) {
+      this.firestore
+        .collection('messages')
+        .doc(messageId)
+        .delete();
+    } else {
+      window.alert('Du kannst nur deine eigenen Nachrichten löschen!')
+    }
+
   }
 
 
   deleteChannelFromDb() {
+    this.deleteAllMessagesFromChannel();
 
+    this.firestore
+      .collection('channels')
+      .doc(this.channelId)
+      .delete();
+    this.router.navigate(['/home'])
   }
+
+
+  deleteAllMessagesFromChannel() {
+    this.firestore
+      .collection('messages', ref => ref.where('messageFromChannelId', '==', this.channelId)) 
+      .get()                          // Hier wird eine Abfrage ausgeführt, um alle Nachrichten aus einer bestimmten Sammlung in der Firestore-Datenbank abzurufen. Die Abfrage beschränkt die Ergebnisse auf Nachrichten, die eine bestimmte Bedingung erfüllen - nämlich dass die Eigenschaft "messageFromChannelId" gleich dem Wert von this.channelId ist.
+      .subscribe(async messages => {  // Dieser Befehl abonniert das Abfrageergebnis und ruft die anonyme Funktion auf, die als Argumente die abgerufenen Nachrichten enthält.
+        messages.forEach(message => { // Hier wird eine Schleife gestartet, die für jede abgerufene Nachricht ausgeführt wird.
+          this.firestore              // In dieser Zeile wird die aktuelle Nachricht gelöscht, indem das Dokument mit der ID, die in der aktuellen Iteration der Schleife gespeichert ist, aus der Sammlung "Nachrichten" gelöscht wird.
+          .collection('messages')
+          .doc(message.id)
+          .delete();
+        });
+      });
+  }
+
+
+
 }
 
 

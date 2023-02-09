@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
+import { User } from 'src/models/user.class';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class AuthService {
 
   userLoggedIn: boolean;      // other components can check on this variable for the login status of the user
   loggedInUserName: any;
-
+  user: User = new User;
 
   constructor(private router: Router, private afAuth: AngularFireAuth) {
 
@@ -57,5 +58,17 @@ export class AuthService {
       if (error.code)
         return { isValid: false, message: error.message };
     }
+  }
+
+
+    getUserInfomrationsFromDb() {
+    this.afAuth.user.subscribe((userDb) => {        // Die Funktion verwendet das "afAuth.user" Objekt und abonniert es mit einem Callback.
+      if (!userDb) return;                          // Innerhalb des Callbacks wird überprüft, ob ein Benutzer vorhanden ist. Wenn nicht, wird die Funktion beendet!
+      this.user.userEmail = userDb.email;
+      this.user.userName = userDb.displayName;
+      this.user.userId = userDb.uid;
+
+      console.log('getUserInfomrationsFromDb:', this.user);
+    });
   }
 }

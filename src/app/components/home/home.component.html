@@ -2,7 +2,8 @@
 
     <mat-drawer [opened]="true" #drawer class="sidenav" mode="side">
         <div class="sidenav-header">
-            <p>What's up, {{ authService.loggedInUserName }}</p>
+            <!-- <p>What's up, {{ authService.loggedInUserName }}</p> -->
+            <p>What's up, {{ authService.user.userName }}</p>
         </div>
 
         <div class="sidenav-content">

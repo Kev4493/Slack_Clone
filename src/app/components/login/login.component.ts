@@ -25,8 +25,8 @@ export class LoginComponent {
     });
 
     this.firebaseErrorMessage = '';
-
   }
+
 
   get email() {
     return this.loginForm.get('email')

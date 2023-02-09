@@ -36,7 +36,7 @@
                 <div [matMenuTriggerFor]="menu" class="message-setting-container">
                     <mat-icon>more_vert</mat-icon>
                     <mat-menu #menu="matMenu">
-                        <button (click)="deleteMessageFromDb(message.messageId)" mat-menu-item>Delete this message</button>
+                        <button (click)="deleteMessageFromDb(message.messageId, message.messageFromUserId)" mat-menu-item>Delete this message</button>
                     </mat-menu>
                 </div>
 
