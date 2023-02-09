@@ -12,12 +12,14 @@ import { User } from 'src/models/user.class';
 
 export class HomeComponent {
 
+  user: User = new User;
 
   constructor(public router: Router, private afAuth: AngularFireAuth, public authService: AuthService) { }
 
 
   ngOnInit() {
     this.authService.getUserInfomrationsFromDb();
+    // console.log('getUserInfomrationsFromDb:', this.user);
   }
 
 

@@ -91,18 +91,21 @@ export class ChatroomComponent {
     } else {
       window.alert('Du kannst nur deine eigenen Nachrichten löschen!')
     }
-
   }
 
 
   deleteChannelFromDb() {
-    this.deleteAllMessagesFromChannel();
+    if (this.authService.user.userId === this.channel.createdFromUserId) {
+      this.deleteAllMessagesFromChannel();
 
-    this.firestore
-      .collection('channels')
-      .doc(this.channelId)
-      .delete();
-    this.router.navigate(['/home'])
+      this.firestore
+        .collection('channels')
+        .doc(this.channelId)
+        .delete();
+      this.router.navigate(['/home'])
+    } else {
+      window.alert('Du hast diesen Channel nicht erstellt!')
+    }
   }
 
 
