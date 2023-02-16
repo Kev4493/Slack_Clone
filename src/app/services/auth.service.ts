@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { User } from 'src/models/user.class';
 
@@ -10,10 +11,9 @@ import { User } from 'src/models/user.class';
 export class AuthService {
 
   userLoggedIn: boolean;      // other components can check on this variable for the login status of the user
-  loggedInUserName: any;
   user: User = new User;
 
-  constructor(private router: Router, private afAuth: AngularFireAuth) {
+  constructor(private router: Router, private afAuth: AngularFireAuth, private firestore: AngularFirestore) {
 
     this.userLoggedIn = false
     this.afAuth.onAuthStateChanged((user) => {
@@ -40,14 +40,6 @@ export class AuthService {
   }
 
 
-  getDisplayNameFromDb() {
-    this.afAuth.user.subscribe((user) => {        // Die Funktion verwendet das "afAuth.user" Objekt und abonniert es mit einem Callback.
-      if (!user) return;                          // Innerhalb des Callbacks wird überprüft, ob ein Benutzer vorhanden ist. Wenn nicht, wird die Funktion beendet!
-      this.loggedInUserName = user.displayName;   // Wenn ein Benutzer vorhanden ist, wird der "displayName" des Benutzers als "loggedInUserName" gespeichert.
-    });
-  }
-
-
   async registerUser(user: any): Promise<any> {
     try {
       const result = await this.afAuth.createUserWithEmailAndPassword(user.email, user.password);
@@ -61,14 +53,42 @@ export class AuthService {
   }
 
 
-    getUserInfomrationsFromDb() {
+  getLoggedInUserInfomrationsFromDb() {
     this.afAuth.user.subscribe((userDb) => {        // Die Funktion verwendet das "afAuth.user" Objekt und abonniert es mit einem Callback.
-      if (!userDb) return;                          // Innerhalb des Callbacks wird überprüft, ob ein Benutzer vorhanden ist. Wenn nicht, wird die Funktion beendet!
-      this.user.userEmail = userDb.email;
+      if (!userDb) return;                          // Innerhalb des Callbacks wird überprüft, ob ein Benutzer vorhanden ist. Wenn nicht, wird die Funktion beendet! 
       this.user.userName = userDb.displayName;
+      this.user.userEmail = userDb.email;
       this.user.userId = userDb.uid;
-
-      console.log('getUserInfomrationsFromDb:', this.user);
+      console.log('getLoggedInUserInfomrationsFromDb:', this.user);
     });
   }
+
+
+  getUserInitials(fullname: string) {
+    if (fullname) {
+      const names = fullname.split(' ');
+      let initials = '';
+
+      for (const name of names) {
+        if (name[0]) {
+          initials += name[0].toUpperCase();
+        }
+      }
+      return initials;
+    }
+    return '';
+  }
+
+
+  getFirstName(fullname: string) {
+    if (fullname) {
+      const firstName = fullname.split(' ');
+
+      if (firstName.length >= 1) {
+        return firstName[0];
+      }
+    }
+    return '';
+  }
+
 }

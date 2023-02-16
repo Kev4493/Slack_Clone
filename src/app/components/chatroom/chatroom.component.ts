@@ -6,7 +6,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { Channel } from 'src/models/channel.class';
 import { Message } from 'src/models/message.class';
-import { User } from 'src/models/user.class';
 
 @Component({
   selector: 'app-chatroom',
@@ -19,11 +18,10 @@ export class ChatroomComponent {
 
   channel: Channel = new Channel;
   message: Message = new Message;
-  user: User = new User;
 
   messagesFromDb: any;
 
-  constructor(private route: ActivatedRoute, private firestore: AngularFirestore, private afAuth: AngularFireAuth, private authService: AuthService, public dialog: MatDialog, private router: Router) { }
+  constructor(private route: ActivatedRoute, private firestore: AngularFirestore, private afAuth: AngularFireAuth, public authService: AuthService, public dialog: MatDialog, private router: Router) { }
 
 
   ngOnInit(): void {
@@ -47,7 +45,7 @@ export class ChatroomComponent {
       .valueChanges()
       .subscribe((channel: any) => {
         this.channel = new Channel(channel);
-        console.log('Retrieved current channel:', this.channel);
+        // console.log('Retrieved current channel:', this.channel);
       })
   }
 
@@ -122,12 +120,4 @@ export class ChatroomComponent {
         });
       });
   }
-
-
-
 }
-
-
-
-
-

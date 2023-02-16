@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
-import { Auth } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import { User } from 'src/models/user.class';
 
 @Component({
   selector: 'app-register',

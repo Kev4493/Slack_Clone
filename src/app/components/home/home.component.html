@@ -2,8 +2,8 @@
 
     <mat-drawer [opened]="true" #drawer class="sidenav" mode="side">
         <div class="sidenav-header">
-            <p>What's up, {{ authService.user.userName }}</p>
-            <!-- <p>What's up, {{ user.userName }}</p> -->
+            <!-- <p>What's up, {{ authService.user.userName }}</p> -->
+            <p>What's up, {{ authService.getFirstName(authService.user.userName) }}</p>
         </div>
 
         <div class="sidenav-content">
@@ -18,7 +18,7 @@
             <mat-icon (click)="drawer.toggle()">menu</mat-icon>
 
             <div [matMenuTriggerFor]="menu" class="profile-container">
-                <img src="./assets/img/profilepicture.JPG" alt="">
+                {{ authService.getUserInitials(authService.user.userName) }}
             </div>
             <mat-menu #menu="matMenu">
                 <button mat-menu-item (click)="logout()">logout</button>

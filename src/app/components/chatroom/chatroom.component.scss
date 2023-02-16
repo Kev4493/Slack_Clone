@@ -49,6 +49,7 @@
 
     .chatroom-content {
         padding: 2rem;
+        height: 100%;
         // border: 1px solid whitesmoke;
 
         .messages-container {
@@ -73,15 +74,18 @@
                 }
 
 
-                .profile-picture-container {
-                    img {
-                        width: 40px;
-                        height: 40px;
-                        object-fit: cover;
-                        object-position: top;
-                        border-radius: 12px;
-                        margin-right: 1rem;
-                    }
+                .profile-initials-container {
+                    width: 40px;
+                    height: 40px;
+                    background-color: antiquewhite;
+                    border-radius: 12px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 15px;
+                    color: black;
+                    margin-right: 1rem;
+                    cursor: pointer;
                 }
 
                 .message-infos-container {

@@ -19,8 +19,9 @@
 
             <div class="full-message-container">
 
-                <div class="profile-picture-container">
-                    <img src="./assets/img/profilepicture.JPG">
+                <div class="profile-initials-container">
+                    <!-- <img src="./assets/img/profilepicture.JPG"> -->
+                    {{ authService.getUserInitials(message.author) }}
                 </div>
 
                 <div class="message-infos-container">
