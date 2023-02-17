@@ -14,8 +14,10 @@ export class HomeComponent {
   constructor(public router: Router, private afAuth: AngularFireAuth, public authService: AuthService) { }
 
 
-  ngOnInit() {
-    this.authService.getLoggedInUserInfomrationsFromDb();
+  async ngOnInit() {
+    // this.authService.getLoggedInUserInfomrationsFromDb();
+
+    this.authService.getLoggedInUserId();
   }
 
 

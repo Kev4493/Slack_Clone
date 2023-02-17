@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import tinycolor from 'tinycolor2';
 
 @Component({
   selector: 'app-register',
@@ -14,16 +15,16 @@ export class RegisterComponent {
 
   registerForm: FormGroup;
   firebaseErrorMessage: any;
-  generatedUserColor: string;
+
 
   hide = true;
 
-  constructor(private authService: AuthService, private router: Router, private afAuth: AngularFireAuth, private firestore: AngularFirestore) { 
+  constructor(private authService: AuthService, private router: Router, private afAuth: AngularFireAuth, private firestore: AngularFirestore) {
     this.firebaseErrorMessage = '';
   }
 
-  
-  ngOnInit():void {
+
+  ngOnInit(): void {
     this.registerForm = new FormGroup({
       'displayName': new FormControl('', Validators.required),
       'email': new FormControl('', [Validators.required, Validators.email]),
@@ -46,42 +47,37 @@ export class RegisterComponent {
 
 
   register() {
-    if (this.registerForm.invalid) return;                                      // Wenn Formular ungültig, wird Funktion soffort beendet.
-    this.authService.registerUser(this.registerForm.value).then((result) => {   // Aufruf der "registerUser"-Methode des "authService", um den Benutzer zu registrieren. Das Formular wird als Argument übergeben.
-      this.afAuth.user.subscribe((user) => {                                    // Wenn die Registrierung erfolgreich ist, abonniert die Funktion den Benutzer.
-        user.updateProfile({                                                    // Über die "updateProfile"-Methode des Benutzers wird der "displayName" auf den Wert aus dem Formular gesetzt.
-          displayName: this.registerForm.value.displayName
-        }).then(() => {
-          this.generateUserColor();
-          this.sendUserToDb()
-          this.router.navigate(['/home']);                                      // Wenn die Aktualisierung des Profils erfolgreich ist, wird der Benutzer zur Seite "/home" weitergeleitet.
-        });
-      });
-    });
+    if (this.registerForm.invalid) return;
+    this.generateUserColor();
+    this.authService.registerUser(this.registerForm.value)
   }
 
 
+  // generateUserColor() {
+  //   const letters = '0123456789ABCDEF';
+  //   let color = '#';
+  //   for (let i = 0; i < 6; i++) {
+  //     color += letters[Math.floor(Math.random() * 16)];
+  //   }
+  //   this.authService.generatedUserColor = color
+  // }
+
+  
   generateUserColor() {
     const letters = '0123456789ABCDEF';
     let color = '#';
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
+    let contrastRatio = 0;
+
+    // Schleife, die Farben generiert, bis eine Farbe mit einem ausreichenden Kontrastverhältnis gefunden wird
+    while (contrastRatio < 4.5) {
+      color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      const backgroundColor = tinycolor(color);
+      contrastRatio = tinycolor.readability(backgroundColor, 'black');
     }
-    this.generatedUserColor = color
+
+    this.authService.generatedUserColor = color;
   }
-
-
-  sendUserToDb() {
-    this.afAuth.user.subscribe((userDb) => {                                    // Die Funktion verwendet das "afAuth.user" Objekt und abonniert es mit einem Callback.
-      if (!userDb) return;                                                      // Innerhalb des Callbacks wird überprüft, ob ein Benutzer vorhanden ist. Wenn nicht, wird die Funktion beendet! 
-      this.authService.user.userName = userDb.displayName;
-      this.authService.user.userEmail = userDb.email;
-      this.authService.user.userId = userDb.uid;
-      this.authService.user.userColor = this.generatedUserColor;
-
-      this.firestore
-      .collection('registeredUser')
-      .add(this.authService.user.toJSON())
-    });
-  }  
 }

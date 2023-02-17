@@ -17,7 +17,7 @@
         <mat-toolbar>
             <mat-icon (click)="drawer.toggle()">menu</mat-icon>
 
-            <div [matMenuTriggerFor]="menu" class="profile-container">
+            <div [style.background-color]="authService.user.userColor" [matMenuTriggerFor]="menu" class="profile-container">
                 {{ authService.getUserInitials(authService.user.userName) }}
             </div>
             <mat-menu #menu="matMenu">

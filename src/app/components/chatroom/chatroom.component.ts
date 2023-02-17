@@ -52,11 +52,12 @@ export class ChatroomComponent {
 
   sendMessage() {
     this.message.author = this.authService.user.userName
+    this.message.authorColor = this.authService.user.userColor
     this.message.createdAt = new Date().getTime();
     this.message.messageFromChannelId = this.channelId;
     this.message.messageFromUserId = this.authService.user.userId
 
-    console.log('Current Message is:', this.message);
+    // console.log('Current Message is:', this.message);
     this.sendMessageToDb();
     this.message.messageText = '';
   }
@@ -75,7 +76,7 @@ export class ChatroomComponent {
       .valueChanges({ idField: "messageId" })
       .subscribe(messages => {
         this.messagesFromDb = messages;
-        console.log('Messages from DB:', this.messagesFromDb);
+        // console.log('Messages from DB:', this.messagesFromDb);
       })
   };
 

@@ -70,12 +70,12 @@ import { ChatroomComponent } from './components/chatroom/chatroom.component';
     MatTreeModule,
     MatDialogModule,
     AngularFirestoreModule,
-    MatMenuModule
+    MatMenuModule,
   ],
 
 
   providers: [
-    { provide: FIREBASE_OPTIONS, useValue: environment.firebase }
+    { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
   ],
   bootstrap: [AppComponent]
 })
