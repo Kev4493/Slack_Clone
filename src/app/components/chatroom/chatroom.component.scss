@@ -3,6 +3,7 @@
 }
 
 .chatroom-container {
+    // height: 100%;
 
     .chatroom-header {
         border-bottom: 1px solid rgba(255, 255, 255, 0.09);
@@ -77,7 +78,7 @@
                 .profile-initials-container {
                     width: 40px;
                     height: 40px;
-                    background-color: antiquewhite;
+                    background-color: orange;
                     border-radius: 12px;
                     display: flex;
                     justify-content: center;
