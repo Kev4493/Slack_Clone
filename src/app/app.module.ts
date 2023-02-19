@@ -31,6 +31,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { MatMenuModule } from '@angular/material/menu';
 import { ChatroomComponent } from './components/chatroom/chatroom.component';
+import { ConfirmDialogComponent } from './dialogs/confirm-dialog/confirm-dialog.component';
 
 
 
@@ -45,6 +46,7 @@ import { ChatroomComponent } from './components/chatroom/chatroom.component';
     ChannelsComponent,
     AddChannelDialogComponent,
     ChatroomComponent,
+    ConfirmDialogComponent,
   ],
 
 

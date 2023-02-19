@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ConfirmDialogComponent } from 'src/app/dialogs/confirm-dialog/confirm-dialog.component';
 import { AuthService } from 'src/app/services/auth.service';
 import { Channel } from 'src/models/channel.class';
 import { Message } from 'src/models/message.class';
@@ -120,5 +121,9 @@ export class ChatroomComponent {
           .delete();
         });
       });
+  }
+
+  openConfirmDialog() {
+    this.dialog.open(ConfirmDialogComponent)
   }
 }
