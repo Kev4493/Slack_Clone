@@ -4,7 +4,7 @@
     </div>
 
     <div class="button-container">
-        <button class="confirm-button delete-button" mat-raised-button>Löschen</button>
+        <button class="confirm-button delete-button" (click)="messageService.deleteMessageFromDb()" mat-raised-button>Löschen</button>
         <button class="confirm-button" mat-raised-button (click)="closeDialog()">Abbrechen</button>
     </div>
 

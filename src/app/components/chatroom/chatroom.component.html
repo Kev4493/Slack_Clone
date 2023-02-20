@@ -3,24 +3,26 @@
     <div class="chatroom-header">
         <div class="channel-name-container">
             <mat-icon>tag</mat-icon>
-            <p>{{ channel.channelName }}</p>
+            <p>{{ channelService.channel.channelName }}</p>
         </div>
         <div class="channel-settings-container">
             <mat-icon [matMenuTriggerFor]="menu">settings</mat-icon>
             <mat-menu #menu="matMenu">
-                <button (click)="deleteChannelFromDb()" mat-menu-item>Delete {{ channel.channelName }} Channel</button>
+                <!-- <button (click)="deleteChannelFromDb()" mat-menu-item>Delete {{ channel.channelName }} Channel</button> -->
+                <button (click)="openDeleteChannelDialog()" mat-menu-item>Delete {{ channelService.channel.channelName }} Channel</button>
             </mat-menu>
         </div>
     </div>
 
     <div class="chatroom-content">
 
-        <div *ngFor="let message of messagesFromDb" class="messages-container">
+        <div *ngFor="let message of messageService.messagesFromDb" class="messages-container">
 
             <div class="full-message-container">
 
                 <div [style.background-color]="message.authorColor" class="profile-initials-container">
                     {{ authService.getUserInitials(message.author) }}
+                    <!-- <div class="online-status" [ngClass]="getStatusClass()"></div> -->
                 </div>
 
                 <div class="message-infos-container">
@@ -36,7 +38,7 @@
                 <div [matMenuTriggerFor]="menu" class="message-setting-container">
                     <mat-icon>more_vert</mat-icon>
                     <mat-menu #menu="matMenu">
-                        <button (click)="deleteMessageFromDb(message.messageId, message.messageFromUserId)" mat-menu-item>Delete this message</button>
+                        <button (click)="openDeleteMessageDialog(message.messageId, message.messageFromUserId)" mat-menu-item>Delete this message</button>
                     </mat-menu>
                 </div>
 
@@ -46,13 +48,13 @@
         </div>
 
         <div class="message-input-container">
-            <form (ngSubmit)="sendMessage()">
+            <form (ngSubmit)="messageService.sendMessage()">
                 <div class="textformatting-container"></div>
-                <input [(ngModel)]="message.messageText" name="messageText" type="text"
-                    placeholder="Nachricht an # {{ channel.channelName}}">
+                <input [(ngModel)]="messageService.message.messageText" name="messageText" type="text"
+                    placeholder="Nachricht an # {{ channelService.channel.channelName}}">
 
                 <div class="send-btn-container">
-                    <img (click)="sendMessage()" class="send-icon" src="./assets/img/icons/send-icon.png" alt="">
+                    <img (click)="messageService.sendMessage()" class="send-icon" src="./assets/img/icons/send-icon.png" alt="">
                 </div>
             </form>
         </div>

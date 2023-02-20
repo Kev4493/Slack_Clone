@@ -31,7 +31,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { MatMenuModule } from '@angular/material/menu';
 import { ChatroomComponent } from './components/chatroom/chatroom.component';
-import { ConfirmDialogComponent } from './dialogs/confirm-dialog/confirm-dialog.component';
+import { DeleteMessageDialogComponent } from './dialogs/delete-message-dialog/delete-message-dialog.component';
+import { DeleteChannelDialogComponent } from './dialogs/delete-channel-dialog/delete-channel-dialog.component';
 
 
 
@@ -46,7 +47,8 @@ import { ConfirmDialogComponent } from './dialogs/confirm-dialog/confirm-dialog.
     ChannelsComponent,
     AddChannelDialogComponent,
     ChatroomComponent,
-    ConfirmDialogComponent,
+    DeleteMessageDialogComponent,
+    DeleteChannelDialogComponent,
   ],
 
 

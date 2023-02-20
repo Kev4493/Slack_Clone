@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/app/services/auth.service';
+import { ChannelService } from 'src/app/services/channel.service';
 import { Channel } from 'src/models/channel.class';
 
 @Component({
@@ -9,9 +10,10 @@ import { Channel } from 'src/models/channel.class';
   templateUrl: './add-channel-dialog.component.html',
   styleUrls: ['./add-channel-dialog.component.scss']
 })
+
 export class AddChannelDialogComponent {
 
-  constructor(public dialog: MatDialog, private firestore: AngularFirestore, private authService: AuthService) { }
+  constructor(public dialog: MatDialog, private firestore: AngularFirestore, private authService: AuthService, public channelService: ChannelService) { }
 
   channel: Channel = new Channel()
 

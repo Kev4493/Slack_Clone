@@ -50,28 +50,43 @@
                 align-items: center;
                 font-size: 15px;
                 cursor: pointer;
-
-                img {
-                    width: 40px;
-                    height: 40px;
-                    object-fit: cover;
-                    object-position: top;
-                    border-radius: 12px;
-                    cursor: pointer;
-                }
+                position: relative;
             }
 
-            .logout-menu {
-                button {
-                    color: red;
-                }
+            .online-status {
+                position: absolute;
+                bottom: -3px;
+                right: -3px;
+                width: 15px;
+                height: 15px;
+                border-radius: 50%;
             }
 
+            .online {
+                background-color: green;
+                border: 0.5px solid black;
+            }
 
+            .offline {
+                background-color: red;
+                border: 0.5px solid black;
+            }
+
+            .away {
+                background-color: orange;
+                border: 0.5px solid black;
+            }
+
+            .no-status {
+                background-color: lightgray;
+                border: 0.5px solid black;
+            }
 
         }
 
     }
+
+
 
 
 }

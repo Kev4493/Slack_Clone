@@ -20,7 +20,10 @@ export class ChannelsComponent {
     .valueChanges({idField: 'channelId'})
     .subscribe((changes:any) => {
       // console.log('Received changes from DB:', changes);
+      
+      
       this.allChannels = changes;
+      console.log('allChannels:', this.allChannels);
     })
   } 
 

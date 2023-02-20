@@ -10,11 +10,16 @@ import { User } from 'src/models/user.class';
 
 export class AuthService {
 
+  online: Boolean 
+  offline: Boolean
+  away: Boolean
+
   userLoggedIn: boolean;      // other components can check on this variable for the login status of the user
   user: User = new User;
   generatedUserColor: string;
   currentLoggedInUserId: string;
   loggedInUserFromDb: any;
+
 
   constructor(private router: Router, private afAuth: AngularFireAuth, private firestore: AngularFirestore) {
 
@@ -56,7 +61,8 @@ export class AuthService {
         userName: user.displayName,
         userEmail: userLower,
         userId: result.user.uid,
-        userColor: this.generatedUserColor
+        userColor: this.generatedUserColor,
+        userActivityStatus: 'online'
       });
 
       console.log('Auth Service: registerUser: success');
@@ -101,8 +107,9 @@ export class AuthService {
       this.user.userEmail = this.loggedInUserFromDb[0].userEmail;
       this.user.userId = this.loggedInUserFromDb[0].userId;
       this.user.userName = this.loggedInUserFromDb[0].userName;
+      this.user.userActivityStatus = this.loggedInUserFromDb[0].userActivityStatus;
 
-      // console.log('Current Logged in User:', this.user);
+      console.log('Current Logged in User:', this.user);
     }
   }
 

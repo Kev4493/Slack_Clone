@@ -44,12 +44,19 @@ export class LoginComponent {
       if (result == null) {                                 // null is success, false means there was an error
         console.log('logging in...');
         this.router.navigate(['/home']);                // when the user is logged in, navigate them to home
+        this.setOnlineStatus()
       }
       else if (result.isValid == false) {
         console.log('login error', result);
         this.firebaseErrorMessage = result.message;
       }
     });
+  }
+
+  setOnlineStatus() {
+    this.authService.online = true;
+    this.authService.away = false;
+    this.authService.offline = false;
   }
 
 }

@@ -4,12 +4,19 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: Unbounded, "Helvetica Neue", sans-serif;
+  font-family: Montserrat, "Helvetica Neue", sans-serif;
 }
 
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Unbounded, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Montserrat, "Helvetica Neue", sans-serif;
+}
 
 
 /* unbounded-regular - latin */
@@ -29,7 +36,7 @@ body { margin: 0; font-family: Unbounded, "Helvetica Neue", sans-serif; }
     url('../src/assets/fonts/unbounded-v3-latin-regular.ttf') format('truetype'),
     /* Safari, Android, iOS */
     url('../src/assets/fonts/unbounded-v3-latin-regular.svg#Unbounded') format('svg');
-    /* Legacy iOS */
+  /* Legacy iOS */
 }
 
 /* unbounded-700 - latin */
@@ -49,5 +56,48 @@ body { margin: 0; font-family: Unbounded, "Helvetica Neue", sans-serif; }
     url('../src/assets/fonts/unbounded-v3-latin-700.ttf') format('truetype'),
     /* Safari, Android, iOS */
     url('../src/assets/fonts/unbounded-v3-latin-700.svg#Unbounded') format('svg');
+  /* Legacy iOS */
+}
+
+
+/* montserrat-regular - latin */
+@font-face {
+  font-display: swap;
+  /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../src/assets/fonts/montserrat-v25-latin-regular.eot');
+  /* IE9 Compat Modes */
+  src: url('../src/assets/fonts/montserrat-v25-latin-regular.eot?#iefix') format('embedded-opentype'),
+    /* IE6-IE8 */
+    url('../src/assets/fonts/montserrat-v25-latin-regular.woff2') format('woff2'),
+    /* Super Modern Browsers */
+    url('../src/assets/fonts/montserrat-v25-latin-regular.woff') format('woff'),
+    /* Modern Browsers */
+    url('../src/assets/fonts/montserrat-v25-latin-regular.ttf') format('truetype'),
+    /* Safari, Android, iOS */
+    url('../src/assets/fonts/montserrat-v25-latin-regular.svg#Montserrat') format('svg');
+  /* Legacy iOS */
+}
+
+/* montserrat-700 - latin */
+@font-face {
+  font-display: swap;
+    /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../src/assets/fonts/montserrat-v25-latin-700.eot');
+    /* IE9 Compat Modes */
+  src: url('../src/assets/fonts/montserrat-v25-latin-700.eot?#iefix') format('embedded-opentype'),
+    /* IE6-IE8 */
+    url('../src/assets/fonts/montserrat-v25-latin-700.woff2') format('woff2'),
+    /* Super Modern Browsers */
+    url('../src/assets/fonts/montserrat-v25-latin-700.woff') format('woff'),
+    /* Modern Browsers */
+    url('../src/assets/fonts/montserrat-v25-latin-700.ttf') format('truetype'),
+    /* Safari, Android, iOS */
+    url('../src/assets/fonts/montserrat-v25-latin-700.svg#Montserrat') format('svg');
     /* Legacy iOS */
 }

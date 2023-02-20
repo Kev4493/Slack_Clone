@@ -2,7 +2,7 @@
 
     <mat-drawer [opened]="true" #drawer class="sidenav" mode="side">
         <div class="sidenav-header">
-            <p>What's up, {{ authService.getFirstName(authService.user.userName) }}</p>
+            <p>What's up, {{ authService.getFirstName(authService.user.userName) }} ?</p>
         </div>
 
         <div class="sidenav-content">
@@ -18,9 +18,12 @@
 
             <div class="profile-container" [style.background-color]="authService.user.userColor" [matMenuTriggerFor]="menu">
                 {{ authService.getUserInitials(authService.user.userName) }}
+                <!-- <div class="online-status" [ngClass]="getStatusClass()"></div> -->
             </div>
-            <mat-menu class="logout-menu" #menu="matMenu">
+
+            <mat-menu #menu="matMenu">
                 <button mat-menu-item (click)="logout()">logout</button>
+                <button mat-menu-item (click)="logout()">away status</button>
             </mat-menu>
 
         </mat-toolbar>
