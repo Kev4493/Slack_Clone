@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
+import { map } from 'rxjs';
 import { User } from 'src/models/user.class';
 
 @Injectable({
@@ -86,36 +87,79 @@ export class AuthService {
       console.log('Loggedin UserID is:', this.currentLoggedInUserId);
 
       if (this.currentLoggedInUserId) {
-        this.getLoggedInUserFromDb();
+        this.getLoggedInUserFromDb(this.currentLoggedInUserId);
       }
     })
   }
 
-  // FEHLER??
-  getLoggedInUserFromDb() {
-    this.firestore
-      .collection('users', ref => ref.where('userId', '==', this.currentLoggedInUserId))
-      .valueChanges()
-      .subscribe(user => {
-        this.loggedInUserFromDb = user;
-        // console.log('loggedInUserFromDb:', this.loggedInUserFromDb);
 
+  // getLoggedInUserFromDb(currentLoggedInUserId) {
+  //   this.firestore
+  //     .doc(`users/${currentLoggedInUserId}`)
+  //     .get()
+  //     .subscribe((data) => {
+  //       this.loggedInUserFromDb = data.exists ? data.data() : undefined
+  //       console.log('loggedInUserFromDb', this.loggedInUserFromDb);
+
+  //       this.generateUserObject();
+  //     })
+  // }
+
+
+  getLoggedInUserFromDb(currentLoggedInUserId) {
+    this.firestore
+      .doc(`users/${currentLoggedInUserId}`)
+      .snapshotChanges() // Observable wird zurückgegeben
+      .pipe(
+        map((doc) => doc.payload.exists ? doc.payload.data() : undefined) // Mapping der Daten
+      )
+      .subscribe((data) => {
+        this.loggedInUserFromDb = data;
+        console.log('loggedInUserFromDb', this.loggedInUserFromDb);
         this.generateUserObject();
-      })
+      });
   }
+
+
+  generateUserObject() {
+
+    this.user.userColor = this.loggedInUserFromDb.userColor;
+    this.user.userEmail = this.loggedInUserFromDb.userEmail;
+    this.user.userId = this.loggedInUserFromDb.userId;
+    this.user.userName = this.loggedInUserFromDb.userName;
+    this.user.userActivityStatus = this.loggedInUserFromDb.userActivityStatus;
+
+    console.log('Current Logged in Userobject:', this.user);
+
+  }
+
+
+  // FEHLER??
+  // getLoggedInUserFromDb() {
+  //   this.firestore
+  //     .collection('users', ref => ref.where('userId', '==', this.currentLoggedInUserId))
+  //     .valueChanges()
+  //     .subscribe(user => {
+  //       this.loggedInUserFromDb = user;
+  //       // console.log('loggedInUserFromDb:', this.loggedInUserFromDb);
+
+  //       this.generateUserObject();
+  //     })
+  // }
+
 
   // FEHLER?
-  generateUserObject() {
-    if (this.loggedInUserFromDb && this.loggedInUserFromDb.length > 0) {
-      this.user.userColor = this.loggedInUserFromDb[0].userColor;
-      this.user.userEmail = this.loggedInUserFromDb[0].userEmail;
-      this.user.userId = this.loggedInUserFromDb[0].userId;
-      this.user.userName = this.loggedInUserFromDb[0].userName;
-      this.user.userActivityStatus = this.loggedInUserFromDb[0].userActivityStatus;
+  // generateUserObject() {
+  //   if (this.loggedInUserFromDb && this.loggedInUserFromDb.length > 0) {
+  //     this.user.userColor = this.loggedInUserFromDb[0].userColor;
+  //     this.user.userEmail = this.loggedInUserFromDb[0].userEmail;
+  //     this.user.userId = this.loggedInUserFromDb[0].userId;
+  //     this.user.userName = this.loggedInUserFromDb[0].userName;
+  //     this.user.userActivityStatus = this.loggedInUserFromDb[0].userActivityStatus;
 
-      // console.log('Current Logged in Userobject:', this.user);
-    }
-  }
+  //     // console.log('Current Logged in Userobject:', this.user);
+  //   }
+  // }
 
 
   getAllUsersFromDb() {
