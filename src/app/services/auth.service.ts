@@ -83,16 +83,16 @@ export class AuthService {
   }
 
 
-  getLoggedInUserId() {
-    this.afAuth.user.subscribe((user) => {
-      if (!user) return;
-      this.currentLoggedInUserId = user.uid
-      console.log('Loggedin UserID is:', this.currentLoggedInUserId);
+  // getLoggedInUserId() {
+  //   this.afAuth.user.subscribe((user) => {
+  //     if (!user) return;
+  //     this.currentLoggedInUserId = user.uid
+  //     console.log('Loggedin UserID is:', this.currentLoggedInUserId);
 
-      this.getLoggedInUserFromDb();
+  //     this.getLoggedInUserFromDb();
 
-    })
-  }
+  //   })
+  // }
 
 
   async getLoggedInUserFromDb() {
