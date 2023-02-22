@@ -92,7 +92,6 @@ export class AuthService {
     })
   }
 
-  
 
   async getLoggedInUserFromDb() {
     const currentUserCollection = this.firestore.collection('users', ref => ref.where('userId', '==', this.currentLoggedInUserId))
