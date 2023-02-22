@@ -16,7 +16,8 @@ export class HomeComponent {
 
 
   async ngOnInit() {
-    this.authService.getLoggedInUserId();
+    // this.authService.getLoggedInUserId();
+    this.authService.getLoggedInUserFromDb();
     this.authService.getAllUsersFromDb();
   }
 
@@ -78,6 +79,8 @@ export class HomeComponent {
     this.updateStatusToOffline();
     this.afAuth.signOut();
   }
+
+
 
 
 }

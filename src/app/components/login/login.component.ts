@@ -44,8 +44,8 @@ export class LoginComponent {
     this.authService.loginUser(this.loginForm.value.email, this.loginForm.value.password).then((result) => {
       if (result == null) {                                 // null is success, false means there was an error
         console.log('logging in...');
-        this.updateStatusToOnline();
         this.router.navigate(['/home']);                // when the user is logged in, navigate them to home
+        this.updateStatusToOnline();
       }
       else if (result.isValid == false) {
         console.log('login error', result);
@@ -56,9 +56,11 @@ export class LoginComponent {
 
 
   updateStatusToOnline() {
+    // debugger;
     this.firestore
       .collection('users')
-      .doc(this.authService.user.userId)
+      // .doc(this.authService.user.userId)
+      .doc(this.authService.currentLoggedInUserId)
       .update({
         userActivityStatus: "online"
       })
