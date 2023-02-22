@@ -93,6 +93,7 @@ export class AuthService {
   }
 
 
+  // CODE VON FLO:
   // getLoggedInUserFromDb(currentLoggedInUserId) {
   //   this.firestore
   //     .doc(`users/${currentLoggedInUserId}`)
@@ -106,6 +107,7 @@ export class AuthService {
   // }
 
 
+  // CODE VON FLO ABGEÄNDERT:
   getLoggedInUserFromDb(currentLoggedInUserId) {
     this.firestore
       .doc(`users/${currentLoggedInUserId}`)
@@ -134,7 +136,7 @@ export class AuthService {
   }
 
 
-  // FEHLER??
+  // FEHLER?? (MEIN URSPRÜNGLICHER CODE)
   // getLoggedInUserFromDb() {
   //   this.firestore
   //     .collection('users', ref => ref.where('userId', '==', this.currentLoggedInUserId))
@@ -148,7 +150,7 @@ export class AuthService {
   // }
 
 
-  // FEHLER?
+  // FEHLER? (MEIN URSPRÜNGLICHER CODE)
   // generateUserObject() {
   //   if (this.loggedInUserFromDb && this.loggedInUserFromDb.length > 0) {
   //     this.user.userColor = this.loggedInUserFromDb[0].userColor;
