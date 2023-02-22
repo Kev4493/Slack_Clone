@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
@@ -18,7 +19,7 @@ export class LoginComponent {
   loginForm: FormGroup
   firebaseErrorMessage;
 
-  constructor(private authService: AuthService, private router: Router, private afAuth: AngularFireAuth) {
+  constructor(private authService: AuthService, private router: Router, private afAuth: AngularFireAuth,private firestore: AngularFirestore) {
     this.loginForm = new FormGroup({
       'email': new FormControl('', [Validators.required, Validators.email]),
       'password': new FormControl('', Validators.required),
@@ -43,8 +44,8 @@ export class LoginComponent {
     this.authService.loginUser(this.loginForm.value.email, this.loginForm.value.password).then((result) => {
       if (result == null) {                                 // null is success, false means there was an error
         console.log('logging in...');
+        // this.updateStatusToOnline();
         this.router.navigate(['/home']);                // when the user is logged in, navigate them to home
-        this.setOnlineStatus()
       }
       else if (result.isValid == false) {
         console.log('login error', result);
@@ -53,10 +54,14 @@ export class LoginComponent {
     });
   }
 
-  setOnlineStatus() {
-    this.authService.online = true;
-    this.authService.away = false;
-    this.authService.offline = false;
-  }
+
+  // updateStatusToOnline() {
+  //   this.firestore
+  //     .collection('users')
+  //     .doc(this.authService.user.userId)
+  //     .update({
+  //       userActivityStatus: "online"
+  //     })
+  // }
 
 }

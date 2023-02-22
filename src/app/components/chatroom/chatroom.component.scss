@@ -103,17 +103,17 @@
                         border: 0.5px solid black;
                     }
         
-                    .offline {
-                        background-color: red;
-                        border: 0.5px solid black;
-                    }
-        
                     .away {
                         background-color: orange;
                         border: 0.5px solid black;
                     }
         
-                    .no-status {
+                    .dnd {
+                        background-color: red;
+                        border: 0.5px solid black;
+                    }
+        
+                    .offline {
                         background-color: lightgray;
                         border: 0.5px solid black;
                     }

@@ -18,12 +18,16 @@
 
             <div class="profile-container" [style.background-color]="authService.user.userColor" [matMenuTriggerFor]="menu">
                 {{ authService.getUserInitials(authService.user.userName) }}
-                <!-- <div class="online-status" [ngClass]="getStatusClass()"></div> -->
+                <div class="online-status" [ngClass]="getStatusClass()"></div>
             </div>
 
             <mat-menu #menu="matMenu">
                 <button mat-menu-item (click)="logout()">logout</button>
-                <button mat-menu-item (click)="logout()">away status</button>
+                <button mat-menu-item (click)="updateStatusToOnline()">show online</button>
+                <button mat-menu-item (click)="updateStatusToAway()">show away</button>
+                <button mat-menu-item (click)="updateStatusToDnd()">show do not disturb</button>
+                <button mat-menu-item (click)="updateStatusToOffline()">show offline</button>
+                
             </mat-menu>
 
         </mat-toolbar>

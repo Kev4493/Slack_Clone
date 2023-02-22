@@ -10,12 +10,13 @@ import { User } from 'src/models/user.class';
 
 export class AuthService {
 
-  online: Boolean 
+  online: Boolean
   offline: Boolean
   away: Boolean
 
   userLoggedIn: boolean;      // other components can check on this variable for the login status of the user
   user: User = new User;
+  allUsersFromDb: any;
   generatedUserColor: string;
   currentLoggedInUserId: string;
   loggedInUserFromDb: any;
@@ -82,25 +83,28 @@ export class AuthService {
     this.afAuth.user.subscribe((user) => {
       if (!user) return;
       this.currentLoggedInUserId = user.uid
-      // console.log('Loggedin UserID is:', this.currentLoggedInUserId);
+      console.log('Loggedin UserID is:', this.currentLoggedInUserId);
 
-      this.getLoggedInUserFromDb();
+      if (this.currentLoggedInUserId) {
+        this.getLoggedInUserFromDb();
+      }
     })
   }
 
-
+  // FEHLER??
   getLoggedInUserFromDb() {
     this.firestore
       .collection('users', ref => ref.where('userId', '==', this.currentLoggedInUserId))
       .valueChanges()
       .subscribe(user => {
         this.loggedInUserFromDb = user;
+        // console.log('loggedInUserFromDb:', this.loggedInUserFromDb);
+
         this.generateUserObject();
-        // console.log('logged in user is:', this.loggedInUserFromDb);
       })
   }
 
-
+  // FEHLER?
   generateUserObject() {
     if (this.loggedInUserFromDb && this.loggedInUserFromDb.length > 0) {
       this.user.userColor = this.loggedInUserFromDb[0].userColor;
@@ -109,20 +113,20 @@ export class AuthService {
       this.user.userName = this.loggedInUserFromDb[0].userName;
       this.user.userActivityStatus = this.loggedInUserFromDb[0].userActivityStatus;
 
-      console.log('Current Logged in User:', this.user);
+      // console.log('Current Logged in Userobject:', this.user);
     }
   }
 
 
-  // getLoggedInUserInfomrationsFromDb() {
-  //   this.afAuth.user.subscribe((userDb) => {        // Die Funktion verwendet das "afAuth.user" Objekt und abonniert es mit einem Callback.
-  //     if (!userDb) return;                          // Innerhalb des Callbacks wird überprüft, ob ein Benutzer vorhanden ist. Wenn nicht, wird die Funktion beendet! 
-  //     this.user.userName = userDb.displayName;
-  //     this.user.userEmail = userDb.email;
-  //     this.user.userId = userDb.uid;
-  //     console.log('getLoggedInUserInfomrationsFromDb:', this.user);
-  //   });
-  // }
+  getAllUsersFromDb() {
+    this.firestore
+      .collection('users')
+      .valueChanges()
+      .subscribe(allUsers => {
+        this.allUsersFromDb = allUsers;
+        // console.log('All Users From DB = ', this.allUsersFromDb)
+      })
+  }
 
 
   getUserInitials(fullname: string) {

@@ -23,7 +23,7 @@ export class ChannelsComponent {
       
       
       this.allChannels = changes;
-      console.log('allChannels:', this.allChannels);
+      // console.log('allChannels:', this.allChannels);
     })
   } 
 

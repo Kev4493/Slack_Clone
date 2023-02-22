@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -11,29 +12,72 @@ import { AuthService } from 'src/app/services/auth.service';
 
 export class HomeComponent {
 
-  constructor(public router: Router, private afAuth: AngularFireAuth, public authService: AuthService) { }
+  constructor(public router: Router, private afAuth: AngularFireAuth, public authService: AuthService, private firestore: AngularFirestore) { }
 
 
   async ngOnInit() {
     this.authService.getLoggedInUserId();
+    // this.authService.getAllUsersFromDb();
   }
 
-  
-  // getStatusClass() {
-  //   if (this.authService.user.userActivityStatus == 'online') {
-  //     return 'online';
-  //   } else if (this.authService.user.userActivityStatus == 'offline') {
-  //     return 'offline';
-  //   } else if (this.authService.user.userActivityStatus == 'away') {
-  //     return 'away';
-  //   } else {
-  //     return 'no-status';
-  //   }
-  // }
+
+  getStatusClass() {
+    if (this.authService.user.userActivityStatus == 'online') {
+      return 'online';
+    } else if (this.authService.user.userActivityStatus == 'away') {
+      return 'away';
+    } else if (this.authService.user.userActivityStatus == 'dnd') {
+      return 'dnd';
+    } else {
+      return 'offline';
+    }
+  }
 
 
-  logout() {
+  updateStatusToOnline() {
+    this.firestore
+      .collection('users')
+      .doc(this.authService.user.userId)
+      .update({
+        userActivityStatus: "online"
+      })
+  }
+
+
+  updateStatusToAway() {
+    this.firestore
+      .collection('users')
+      .doc(this.authService.user.userId)
+      .update({
+        userActivityStatus: "away"
+      })
+  }
+
+
+  updateStatusToDnd() {
+    this.firestore
+      .collection('users')
+      .doc(this.authService.user.userId)
+      .update({
+        userActivityStatus: "dnd"
+      })
+  }
+
+
+  async updateStatusToOffline() {
+    this.firestore
+      .collection('users')
+      .doc(this.authService.user.userId)
+      .update({
+        userActivityStatus: "offline"
+      })
+  }
+
+
+  async logout() {
+    // await this.updateStatusToOffline();
     this.afAuth.signOut();
   }
+
 
 }

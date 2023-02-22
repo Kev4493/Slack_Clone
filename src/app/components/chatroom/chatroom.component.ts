@@ -52,4 +52,9 @@ export class ChatroomComponent {
   //     return 'no-status';
   //   }
   // }
+
+  getUserActivityStatus(messageFromUserId: string) {
+    const user = this.authService.allUsersFromDb.find(u => u.userId === messageFromUserId);
+    return user ? user.userActivityStatus : '';
+  }
 }
