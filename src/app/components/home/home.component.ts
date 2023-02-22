@@ -74,8 +74,8 @@ export class HomeComponent {
   }
 
 
-  async logout() {
-    await this.updateStatusToOffline();
+  logout() {
+    this.updateStatusToOffline();
     this.afAuth.signOut();
   }
 
