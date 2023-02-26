@@ -1,8 +1,11 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { SetStatusComponent } from '../set-status/set-status.component';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +15,9 @@ import { AuthService } from 'src/app/services/auth.service';
 
 export class HomeComponent {
 
-  constructor(public router: Router, private afAuth: AngularFireAuth, public authService: AuthService, private firestore: AngularFirestore) { }
+  snackBarDurationInSeconds = 3;
+
+  constructor(public router: Router, private afAuth: AngularFireAuth, public authService: AuthService, private firestore: AngularFirestore, private _snackBar: MatSnackBar, public dialog: MatDialog) { }
 
 
   async ngOnInit() {
@@ -78,9 +83,22 @@ export class HomeComponent {
   logout() {
     this.updateStatusToOffline();
     this.afAuth.signOut();
+    this.openSnackBar();
   }
 
 
+  openSnackBar() {
+    let message = 'Successfully logged out!'
+    let action = 'Got it'
+
+    this._snackBar.open(message, action, {
+      duration: this.snackBarDurationInSeconds * 1000
+    });
+  }
 
 
+  openSetStatusDialog() {
+    this.dialog.open(SetStatusComponent)
+  }
+  
 }

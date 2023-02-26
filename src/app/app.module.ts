@@ -33,6 +33,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { ChatroomComponent } from './components/chatroom/chatroom.component';
 import { DeleteMessageDialogComponent } from './dialogs/delete-message-dialog/delete-message-dialog.component';
 import { DeleteChannelDialogComponent } from './dialogs/delete-channel-dialog/delete-channel-dialog.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SetStatusComponent } from './components/set-status/set-status.component';
 
 
 
@@ -49,6 +51,7 @@ import { DeleteChannelDialogComponent } from './dialogs/delete-channel-dialog/de
     ChatroomComponent,
     DeleteMessageDialogComponent,
     DeleteChannelDialogComponent,
+    SetStatusComponent,
   ],
 
 
@@ -75,6 +78,7 @@ import { DeleteChannelDialogComponent } from './dialogs/delete-channel-dialog/de
     MatDialogModule,
     AngularFirestoreModule,
     MatMenuModule,
+    MatSnackBarModule
   ],
 
 

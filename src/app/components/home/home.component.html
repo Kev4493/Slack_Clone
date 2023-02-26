@@ -16,12 +16,18 @@
         <mat-toolbar>
             <mat-icon (click)="drawer.toggle()">menu</mat-icon>
 
-            <div class="profile-container" [style.background-color]="authService.user.userColor" [matMenuTriggerFor]="menu">
-                {{ authService.getUserInitials(authService.user.userName) }}
-                <div class="online-status" [ngClass]="getStatusClass()"></div>
+            <div class="profile">
+                <div class="profile-status" (click)="openSetStatusDialog()">
+                    <p>Status festlegen</p>
+                </div>
+    
+                <div class="profile-container" [style.background-color]="authService.user.userColor" [matMenuTriggerFor]="menu">
+                    {{ authService.getUserInitials(authService.user.userName) }}
+                    <div class="online-status" [ngClass]="getStatusClass()"></div>
+                </div>
             </div>
 
-            <mat-menu #menu="matMenu">
+            <mat-menu #menu="matMenu" class="profile-menu">
                 <button mat-menu-item (click)="logout()">logout</button>
                 <button mat-menu-item (click)="updateStatusToOnline()">show online</button>
                 <button mat-menu-item (click)="updateStatusToAway()">show away</button>

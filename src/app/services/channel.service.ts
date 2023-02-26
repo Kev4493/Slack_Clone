@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Channel } from 'src/models/channel.class';
 import { AuthService } from './auth.service';
@@ -13,8 +14,9 @@ export class ChannelService {
 
   channelId: any;
   channel: Channel = new Channel;
+  snackBarDurationInSeconds = 3;
 
-  constructor(public authService: AuthService, private firestore: AngularFirestore, private router: Router, public dialog: MatDialog) { }
+  constructor(public authService: AuthService, private firestore: AngularFirestore, private router: Router, public dialog: MatDialog, private _snackBar: MatSnackBar) { }
 
 
   getCurrentChannelInfos() {
@@ -38,10 +40,21 @@ export class ChannelService {
         .doc(this.channelId)
         .delete();
       this.closeDeleteChannelDialog();
+      this.openSnackBar();
       this.router.navigate(['/home'])
     } else {
       window.alert('Du hast diesen Channel nicht erstellt!')
     }
+  }
+
+
+  openSnackBar() {
+    let message = 'Channel ' + `"${this.channel.channelName}"` + ' was deleted'
+    let action = 'Got it'
+
+    this._snackBar.open(message, action, {
+      duration: this.snackBarDurationInSeconds * 1000
+    });
   }
 
 
