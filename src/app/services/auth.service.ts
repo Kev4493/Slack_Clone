@@ -30,7 +30,7 @@ export class AuthService {
       // debugger;
       if (user) {
         this.userLoggedIn = true;
-        console.log('user', user);
+        // console.log('user', user);
         this.currentLoggedInUserId = user.uid
       } else {
         this.userLoggedIn = false;
@@ -114,6 +114,7 @@ export class AuthService {
     this.user.userId = this.loggedInUserFromDb[0].userId;
     this.user.userName = this.loggedInUserFromDb[0].userName;
     this.user.userActivityStatus = this.loggedInUserFromDb[0].userActivityStatus;
+    this.user.userStatusInfo = this.loggedInUserFromDb[0].userStatusInfo;
 
     console.log('Current Logged in Userobject:', this.user);
 

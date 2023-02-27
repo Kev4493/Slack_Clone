@@ -46,7 +46,7 @@
                 .profile-status {
                     color: whitesmoke;
                     font-size: 13px;
-                    margin-right:1rem;
+                    margin-right: 1rem;
                     border-radius: 12px;
                     padding: 0 1rem;
                     cursor: pointer;
@@ -102,9 +102,14 @@
                 background-color: lightgray;
                 border: 0.5px solid black;
             }
-
         }
 
+        .online-circle {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: green;
+        }
     }
 
 

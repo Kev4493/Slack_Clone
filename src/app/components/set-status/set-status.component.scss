@@ -1,7 +1,7 @@
 .set-status-container {
     background-color: #1A1D21;
     padding: 2rem;
-    color: whitesmoke;
+    color: #f5f5f5;
     width: 350px;
     display: flex;
     flex-direction: column;
@@ -14,6 +14,9 @@
     .status-input-container {
         margin-top: 1rem;
         width: 100%;
+        display: flex;
+        align-items: center;
+        position: relative;
 
         .status-input {
             width: 100%;
@@ -23,6 +26,22 @@
             border: 1px solid rgba(255, 255, 255, 0.7);
             border-radius: 5px;
             padding: 0 0.5rem;
+
+            &:focus {
+                border-color: #40D9E1;
+                outline: none; // entfernt die standardmäßige Kontur
+                box-shadow: 0 0 0 1px #40D9E1, 0 0 10px rgba(64, 217, 225, 0.5)
+              
+            }
+        }
+
+        .emoji-icon {
+            filter: invert(100%) sepia(77%) saturate(109%) hue-rotate(231deg) brightness(116%) contrast(92%);
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: 1rem;
+            cursor: pointer;
         }
     }
 
@@ -36,11 +55,57 @@
     }
 
     .select-status-container {
-        // margin-top: 0.5rem;
-
         p {
             font-size: 13px;
             margin-top: 0.5rem;
+            cursor: pointer;
+        }
+
+        .delete-status-container {
+            margin-top: 1rem;
+            
+            .delete-status {
+                color: firebrick;
+                font-weight: 700;
+            }
+        }
+
+
+    }
+
+    .button-container {
+        margin-top: 2rem;
+        display: flex;
+        justify-content: flex-end;
+
+        .confirm-button {
+            background-color: rgba(0, 0, 0, 0.3);
+            color: whitesmoke;
+            width: 135.3px;
+            border: 1px solid whitesmoke;
+        }
+
+        .save-button {
+            background-color: #40D9E1;
+            margin-left: 2rem;
+            color: black;
+            border: none;
         }
     }
+
+    .container {
+        display: grid;
+        grid-template-columns: 100% 0%;
+        width: 36%;
+        
+        button {
+           background: transparent;
+           border: 0;
+           transform: translateX(-40px);
+           cursor: pointer;
+           &:focus {
+              outline: 0;
+           }
+        }
+     }
 }

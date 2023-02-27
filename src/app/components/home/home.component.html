@@ -18,7 +18,7 @@
 
             <div class="profile">
                 <div class="profile-status" (click)="openSetStatusDialog()">
-                    <p>Status festlegen</p>
+                    <p>{{this.authService.user.userStatusInfo ? this.authService.user.userStatusInfo : 'Status festlegen'}}</p>
                 </div>
     
                 <div class="profile-container" [style.background-color]="authService.user.userColor" [matMenuTriggerFor]="menu">
@@ -28,12 +28,15 @@
             </div>
 
             <mat-menu #menu="matMenu" class="profile-menu">
+                <button mat-menu-item [matMenuTriggerFor]="activityStatus">Aktivitätsstatus ändern</button>
                 <button mat-menu-item (click)="logout()">logout</button>
-                <button mat-menu-item (click)="updateStatusToOnline()">show online</button>
-                <button mat-menu-item (click)="updateStatusToAway()">show away</button>
-                <button mat-menu-item (click)="updateStatusToDnd()">show do not disturb</button>
-                <button mat-menu-item (click)="updateStatusToOffline()">show offline</button>
-                
+            </mat-menu>
+
+            <mat-menu #activityStatus="matMenu">
+                <button mat-menu-item (click)="updateStatusToOnline()">online</button>
+                <button mat-menu-item (click)="updateStatusToAway()">away</button>
+                <button mat-menu-item (click)="updateStatusToDnd()">do not disturb</button>
+                <button mat-menu-item (click)="updateStatusToOffline()">offline</button>
             </mat-menu>
 
         </mat-toolbar>

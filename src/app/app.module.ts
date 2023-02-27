@@ -39,6 +39,7 @@ import { SetStatusComponent } from './components/set-status/set-status.component
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,7 +79,7 @@ import { SetStatusComponent } from './components/set-status/set-status.component
     MatDialogModule,
     AngularFirestoreModule,
     MatMenuModule,
-    MatSnackBarModule
+    MatSnackBarModule,
   ],
 
 
