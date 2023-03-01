@@ -127,7 +127,7 @@ export class AuthService {
       .valueChanges()
       .subscribe(allUsers => {
         this.allUsersFromDb = allUsers;
-        // console.log('All Users From DB = ', this.allUsersFromDb)
+        console.log('All Users From DB = ', this.allUsersFromDb)
       })
   }
 
@@ -154,6 +154,18 @@ export class AuthService {
 
       if (firstName.length >= 1) {
         return firstName[0];
+      }
+    }
+    return '';
+  }
+
+
+  getStatusIcon(userStatusInfo: string) {
+    if (userStatusInfo) {
+      const emoji = userStatusInfo.split(' ');
+
+      if (emoji.length >= 1) {
+        return emoji[2]
       }
     }
     return '';

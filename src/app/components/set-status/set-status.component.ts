@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/app/services/auth.service';
@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class SetStatusComponent {
 
-  status: string
+  status = '';
 
   constructor(public dialog: MatDialog, private firestore: AngularFirestore, public authService: AuthService) { }
 
@@ -38,4 +38,5 @@ export class SetStatusComponent {
     this.status = '';
     this.addStatusInfoToDb();
   }
+
 }

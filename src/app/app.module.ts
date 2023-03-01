@@ -35,6 +35,10 @@ import { DeleteMessageDialogComponent } from './dialogs/delete-message-dialog/de
 import { DeleteChannelDialogComponent } from './dialogs/delete-channel-dialog/delete-channel-dialog.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SetStatusComponent } from './components/set-status/set-status.component';
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
+import { UsersComponent } from './components/users/users.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { ShowProfileDirective } from './show-profile.directive';
 
 
 
@@ -53,6 +57,8 @@ import { SetStatusComponent } from './components/set-status/set-status.component
     DeleteMessageDialogComponent,
     DeleteChannelDialogComponent,
     SetStatusComponent,
+    UsersComponent,
+    ShowProfileDirective
   ],
 
 
@@ -80,6 +86,8 @@ import { SetStatusComponent } from './components/set-status/set-status.component
     AngularFirestoreModule,
     MatMenuModule,
     MatSnackBarModule,
+    PickerModule,
+    MatTooltipModule
   ],
 
 

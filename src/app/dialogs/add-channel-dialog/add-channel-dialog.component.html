@@ -11,13 +11,17 @@
             Beispiel.</p>
     </div>
 
-    <div class="dialog-input">
-        <label>Name</label>
-        <input [(ngModel)]="channel.channelName" type="text">
-    </div>
+    <form (ngSubmit)="addChannel()">
+        <div class="dialog-input">
+            <label>Name</label>
+            <input [(ngModel)]="channel.channelName" name="firstName" type="text">
+        </div>
+    
+        <div class="button-container">
+            <button [ngClass]="{'enabled-button': channel.channelName !== ''}" [disabled]="channel.channelName === ''" class="create-button" mat-raised-button>Erstellen</button>
+        </div>
+    
+    </form>
 
-    <div class="button-container">
-        <button (click)="addChannel()" class="create-button" mat-raised-button>Erstellen</button>
-    </div>
     
 </div>

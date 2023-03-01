@@ -3,7 +3,7 @@
     <p>Status festlegen</p>
 
     <div class="status-input-container">
-        <input [(ngModel)]="status" class="status-input" type="text" placeholder="Wie lautet dein Status?">
+        <input [(ngModel)]="status" class="status-input" type="text" placeholder="Wie lautet dein Status?" (keyup.enter)="addStatusInfoToDb()">
         <img class="emoji-icon" src="./assets/img/icons/smiley.png" alt="">
     </div>
 
@@ -12,11 +12,11 @@
     </div>
 
     <div class="select-status-container">
-        <p (click)="addStatusInfoToInput('In einem Meeting')">In einem Meeting</p>
-        <p (click)="addStatusInfoToInput('Unterwegs')">Unterwegs</p>
-        <p (click)="addStatusInfoToInput('Krank')">Krank</p>
-        <p (click)="addStatusInfoToInput('Im Urlaub')">Im Urlaub</p>
-        <p (click)="addStatusInfoToInput('Home Office')">Home Office</p>
+        <p (click)="addStatusInfoToInput('In einem Meeting ' + '🗓️')">🗓️ In einem Meeting</p>
+        <p (click)="addStatusInfoToInput('Unterwegs ' + '🚗')">🚗 Unterwegs</p>
+        <p (click)="addStatusInfoToInput('Krank ' + '🤒')">🤒 Krank</p>
+        <p (click)="addStatusInfoToInput('Im Urlaub ' + '🌴')">🌴 Im Urlaub</p>
+        <p (click)="addStatusInfoToInput('Home Office ' + '🧑🏽‍💻')">🧑🏽‍💻 Home Office</p>
 
         <div *ngIf="this.authService.user.userStatusInfo" class="delete-status-container">
             <p class="delete-status" (click)="deleteStatus()">Aktuellen Status entfernen</p>
@@ -25,7 +25,7 @@
 
     <div class="button-container">
         <button class="confirm-button" (click)="closeDialog()" mat-raised-button>Abbrechen</button>
-        <button class="confirm-button save-button" (click)="addStatusInfoToDb()" mat-raised-button>Speichern</button>
+        <button [ngClass]="{'enabled-button': status !== ''}" [disabled]="status === ''" class="confirm-button save-button" (click)="addStatusInfoToDb()" mat-raised-button>Speichern</button>
     </div>
 
 </div>

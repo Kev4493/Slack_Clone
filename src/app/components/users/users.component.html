@@ -1,0 +1,17 @@
+<div class="users-container">
+    <div class="users-headline">
+        <p>Users</p>
+    </div>
+
+    <div *ngFor="let user of authService.allUsersFromDb" class="users-list">
+        <div [style.background-color]="user.userColor" class="profile-initials-container">
+            {{ authService.getUserInitials(user.userName) }}
+            <div [ngClass]="getUserActivityStatus(user.userId)" class="online-status"></div>
+        </div>
+
+        <p class="single-user">{{ user.userName }}</p>
+
+        <div class="user-status-info"> {{ authService.getStatusIcon(user.userStatusInfo) }}</div>
+
+    </div>
+</div>

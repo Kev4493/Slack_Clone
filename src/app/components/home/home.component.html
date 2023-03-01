@@ -8,6 +8,7 @@
         <div class="sidenav-content">
             <!-- === Alle erstellten Channels: -->
             <app-channels></app-channels>
+            <app-users></app-users>
         </div>
     </mat-drawer>
 
@@ -27,6 +28,7 @@
                 </div>
             </div>
 
+            <!-- Profile Menu -->
             <mat-menu #menu="matMenu" class="profile-menu">
                 <button mat-menu-item [matMenuTriggerFor]="activityStatus">Aktivitätsstatus ändern</button>
                 <button mat-menu-item (click)="logout()">logout</button>

@@ -81,6 +81,12 @@
                     height: 15px;
                     border-radius: 50%;
                 }
+
+                .profile-menu {
+                    .mat-menu-item {
+                        color: whitesmoke;
+                    }
+                }
             }
 
             .online {

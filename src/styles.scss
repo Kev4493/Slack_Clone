@@ -84,12 +84,12 @@ body {
 /* montserrat-700 - latin */
 @font-face {
   font-display: swap;
-    /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 700;
   src: url('../src/assets/fonts/montserrat-v25-latin-700.eot');
-    /* IE9 Compat Modes */
+  /* IE9 Compat Modes */
   src: url('../src/assets/fonts/montserrat-v25-latin-700.eot?#iefix') format('embedded-opentype'),
     /* IE6-IE8 */
     url('../src/assets/fonts/montserrat-v25-latin-700.woff2') format('woff2'),
@@ -99,5 +99,30 @@ body {
     url('../src/assets/fonts/montserrat-v25-latin-700.ttf') format('truetype'),
     /* Safari, Android, iOS */
     url('../src/assets/fonts/montserrat-v25-latin-700.svg#Montserrat') format('svg');
-    /* Legacy iOS */
+  /* Legacy iOS */
+}
+
+// === Mat-Menu Styles ===
+
+.mat-mdc-menu-content {
+  background-color: #232529;
+}
+
+.mat-mdc-menu-content .mat-mdc-menu-item .mdc-list-item__primary-text {
+  color: whitesmoke;
+}
+
+.mat-mdc-menu-submenu-icon {
+  color: whitesmoke;
+}
+
+.mat-mdc-menu-item:hover:not([disabled]) {
+  background-color: rgba(255, 255, 255, 0.05)
+}
+
+// === Router Link Styles ===
+
+.active-link {
+  background-color: #06a4ac;
+  color: black !important;
 }

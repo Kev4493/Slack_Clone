@@ -43,6 +43,12 @@
             margin-top: 1rem;
             color: rgba(255, 255, 255, 0.7);
             padding: 0rem 1rem;
+
+            &:focus {
+                border-color: #40D9E1;
+                outline: none; // entfernt die standardmäßige Kontur
+                box-shadow: 0 0 0 1px #40D9E1, 0 0 10px rgba(64, 217, 225, 0.5)
+            }
         }
     }
 
@@ -54,6 +60,11 @@
         .create-button {
             background-color: rgba(255, 255, 255, 0.2);
             color: rgba(255, 255, 255, 0.7);
+        }
+
+        .enabled-button {
+            background-color: #40D9E1;
+            color: black;
         }
     }
 
