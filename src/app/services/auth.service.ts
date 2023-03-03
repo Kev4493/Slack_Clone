@@ -162,10 +162,11 @@ export class AuthService {
 
   getStatusIcon(userStatusInfo: string) {
     if (userStatusInfo) {
-      const emoji = userStatusInfo.split(' ');
+      const emoji = userStatusInfo.split(' ');  // Die Strings werden aufgeteilt.
+      const lastItem = emoji[emoji.length-1]    // Dann hole ich mir das letzte Element aus dem String = Emoji
 
       if (emoji.length >= 1) {
-        return emoji[2]
+        return lastItem;
       }
     }
     return '';

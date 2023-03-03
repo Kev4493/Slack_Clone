@@ -31,8 +31,11 @@ export class SetStatusComponent {
       .update({
         userStatusInfo: this.status
       })
+      console.log(this.status);
+      
     this.closeDialog();
   }
+
 
   deleteStatus() {
     this.status = '';
