@@ -3,7 +3,7 @@
         <p>Users</p>
     </div>
 
-    <div *ngFor="let user of authService.allUsersFromDb" class="users-list">
+    <div *ngFor="let user of authService.allUsersFromDb" class="users-list" [routerLink]="['dm-chatroom/' + user.userId]">
         <div [style.background-color]="user.userColor" class="profile-initials-container">
             {{ authService.getUserInitials(user.userName) }}
             <div [ngClass]="getUserActivityStatus(user.userId)" class="online-status"></div>

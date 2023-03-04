@@ -34,11 +34,11 @@ import { ChatroomComponent } from './components/chatroom/chatroom.component';
 import { DeleteMessageDialogComponent } from './dialogs/delete-message-dialog/delete-message-dialog.component';
 import { DeleteChannelDialogComponent } from './dialogs/delete-channel-dialog/delete-channel-dialog.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { SetStatusComponent } from './components/set-status/set-status.component';
+import { SetStatusComponent } from './dialogs/set-status/set-status.component';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { UsersComponent } from './components/users/users.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { ShowProfileDirective } from './show-profile.directive';
+import { DMChatroomComponent } from './components/dm-chatroom/dm-chatroom.component';
 
 
 
@@ -58,7 +58,7 @@ import { ShowProfileDirective } from './show-profile.directive';
     DeleteChannelDialogComponent,
     SetStatusComponent,
     UsersComponent,
-    ShowProfileDirective
+    DMChatroomComponent,
   ],
 
 

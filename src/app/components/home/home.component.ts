@@ -5,7 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import { SetStatusComponent } from '../set-status/set-status.component';
+import { SetStatusComponent } from '../../dialogs/set-status/set-status.component';
 
 @Component({
   selector: 'app-home',

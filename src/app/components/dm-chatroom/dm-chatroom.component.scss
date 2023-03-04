@@ -1,0 +1,200 @@
+* {
+    color: whitesmoke;
+}
+
+.chatroom-container {
+    // height: 100%;
+
+    .chatroom-header {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+        padding: 0px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 50px;
+
+        .channel-name-container {
+            display: flex;
+            align-items: center;
+
+            .mat-icon {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-right: 0.5rem;
+            }
+
+            .material-icons {
+                font-size: 20px;
+            }
+
+            p {
+                margin: 0;
+            }
+        }
+
+        .channel-settings-container {
+
+            .material-icons {
+                font-size: 20px;
+            }
+
+            .mat-icon {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .chatroom-content {
+        padding: 2rem;
+        height: 100%;
+        // border: 1px solid whitesmoke;
+
+        .messages-container {
+            display: flex;
+
+            .full-message-container {
+                width: 100%;
+                display: flex;
+                padding: 0.5rem;
+
+                &:hover {
+                    background-color: #222529;
+
+                    .message-setting-container {
+                        display: unset;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        margin-left: auto;
+                        cursor: pointer;
+                    }
+                }
+
+
+                .profile-initials-container {
+                    width: 40px;
+                    height: 40px;
+                    background-color: orange;
+                    border-radius: 12px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 15px;
+                    color: black;
+                    margin-right: 1rem;
+                    cursor: pointer;
+                    position: relative;
+
+                    .online-status {
+                        position: absolute;
+                        bottom: -3px;
+                        right: -3px;
+                        width: 15px;
+                        height: 15px;
+                        border-radius: 50%;
+                    }
+
+                    .online {
+                        background-color: green;
+                        border: 0.5px solid black;
+                    }
+        
+                    .away {
+                        background-color: orange;
+                        border: 0.5px solid black;
+                    }
+        
+                    .dnd {
+                        background-color: red;
+                        border: 0.5px solid black;
+                    }
+        
+                    .offline {
+                        background-color: lightgray;
+                        border: 0.5px solid black;
+                    }
+                }
+
+                .message-infos-container {
+
+                    .author-container {
+                        display: flex;
+
+                        .author {
+                            margin-right: 1rem;
+                            font-weight: 700;
+                            margin-bottom: 0;
+                            font-size: 13px;
+                        }
+
+                        .time {
+                            font-size: 0.6rem;
+                            color: rgba(255, 255, 255, 0.7);
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+
+                .message-text-container {
+
+                    .message-text {
+                        font-size: 13px;
+                        color: rgba(255, 255, 255, 0.85);
+                        margin: 0;
+                    }
+                }
+
+                .message-setting-container {
+                    display: none;
+                }
+            }
+        }
+
+        .message-input-container {
+            position: absolute;
+            bottom: 2rem;
+            left: 2rem;
+            right: 2rem;
+            background-color: #222529;
+            border: 1px solid whitesmoke;
+            border-radius: 12px;
+            padding: 1rem;
+
+            // .textformatting-container {
+            //     width: 100%;
+            // }
+
+            input {
+                width: 100%;
+                height: 50px;
+                background-color: #222529;
+                border: none;
+
+                &:focus {
+                    outline: none;
+                }
+            }
+
+            .send-btn-container {
+                background-color: #222529;
+                width: 100%;
+                height: 25px;
+                display: flex;
+                justify-content: flex-end;
+
+                .send-icon {
+                    width: 25px;
+                    object-fit: cover;
+                    filter: invert(100%) sepia(1%) saturate(4271%) hue-rotate(175deg) brightness(99%) contrast(88%);
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+
+}

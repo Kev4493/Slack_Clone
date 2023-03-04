@@ -7,26 +7,77 @@ import { DeleteMessageDialogComponent } from 'src/app/dialogs/delete-message-dia
 import { AuthService } from 'src/app/services/auth.service';
 import { ChannelService } from 'src/app/services/channel.service';
 import { MessageService } from 'src/app/services/message.service';
+import { DMmessage } from 'src/models/dm-message.class';
 
 @Component({
-  selector: 'app-chatroom',
-  templateUrl: './chatroom.component.html',
-  styleUrls: ['./chatroom.component.scss']
+  selector: 'app-dm-chatroom',
+  templateUrl: './dm-chatroom.component.html',
+  styleUrls: ['./dm-chatroom.component.scss']
 })
+export class DMChatroomComponent {
 
-export class ChatroomComponent {
+  dmChannelId: string
 
+  messageToUser: any  // MessageTo
+  messageFromUser: any     // MessageFrom
+  messageText: string;
+
+  dmMessage = new DMmessage;
 
   constructor(private route: ActivatedRoute, private firestore: AngularFirestore, public authService: AuthService, public dialog: MatDialog, public messageService: MessageService, public channelService: ChannelService) { }
 
 
   ngOnInit(): void {
+    this.getIdFromUrl();
+  }
+
+
+  getIdFromUrl() {
     this.route.paramMap.subscribe(paramMap => {
-      this.channelService.channelId = paramMap.get('id');     // ID aus der aktuellen URL holen und in Variable channelId speichern:
-      this.channelService.getCurrentChannelInfos();           // Channelinfos aus der jeweiligen ID holen:
-      this.messageService.getMessagesFromDb();                // Lädt alle Messages von DB in die Var. this.messagesFromDb:
+      this.dmChannelId = paramMap.get('id');
+
+      this.getMessageToUser();
     })
   }
+
+
+  getMessageToUser() {
+    this.firestore
+    .collection('users')
+    .doc(this.dmChannelId)
+    .valueChanges()
+    .subscribe((user => {
+      this.messageToUser = user;
+      console.log('DM Recipient: ', this.messageToUser);
+
+      this.getSender();
+    }))
+  }
+
+
+  getSender() {
+    this.messageFromUser = this.authService.user
+    console.log('DM Sender: ', this.messageFromUser);
+  }
+
+
+  sendDmMessage() {
+    this.dmMessage.messageFrom = this.messageFromUser.userName;
+    this.dmMessage.messageFromId = this.messageFromUser.userId
+    this.dmMessage.messageTo = this.messageToUser.userName;
+    this.dmMessage.messageToId = this.messageToUser.userId;
+
+    console.log('DM-Message Object: ', this.dmMessage);
+    
+  }
+
+
+
+
+
+
+
+
 
 
   openDeleteMessageDialog(messageId: any, messageFromUserId: any) {
@@ -45,4 +96,5 @@ export class ChatroomComponent {
     const user = this.authService.allUsersFromDb.find(u => u.userId === messageFromUserId);
     return user ? user.userActivityStatus : '';
   }
+
 }
