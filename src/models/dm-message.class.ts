@@ -4,6 +4,7 @@ export class DMmessage {
     messageTo: any;
     messageToId: any;
     messageText: any;
+    members: any[];
 
     constructor(obj?: any) {
         this.messageFrom = obj ? obj.messageFrom : '';
@@ -11,6 +12,7 @@ export class DMmessage {
         this.messageTo = obj ? obj.messageTo : '';
         this.messageToId = obj ? obj.messageToId : '';
         this.messageText = obj ? obj.messageText : '';
+        this.members = obj ? obj.members : [];
     }
 
     public toJSON() {
@@ -19,7 +21,8 @@ export class DMmessage {
             messageFromId: this.messageFromId,
             messageTo: this.messageTo,
             messageToId: this.messageToId,
-            messageText: this.messageText
+            messageText: this.messageText,
+            members: this.members
         }
     }
 }

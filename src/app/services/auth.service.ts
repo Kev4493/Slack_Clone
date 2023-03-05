@@ -116,7 +116,7 @@ export class AuthService {
     this.user.userActivityStatus = this.loggedInUserFromDb[0].userActivityStatus;
     this.user.userStatusInfo = this.loggedInUserFromDb[0].userStatusInfo;
 
-    console.log('Current Logged in Userobject:', this.user);
+    // console.log('Current Logged in Userobject:', this.user);
 
   }
 
@@ -127,7 +127,7 @@ export class AuthService {
       .valueChanges()
       .subscribe(allUsers => {
         this.allUsersFromDb = allUsers;
-        console.log('All Users From DB = ', this.allUsersFromDb)
+        // console.log('All Users From DB = ', this.allUsersFromDb)
       })
   }
 

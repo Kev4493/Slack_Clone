@@ -16,19 +16,21 @@ import { DMmessage } from 'src/models/dm-message.class';
 })
 export class DMChatroomComponent {
 
-  dmChannelId: string
-
-  messageToUser: any  // MessageTo
-  messageFromUser: any     // MessageFrom
-  messageText: string;
-
   dmMessage = new DMmessage;
+
+  dmChannelId: string;
+
+  messageToUserObject: any;
+  messageFromuserObject: any;
+
+  directMessagesFromDb: any;
 
   constructor(private route: ActivatedRoute, private firestore: AngularFirestore, public authService: AuthService, public dialog: MatDialog, public messageService: MessageService, public channelService: ChannelService) { }
 
 
   ngOnInit(): void {
     this.getIdFromUrl();
+    this.getDmFromDb();
   }
 
 
@@ -36,40 +38,67 @@ export class DMChatroomComponent {
     this.route.paramMap.subscribe(paramMap => {
       this.dmChannelId = paramMap.get('id');
 
-      this.getMessageToUser();
+      this.getMessageToUserObject();
     })
   }
 
 
-  getMessageToUser() {
+  getMessageToUserObject() {
     this.firestore
-    .collection('users')
-    .doc(this.dmChannelId)
-    .valueChanges()
-    .subscribe((user => {
-      this.messageToUser = user;
-      console.log('DM Recipient: ', this.messageToUser);
-
-      this.getSender();
-    }))
+      .collection('users')
+      .doc(this.dmChannelId)
+      .valueChanges()
+      .subscribe((user => {
+        this.messageToUserObject = user;
+        console.log('MessageToUserObject = ', this.messageToUserObject);
+        
+        this.getMessageFromUserObject();
+      }))
   }
 
 
-  getSender() {
-    this.messageFromUser = this.authService.user
-    console.log('DM Sender: ', this.messageFromUser);
+  getMessageFromUserObject() {
+    this.messageFromuserObject = this.authService.user
+    console.log('MessageFromUserObject =', this.messageFromuserObject);
   }
 
 
   sendDmMessage() {
-    this.dmMessage.messageFrom = this.messageFromUser.userName;
-    this.dmMessage.messageFromId = this.messageFromUser.userId
-    this.dmMessage.messageTo = this.messageToUser.userName;
-    this.dmMessage.messageToId = this.messageToUser.userId;
+    this.dmMessage.messageFrom = this.messageFromuserObject.userName;
+    this.dmMessage.messageFromId = this.messageFromuserObject.userId;
+    this.dmMessage.messageTo = this.messageToUserObject.userName;
+    this.dmMessage.messageToId = this.messageToUserObject.userId;
+    this.dmMessage.members = [this.messageFromuserObject.userId, this.messageToUserObject.userId]
+    console.log('DM-Message-Object = ', this.dmMessage);
 
-    console.log('DM-Message Object: ', this.dmMessage);
-    
+    this.sendDmToDb();
   }
+
+
+  sendDmToDb() {
+    this.firestore
+      .collection('directmessages')
+      .add(this.dmMessage.toJSON())
+  }
+
+
+  getDmFromDb() {
+    this.firestore
+      .collection('directmessages', ref => ref.where('members', 'array-contains', this.authService.user.userId))
+      .valueChanges()
+      .subscribe(directmessages => {
+        this.directMessagesFromDb = directmessages;
+        console.log('directmessages = ', this.directMessagesFromDb);
+      })
+  }
+
+
+
+
+
+
+
+
 
 
 

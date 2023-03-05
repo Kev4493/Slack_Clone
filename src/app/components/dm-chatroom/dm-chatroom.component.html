@@ -3,7 +3,7 @@
     <div class="chatroom-header">
         <div class="channel-name-container">
             <mat-icon>tag</mat-icon>
-            <p>Privatnachricht an {{ messageToUser?.userName }}</p>
+            <p>Privatnachricht an {{ messageToUserObject?.userName }}</p>
         </div>
         <div class="channel-settings-container">
             <mat-icon [matMenuTriggerFor]="menu">settings</mat-icon>
@@ -16,18 +16,18 @@
 
     <div class="chatroom-content">
 
-        <div *ngFor="let message of messageService.messagesFromDb" class="messages-container">
+        <div *ngFor="let message of directMessagesFromDb" class="messages-container">
 
             <div class="full-message-container">
 
                 <div [style.background-color]="message.authorColor" class="profile-initials-container">
-                    {{ authService.getUserInitials(message.author) }}
+                    {{ authService.getUserInitials(message.messageFrom) }}
                     <div class="online-status" [ngClass]="getUserActivityStatus(message.messageFromUserId)"></div>
                 </div>
 
                 <div class="message-infos-container">
                     <div class="author-container">
-                        <p class="author">{{ message.author }}</p>
+                        <p class="author">{{ message.messageFrom }}</p>
                         <p class="time">{{ message.createdAt | date: 'HH:mm' }} Uhr</p>
                     </div>
                     <div class="message-text-container">
@@ -50,7 +50,7 @@
             <form (ngSubmit)="sendDmMessage()">
                 <div class="textformatting-container"></div>
                 <input [(ngModel)]="dmMessage.messageText" name="messageText" type="text"
-                    placeholder="Nachricht an # {{ messageToUser?.userName}}">
+                    placeholder="Nachricht an # {{ messageToUserObject?.userName}}">
 
                 <div class="send-btn-container">
                     <img (click)="sendDmMessage()" class="send-icon" src="./assets/img/icons/send-icon.png" alt="">

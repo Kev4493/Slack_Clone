@@ -45,7 +45,7 @@ export class MessageService {
       .valueChanges({ idField: "messageId" })
       .subscribe(messages => {
         this.messagesFromDb = messages;
-        // console.log('Messages from DB:', this.messagesFromDb);
+        console.log('Messages from DB:', this.messagesFromDb);
       })
   };
 
