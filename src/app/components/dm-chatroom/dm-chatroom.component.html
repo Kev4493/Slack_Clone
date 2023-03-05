@@ -21,13 +21,13 @@
             <div class="full-message-container">
 
                 <div [style.background-color]="message.authorColor" class="profile-initials-container">
-                    {{ authService.getUserInitials(message.messageFrom) }}
+                    {{ authService.getUserInitials(message.author) }}
                     <div class="online-status" [ngClass]="getUserActivityStatus(message.messageFromUserId)"></div>
                 </div>
 
                 <div class="message-infos-container">
                     <div class="author-container">
-                        <p class="author">{{ message.messageFrom }}</p>
+                        <p class="author">{{ message.author }}</p>
                         <p class="time">{{ message.createdAt | date: 'HH:mm' }} Uhr</p>
                     </div>
                     <div class="message-text-container">

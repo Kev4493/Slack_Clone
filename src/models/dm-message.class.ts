@@ -1,27 +1,30 @@
 export class DMmessage {
-    messageFrom: any;
-    messageFromId: any;
-    messageTo: any;
-    messageToId: any;
+    author: any;
+    authorColor: any;
     messageText: any;
+    createdAt: any;
+    // messageFromChannelId: any;
+    messageFromUserId: any;
     members: any[];
 
-    constructor(obj?: any) {
-        this.messageFrom = obj ? obj.messageFrom : '';
-        this.messageFromId = obj ? obj.messageFromId : '';
-        this.messageTo = obj ? obj.messageTo : '';
-        this.messageToId = obj ? obj.messageToId : '';
-        this.messageText = obj ? obj.messageText : '';
-        this.members = obj ? obj.members : [];
+    constructor(obj?: any) { 
+        this.author = obj ? obj.author : '';
+        this.authorColor = obj ? obj.authorColor : '';
+        this.messageText = obj ? obj.message : '';
+        this.createdAt = obj ? obj.createdAt : '';
+        // this.messageFromChannelId = obj ? obj.messageFromChannelId : '';
+        this.messageFromUserId = obj ? obj.messageFromUserId : '';
+        this.members = obj ? obj.messageFromUserId : [];
     }
 
     public toJSON() {
         return {
-            messageFrom: this.messageFrom,
-            messageFromId: this.messageFromId,
-            messageTo: this.messageTo,
-            messageToId: this.messageToId,
+            author: this.author,
+            authorColor: this.authorColor,
             messageText: this.messageText,
+            createdAt: this.createdAt,
+            // messageFromChannelId: this.messageFromChannelId,
+            messageFromUserId: this.messageFromUserId,
             members: this.members
         }
     }

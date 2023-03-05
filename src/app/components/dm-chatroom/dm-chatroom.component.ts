@@ -50,7 +50,7 @@ export class DMChatroomComponent {
       .subscribe((user => {
         this.messageToUserObject = user;
         console.log('MessageToUserObject = ', this.messageToUserObject);
-        
+
         this.getMessageFromUserObject();
         this.getDmFromDb();
       }))
@@ -64,12 +64,12 @@ export class DMChatroomComponent {
 
 
   sendDmMessage() {
-    this.dmMessage.messageFrom = this.messageFromuserObject.userName;
-    this.dmMessage.messageFromId = this.messageFromuserObject.userId;
-    this.dmMessage.messageTo = this.messageToUserObject.userName;
-    this.dmMessage.messageToId = this.messageToUserObject.userId;
-
+    this.dmMessage.author = this.messageFromuserObject.userName;
+    this.dmMessage.authorColor = this.messageFromuserObject.userColor;
+    this.dmMessage.createdAt = new Date().getTime();
+    this.dmMessage.messageFromUserId = this.messageFromuserObject.userId;
     this.dmMessage.members = [this.messageFromuserObject.userId, this.messageToUserObject.userId]
+
     console.log('DM-Message-Object = ', this.dmMessage);
 
     this.sendDmToDb();
@@ -85,7 +85,7 @@ export class DMChatroomComponent {
 
   getDmFromDb() {
     this.firestore
-      .collection('directmessages', ref => ref.where('members', 'array-contains', this.authService.user.userId && this.dmChannelId))
+      .collection('directmessages', ref => ref.where('members', 'array-contains', this.authService.user.userId))
       .valueChanges()
       .subscribe(directmessages => {
         this.directMessagesFromDb = directmessages;
