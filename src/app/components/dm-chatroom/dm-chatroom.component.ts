@@ -30,7 +30,6 @@ export class DMChatroomComponent {
 
   ngOnInit(): void {
     this.getIdFromUrl();
-    this.getDmFromDb();
   }
 
 
@@ -53,6 +52,7 @@ export class DMChatroomComponent {
         console.log('MessageToUserObject = ', this.messageToUserObject);
         
         this.getMessageFromUserObject();
+        this.getDmFromDb();
       }))
   }
 
@@ -68,6 +68,7 @@ export class DMChatroomComponent {
     this.dmMessage.messageFromId = this.messageFromuserObject.userId;
     this.dmMessage.messageTo = this.messageToUserObject.userName;
     this.dmMessage.messageToId = this.messageToUserObject.userId;
+
     this.dmMessage.members = [this.messageFromuserObject.userId, this.messageToUserObject.userId]
     console.log('DM-Message-Object = ', this.dmMessage);
 
@@ -84,7 +85,7 @@ export class DMChatroomComponent {
 
   getDmFromDb() {
     this.firestore
-      .collection('directmessages', ref => ref.where('members', 'array-contains', this.authService.user.userId))
+      .collection('directmessages', ref => ref.where('members', 'array-contains', this.authService.user.userId && this.dmChannelId))
       .valueChanges()
       .subscribe(directmessages => {
         this.directMessagesFromDb = directmessages;
