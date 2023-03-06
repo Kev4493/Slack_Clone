@@ -25,6 +25,8 @@ export class DMChatroomComponent {
 
   directMessagesFromDb: any;
 
+  directMessage: any;
+
   constructor(private route: ActivatedRoute, private firestore: AngularFirestore, public authService: AuthService, public dialog: MatDialog, public messageService: MessageService, public channelService: ChannelService) { }
 
 
@@ -85,7 +87,9 @@ export class DMChatroomComponent {
 
   getDmFromDb() {
     this.firestore
-      .collection('directmessages', ref => ref.where('members', 'array-contains', this.authService.user.userId))
+      .collection('directmessages', ref => ref
+        .where('members', 'array-contains', this.authService.user.userId)
+        .where('members', 'array-contains', this.dmChannelId))
       .valueChanges()
       .subscribe(directmessages => {
         this.directMessagesFromDb = directmessages;
