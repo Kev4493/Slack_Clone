@@ -51,17 +51,17 @@ export class DMChatroomComponent {
       .valueChanges()
       .subscribe((user => {
         this.messageToUserObject = user;
-        console.log('MessageToUserObject = ', this.messageToUserObject);
+        // console.log('MessageToUserObject = ', this.messageToUserObject);
 
         this.getMessageFromUserObject();
-        this.getDmFromDb();
+        // this.getDmFromDb();
       }))
   }
 
 
   getMessageFromUserObject() {
     this.messageFromuserObject = this.authService.user
-    console.log('MessageFromUserObject =', this.messageFromuserObject);
+    // console.log('MessageFromUserObject =', this.messageFromuserObject);
   }
 
 
@@ -85,17 +85,17 @@ export class DMChatroomComponent {
   }
 
 
-  getDmFromDb() {
-    this.firestore
-      .collection('directmessages', ref => ref
-        .where('members', 'array-contains', this.authService.user.userId)
-        .where('members', 'array-contains', this.dmChannelId))
-      .valueChanges()
-      .subscribe(directmessages => {
-        this.directMessagesFromDb = directmessages;
-        console.log('directmessages = ', this.directMessagesFromDb);
-      })
-  }
+  // getDmFromDb() {
+  //   this.firestore
+  //     .collection('directmessages', ref => ref
+  //       .where('members', 'array-contains', this.authService.user.userId)
+  //       .where('members', 'array-contains', this.dmChannelId))
+  //     .valueChanges()
+  //     .subscribe(directmessages => {
+  //       this.directMessagesFromDb = directmessages;
+  //       console.log('directmessages = ', this.directMessagesFromDb);
+  //     })
+  // }
 
 
 

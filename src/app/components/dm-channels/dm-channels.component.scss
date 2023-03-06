@@ -1,0 +1,41 @@
+* {
+    color: whitesmoke;
+}
+
+.dm-channels-container {
+    margin-top: 2rem;
+
+    .dm-channels-headline {
+        p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-left: 30.5px;
+        }
+    }
+
+    .channels-list {
+
+    }
+
+    .material-icons {
+        font-size: 20px;
+    }
+
+    .mat-icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 0.5rem;
+    }
+
+    .dm-channel-add {
+        display: flex;
+        align-items: center;
+        margin-top: 1rem;
+        cursor: pointer;
+
+        p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.7);
+        }
+    }
+}

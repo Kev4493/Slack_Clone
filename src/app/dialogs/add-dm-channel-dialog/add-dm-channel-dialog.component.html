@@ -1,0 +1,24 @@
+<div class="dm-channel-dialog-container">
+
+    <mat-icon class="close-icon" (click)="closeDialog()">close</mat-icon>
+
+    <div class="dialog-healdine">
+        <h1>Start a new private conversation</h1>
+    </div>
+
+    <div class="dialog-description">
+        <p>select with which user you want to start a new private conversation.</p>
+    </div>
+
+    <mat-form-field class="select-user" appearance="fill">
+        <mat-label>Select User</mat-label>
+        <mat-select [(ngModel)]="selectedDmUser">
+            <mat-option *ngFor="let user of authService.allUsersFromDb" [value]="user">{{ user.userName }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <div class="button-container">
+        <button (click)="addDmChannel()" mat-raised-button class="create-button" [ngClass]="{ 'enabled-button': selectedDmUser }" >Start Conversation <span *ngIf="selectedDmUser">with {{ this.authService.getFirstName(selectedDmUser.userName) }}</span></button>
+    </div>
+
+</div>

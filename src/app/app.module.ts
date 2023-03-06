@@ -39,6 +39,9 @@ import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { UsersComponent } from './components/users/users.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { DMChatroomComponent } from './components/dm-chatroom/dm-chatroom.component';
+import { DmChannelsComponent } from './components/dm-channels/dm-channels.component';
+import { AddDmChannelDialogComponent } from './dialogs/add-dm-channel-dialog/add-dm-channel-dialog.component';
+import { MatSelectModule } from '@angular/material/select';
 
 
 
@@ -59,6 +62,8 @@ import { DMChatroomComponent } from './components/dm-chatroom/dm-chatroom.compon
     SetStatusComponent,
     UsersComponent,
     DMChatroomComponent,
+    DmChannelsComponent,
+    AddDmChannelDialogComponent,
   ],
 
 
@@ -87,7 +92,8 @@ import { DMChatroomComponent } from './components/dm-chatroom/dm-chatroom.compon
     MatMenuModule,
     MatSnackBarModule,
     PickerModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatSelectModule
   ],
 
 

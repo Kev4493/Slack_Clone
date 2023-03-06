@@ -14,7 +14,7 @@ export class DMmessage {
         this.createdAt = obj ? obj.createdAt : '';
         // this.messageFromChannelId = obj ? obj.messageFromChannelId : '';
         this.messageFromUserId = obj ? obj.messageFromUserId : '';
-        this.members = obj ? obj.messageFromUserId : [];
+        this.members = obj ? obj.members : [];
     }
 
     public toJSON() {

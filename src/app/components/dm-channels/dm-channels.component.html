@@ -1,0 +1,14 @@
+<div class="dm-channels-container">
+    <div class="dm-channels-headline">
+        <p>Directmessages</p>
+    </div>
+
+    <div *ngFor="let channel of allDmChannels" class="dm-channels-list">
+        <p>{{ channel.memberNames }}</p>
+    </div>
+
+    <div (click)="openAddDmChannelDialog()" class="dm-channel-add">
+        <mat-icon>add</mat-icon>
+        <p>New Directmessage</p>
+    </div>
+</div>
