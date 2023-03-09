@@ -12,23 +12,53 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class DmChannelsComponent {
 
-  allDmChannels = [];
+  dmChannels = [];
+  dmUserIds = [];
+  dmUsers = [];
 
-  constructor(public dialog: MatDialog, private firestore: AngularFirestore, private authService: AuthService, private afAuth: AngularFireAuth) {}
+
+  constructor(public dialog: MatDialog, private firestore: AngularFirestore, private authService: AuthService, private afAuth: AngularFireAuth) { }
+
 
   ngOnInit() {
-    this.getAllDmChannels()
+    this.getAllDmChannels();
   }
 
 
   getAllDmChannels() {
     this.firestore
-    .collection('directMessageChannels', ref => ref.where('memberIds', 'array-contains', this.authService.currentLoggedInUserId ) )
-    .valueChanges({idField: 'dmChannelId'})
-    .subscribe((changes:any) => {
-      this.allDmChannels = changes;
-      console.log('allDmChannels: ', this.allDmChannels);
-    })
+      .collection('directMessageChannels', ref => ref.where('memberIds', 'array-contains', this.authService.currentLoggedInUserId))
+      .valueChanges({idField: 'dmChannelId'})
+      // .valueChanges()
+      .subscribe((changes: any) => {
+        this.dmChannels = changes;
+        console.log('allDmChannels: ', this.dmChannels);
+
+        this.filterDmChannels()
+      })
+  }
+
+
+  filterDmChannels() {
+    this.dmUserIds = this.dmChannels
+      .map(dmChannel => dmChannel.memberIds)
+      .flat()
+      .filter(memberId => memberId !== this.authService.currentLoggedInUserId);
+
+    console.log(this.dmUserIds);
+
+    this.getDmUsersById();
+  }
+
+
+  getDmUsersById() {
+    this.firestore
+      .collection('users', ref => ref.where('userId', 'in', this.dmUserIds))
+      .valueChanges()
+      .subscribe((changes: any) => {
+        this.dmUsers = changes;
+        console.log('DM User: ',this.dmUsers)
+      })
   }
 
 

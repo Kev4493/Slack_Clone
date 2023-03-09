@@ -25,12 +25,6 @@ export class AddDmChannelDialogComponent {
 
 
   generateObject() {
-    // this.dmChannel.members = [
-    //   { userId: this.selectedDmUser.userId, userName: this.selectedDmUser.userName },
-    //   { userId: this.authService.user.userId, userName: this.authService.user.userName }
-    // ];
-    
-    this.dmChannel.memberNames = [this.selectedDmUser.userName, this.authService.user.userName]
     this.dmChannel.memberIds = [this.selectedDmUser.userId, this.authService.user.userId]
     console.log('DMChannelObject: ', this.dmChannel);
   }
