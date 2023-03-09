@@ -17,7 +17,7 @@ export class DmChannelsComponent {
   dmUsers = [];
 
 
-  constructor(public dialog: MatDialog, private firestore: AngularFirestore, private authService: AuthService, private afAuth: AngularFireAuth) { }
+  constructor(public dialog: MatDialog, private firestore: AngularFirestore, public authService: AuthService, private afAuth: AngularFireAuth) { }
 
 
   ngOnInit() {
@@ -64,6 +64,12 @@ export class DmChannelsComponent {
 
   openAddDmChannelDialog() {
     this.dialog.open(AddDmChannelDialogComponent)
+  }
+
+
+  getUserActivityStatus(userId: string) {
+    const user = this.authService.allUsersFromDb.find(u => u.userId === userId);
+    return user ? user.userActivityStatus : '';
   }
 
 

@@ -4,10 +4,25 @@
     </div>
 
     <div *ngFor="let user of dmUsers" class="dm-channels-list">
-        <p *ngFor="let channelId of dmChannels" [routerLink]="['dm-chatroom/' + channelId.dmChannelId]">{{ user.userName }}</p>
+        <div [style.background-color]="user.userColor" class="profile-initials-container">
+            {{ authService.getUserInitials(user.userName) }}
+            <div [ngClass]="getUserActivityStatus(user.userId)" class="online-status"></div>
+        </div>
+
+        <div *ngFor="let channelId of dmChannels" class="single-channel-container">
+            <p [routerLink]="['dm-chatroom/' + channelId.dmChannelId]">{{ user.userName }}</p>
+        </div>
+
+        <!-- <div class="single-channel-container">
+            <p>{{ user.userName }}</p>
+        </div> -->
+
+        <div class="user-status-info"> {{ authService.getStatusIcon(user.userStatusInfo) }}</div>
     </div>
 
     <div (click)="openAddDmChannelDialog()" class="dm-channel-add">
         <mat-icon>add</mat-icon>
         <p>New Directmessage</p>
     </div>
+
+</div>
