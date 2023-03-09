@@ -45,7 +45,7 @@ export class DmChannelsComponent {
       .flat()
       .filter(memberId => memberId !== this.authService.currentLoggedInUserId);
 
-    console.log(this.dmUserIds);
+    // console.log(this.dmUserIds);
 
     this.getDmUsersById();
   }
@@ -57,7 +57,7 @@ export class DmChannelsComponent {
       .valueChanges()
       .subscribe((changes: any) => {
         this.dmUsers = changes;
-        console.log('DM User: ',this.dmUsers)
+        // console.log('DM User: ',this.dmUsers)
       })
   }
 
