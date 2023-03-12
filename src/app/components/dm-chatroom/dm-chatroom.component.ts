@@ -85,7 +85,7 @@ export class DMChatroomComponent {
     .valueChanges()
     .subscribe((changes: any) => {
       this.chatPartnerProfile = changes;
-      // console.log('Chatpartner Profile =', this.chatPartnerProfile);
+      console.log('Chatpartner Profile =', this.chatPartnerProfile);
     })
   }
 
@@ -136,8 +136,10 @@ export class DMChatroomComponent {
 
 
   getUserActivityStatus(messageFromUserId: string) {
-    const user = this.authService.allUsersFromDb.find(u => u.userId === messageFromUserId);
-    return user ? user.userActivityStatus : '';
+    if (messageFromUserId) {
+      const user = this.authService.allUsersFromDb.find(u => u.userId === messageFromUserId);
+      return user ? user.userActivityStatus : '';
+    }
   }
 
 }

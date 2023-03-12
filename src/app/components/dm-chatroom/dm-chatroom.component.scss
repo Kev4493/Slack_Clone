@@ -51,7 +51,85 @@
     .chatroom-content {
         padding: 2rem;
         height: 100%;
-        // border: 1px solid whitesmoke;
+
+        .dm-info-container {
+            padding: 0.5rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+
+            .chatpartner-info {
+                display: flex;
+                align-items: center;
+                margin-bottom: 1rem;
+
+                .dm-info-initials-container {
+                    width: 50px;
+                    height: 50px;
+                    font-size: 20px;
+                }
+            }
+
+            .user-info-container {
+                .name-container {
+                    display: flex;
+                    align-items: center;
+                    
+                    p {
+                        color: whitesmoke;
+                    }
+
+                    .online-status-dm {
+                        width: 15px;
+                        height: 15px;
+                        border-radius: 50%;
+                        margin-left: 0.5rem;
+                    }
+    
+                    .online {
+                        background-color: green;
+                        border: 0.5px solid black;
+                    }
+    
+                    .away {
+                        background-color: orange;
+                        border: 0.5px solid black;
+                    }
+    
+                    .dnd {
+                        background-color: red;
+                        border: 0.5px solid black;
+                    }
+    
+                    .offline {
+                        background-color: lightgray;
+                        border: 0.5px solid black;
+                    }
+                }
+
+                .activity-container {
+                    p {
+                        font-size: 11px;
+                    }
+                }
+
+
+            }
+
+            p {
+                margin: 0;
+                color: rgba(255, 255, 255, 0.7);
+            }
+
+            span {
+                color: rgba(255, 255, 255, 0.7);
+            }
+
+            .info-text {
+                margin-bottom: 0.5rem;
+            }
+
+
+        }
 
         .messages-container {
             display: flex;
@@ -75,49 +153,49 @@
                 }
 
 
-                .profile-initials-container {
-                    width: 40px;
-                    height: 40px;
-                    background-color: orange;
-                    border-radius: 12px;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    font-size: 15px;
-                    color: black;
-                    margin-right: 1rem;
-                    cursor: pointer;
-                    position: relative;
+                // .profile-initials-container {
+                //     width: 40px;
+                //     height: 40px;
+                //     background-color: orange;
+                //     border-radius: 12px;
+                //     display: flex;
+                //     justify-content: center;
+                //     align-items: center;
+                //     font-size: 15px;
+                //     color: black;
+                //     margin-right: 1rem;
+                //     cursor: pointer;
+                //     position: relative;
 
-                    .online-status {
-                        position: absolute;
-                        bottom: -3px;
-                        right: -3px;
-                        width: 15px;
-                        height: 15px;
-                        border-radius: 50%;
-                    }
+                //     .online-status {
+                //         position: absolute;
+                //         bottom: -3px;
+                //         right: -3px;
+                //         width: 15px;
+                //         height: 15px;
+                //         border-radius: 50%;
+                //     }
 
-                    .online {
-                        background-color: green;
-                        border: 0.5px solid black;
-                    }
-        
-                    .away {
-                        background-color: orange;
-                        border: 0.5px solid black;
-                    }
-        
-                    .dnd {
-                        background-color: red;
-                        border: 0.5px solid black;
-                    }
-        
-                    .offline {
-                        background-color: lightgray;
-                        border: 0.5px solid black;
-                    }
-                }
+                //     .online {
+                //         background-color: green;
+                //         border: 0.5px solid black;
+                //     }
+
+                //     .away {
+                //         background-color: orange;
+                //         border: 0.5px solid black;
+                //     }
+
+                //     .dnd {
+                //         background-color: red;
+                //         border: 0.5px solid black;
+                //     }
+
+                //     .offline {
+                //         background-color: lightgray;
+                //         border: 0.5px solid black;
+                //     }
+                // }
 
                 .message-infos-container {
 

@@ -16,6 +16,30 @@
 
     <div class="chatroom-content">
 
+        <div class="dm-info-container">
+
+            <div class="chatpartner-info">
+                <div [style.background-color]="chatPartnerProfile?.userColor" class="profile-initials-container dm-info-initials-container">
+                    {{ authService.getUserInitials(chatPartnerProfile?.userName) }}
+                    <!-- <div class="online-status" [ngClass]="getUserActivityStatus(chatPartnerProfile?.userId)"></div> -->
+                </div>
+
+                <div class="user-info-container">
+                    <div class="name-container">
+                        <p>{{ chatPartnerProfile?.userName }}</p>
+                        <div class="online-status-dm" [ngClass]="getUserActivityStatus(chatPartnerProfile?.userId)"></div>
+                    </div>
+                    <div class="activity-container">
+                        <p>{{ chatPartnerProfile?.userStatusInfo }}</p>
+                        <p>{{ chatPartnerProfile?.userActivityStatus }}</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <p class="info-text">Diese Unterhaltung findet nur zwischen <span>{{ chatPartnerProfile?.userName }}</span> und dir statt.</p>
+        </div>
+
         <div *ngFor="let message of channelMessages" class="messages-container">
 
             <div class="full-message-container">
