@@ -25,40 +25,54 @@ export class DmChannelsComponent {
   }
 
 
+  // Alle dmChannels aus dem Firestore holen, indem sich die eingeloggte ID befindet.
   getAllDmChannels() {
     this.firestore
       .collection('directMessageChannels', ref => ref.where('memberIds', 'array-contains', this.authService.currentLoggedInUserId))
-      .valueChanges({idField: 'dmChannelId'})
-      // .valueChanges()
+      .valueChanges({ idField: 'dmChannelId' })
       .subscribe((changes: any) => {
         this.dmChannels = changes;
-        console.log('allDmChannels: ', this.dmChannels);
+        // console.log('allDmChannels: ', this.dmChannels);
 
         this.filterDmChannels()
       })
   }
 
 
+  // Member IDs herausfilter ohne die ID des eingeloggte Nutzers:
   filterDmChannels() {
     this.dmUserIds = this.dmChannels
       .map(dmChannel => dmChannel.memberIds)
       .flat()
       .filter(memberId => memberId !== this.authService.currentLoggedInUserId);
 
-    // console.log(this.dmUserIds);
+    // console.log('dmUserIds: ', this.dmUserIds);
 
     this.getDmUsersById();
   }
 
 
+  // User anhand der Member Ids herausfiltern:
   getDmUsersById() {
     this.firestore
       .collection('users', ref => ref.where('userId', 'in', this.dmUserIds))
       .valueChanges()
       .subscribe((changes: any) => {
         this.dmUsers = changes;
-        // console.log('DM User: ',this.dmUsers)
+        // console.log('dmUsers: ', this.dmUsers)
+
+        this.filterDmChannelsForUsers();
       })
+  }
+
+
+  // dmChannels aus DB dem dmUsers Array hinzufügen:
+  filterDmChannelsForUsers() {
+    this.dmUsers.forEach(user => {
+      user.dmChannels = this.dmChannels.filter(channel => channel.memberIds.includes(user.userId));
+
+      console.log('dmUsers: ', this.dmUsers)
+    });
   }
 
 
