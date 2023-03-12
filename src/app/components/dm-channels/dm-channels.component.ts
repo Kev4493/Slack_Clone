@@ -54,15 +54,18 @@ export class DmChannelsComponent {
 
   // User anhand der Member Ids herausfiltern:
   getDmUsersById() {
-    this.firestore
-      .collection('users', ref => ref.where('userId', 'in', this.dmUserIds))
-      .valueChanges()
-      .subscribe((changes: any) => {
-        this.dmUsers = changes;
-        // console.log('dmUsers: ', this.dmUsers)
+    if (this.dmUserIds.length > 0) {
+      this.firestore
+        .collection('users', ref => ref.where('userId', 'in', this.dmUserIds))
+        .valueChanges()
+        .subscribe((changes: any) => {
+          this.dmUsers = changes;
+          // console.log('dmUsers: ', this.dmUsers)
 
-        this.filterDmChannelsForUsers();
-      })
+          this.filterDmChannelsForUsers();
+        })
+    }
+
   }
 
 
@@ -71,7 +74,7 @@ export class DmChannelsComponent {
     this.dmUsers.forEach(user => {
       user.dmChannels = this.dmChannels.filter(channel => channel.memberIds.includes(user.userId));
 
-      console.log('dmUsers: ', this.dmUsers)
+      // console.log('dmUsers: ', this.dmUsers)
     });
   }
 

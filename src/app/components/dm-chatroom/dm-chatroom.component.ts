@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { QuerySnapshot } from 'firebase/firestore';
 import { DeleteChannelDialogComponent } from 'src/app/dialogs/delete-channel-dialog/delete-channel-dialog.component';
 import { DeleteMessageDialogComponent } from 'src/app/dialogs/delete-message-dialog/delete-message-dialog.component';
 import { AuthService } from 'src/app/services/auth.service';
@@ -16,16 +17,12 @@ import { DMmessage } from 'src/models/dm-message.class';
 })
 export class DMChatroomComponent {
 
-  dmMessage = new DMmessage;
 
   dmChannelId: string;
+  channelMemberIds: any;
+  chatPartnerId: string;
+  chatPartnerProfile: any;
 
-  messageToUserObject: any;
-  messageFromuserObject: any;
-
-  directMessagesFromDb: any;
-
-  directMessage: any;
 
   constructor(private route: ActivatedRoute, private firestore: AngularFirestore, public authService: AuthService, public dialog: MatDialog, public messageService: MessageService, public channelService: ChannelService) { }
 
@@ -38,80 +35,45 @@ export class DMChatroomComponent {
   getIdFromUrl() {
     this.route.paramMap.subscribe(paramMap => {
       this.dmChannelId = paramMap.get('id');
+      // console.log('dmChannelId =', this.dmChannelId);
 
-      this.getMessageToUserObject();
+      this.getChannelMemberIds();
     })
   }
 
 
-  getMessageToUserObject() {
+  getChannelMemberIds() {
     this.firestore
-      .collection('users')
+      .collection('directMessageChannels')
       .doc(this.dmChannelId)
       .valueChanges()
-      .subscribe((user => {
-        this.messageToUserObject = user;
-        // console.log('MessageToUserObject = ', this.messageToUserObject);
+      .subscribe(members => {
+        this.channelMemberIds = members;
+        // console.log('Channel Members', this.channelMemberIds)
 
-        this.getMessageFromUserObject();
-        // this.getDmFromDb();
-      }))
+        this.getChatPartnerId()
+      })
   }
 
 
-  getMessageFromUserObject() {
-    this.messageFromuserObject = this.authService.user
-    // console.log('MessageFromUserObject =', this.messageFromuserObject);
+  getChatPartnerId() {
+    this.chatPartnerId = this.channelMemberIds.memberIds
+      .filter(memberId => memberId !== this.authService.currentLoggedInUserId)
+    console.log('ChatpartnerId = ', this.chatPartnerId);
+
+    this.getChatPartnerProfile();
   }
 
 
-  sendDmMessage() {
-    this.dmMessage.author = this.messageFromuserObject.userName;
-    this.dmMessage.authorColor = this.messageFromuserObject.userColor;
-    this.dmMessage.createdAt = new Date().getTime();
-    this.dmMessage.messageFromUserId = this.messageFromuserObject.userId;
-    this.dmMessage.members = [this.messageFromuserObject.userId, this.messageToUserObject.userId]
-
-    console.log('DM-Message-Object = ', this.dmMessage);
-
-    this.sendDmToDb();
-  }
-
-
-  sendDmToDb() {
+  getChatPartnerProfile() {
     this.firestore
-      .collection('directmessages')
-      .add(this.dmMessage.toJSON())
+    .collection('users', ref => ref.where('userId', 'in', this.chatPartnerId))
+    .valueChanges()
+    .subscribe((changes: any) => {
+      this.chatPartnerProfile = changes;
+      console.log('Chatpartner Profile =', this.chatPartnerProfile)
+    })
   }
-
-
-  // getDmFromDb() {
-  //   this.firestore
-  //     .collection('directmessages', ref => ref
-  //       .where('members', 'array-contains', this.authService.user.userId)
-  //       .where('members', 'array-contains', this.dmChannelId))
-  //     .valueChanges()
-  //     .subscribe(directmessages => {
-  //       this.directMessagesFromDb = directmessages;
-  //       console.log('directmessages = ', this.directMessagesFromDb);
-  //     })
-  // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   openDeleteMessageDialog(messageId: any, messageFromUserId: any) {

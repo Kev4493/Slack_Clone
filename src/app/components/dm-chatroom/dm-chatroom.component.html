@@ -3,7 +3,7 @@
     <div class="chatroom-header">
         <div class="channel-name-container">
             <mat-icon>tag</mat-icon>
-            <p>Privatnachricht an {{ messageToUserObject?.userName }}</p>
+            <p *ngFor="let chatPartner of chatPartnerProfile">Privatnachricht an {{ chatPartner.userName }}</p>
         </div>
         <div class="channel-settings-container">
             <mat-icon [matMenuTriggerFor]="menu">settings</mat-icon>
@@ -14,7 +14,7 @@
         </div>
     </div>
 
-    <div class="chatroom-content">
+    <!-- <div class="chatroom-content">
 
         <div *ngFor="let message of directMessagesFromDb" class="messages-container">
 
@@ -58,6 +58,6 @@
             </form>
         </div>
 
-    </div>
+    </div> -->
 
 </div>
