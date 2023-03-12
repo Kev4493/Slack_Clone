@@ -17,11 +17,13 @@ import { DMmessage } from 'src/models/dm-message.class';
 })
 export class DMChatroomComponent {
 
+  dmMessage = new DMmessage;
 
   dmChannelId: string;
   channelMemberIds: any;
   chatPartnerId: string;
   chatPartnerProfile: any;
+  channelMessages: any;
 
 
   constructor(private route: ActivatedRoute, private firestore: AngularFirestore, public authService: AuthService, public dialog: MatDialog, public messageService: MessageService, public channelService: ChannelService) { }
@@ -37,6 +39,7 @@ export class DMChatroomComponent {
       this.dmChannelId = paramMap.get('id');
       // console.log('dmChannelId =', this.dmChannelId);
 
+      this.getAllMessages();
       this.getChannelMemberIds();
     })
   }
@@ -58,20 +61,64 @@ export class DMChatroomComponent {
 
   getChatPartnerId() {
     this.chatPartnerId = this.channelMemberIds.memberIds
-      .filter(memberId => memberId !== this.authService.currentLoggedInUserId)
-    console.log('ChatpartnerId = ', this.chatPartnerId);
+      .find(memberId => memberId !== this.authService.currentLoggedInUserId)
+    // console.log('ChatpartnerId = ', this.chatPartnerId);
 
     this.getChatPartnerProfile();
   }
 
 
+  // getChatPartnerProfile() {
+  //   this.firestore
+  //   .collection('users', ref => ref.where('userId', 'in', this.chatPartnerId))
+  //   .valueChanges()
+  //   .subscribe((changes: any) => {
+  //     this.chatPartnerProfile = changes;
+  //     console.log('Chatpartner Profile =', this.chatPartnerProfile)
+  //   })
+  // }
+
   getChatPartnerProfile() {
     this.firestore
-    .collection('users', ref => ref.where('userId', 'in', this.chatPartnerId))
+    .collection('users')
+    .doc(this.chatPartnerId)
     .valueChanges()
     .subscribe((changes: any) => {
       this.chatPartnerProfile = changes;
-      console.log('Chatpartner Profile =', this.chatPartnerProfile)
+      // console.log('Chatpartner Profile =', this.chatPartnerProfile);
+    })
+  }
+
+
+  sendDmMessage() {
+    this.generateDmMessageObject();
+    console.log('directmessage :', this.dmMessage)
+
+    this.firestore
+    .collection('directMessages')
+    .add(this.dmMessage.toJSON())
+
+    this.dmMessage.messageText = '';
+  }
+
+
+  generateDmMessageObject() {
+    this.dmMessage.author = this.authService.user.userName;
+    this.dmMessage.authorColor = this.authService.user.userColor;
+    this.dmMessage.createdAt = new Date().getTime();
+    this.dmMessage.messageFromChannelId = this.dmChannelId;
+    this.dmMessage.messageFromUserId = this.authService.user.userId
+  }
+
+
+  getAllMessages() {
+    this.firestore
+    .collection('directMessages', ref => ref.where('messageFromChannelId', '==', this.dmChannelId).orderBy('createdAt', 'asc'))
+    .valueChanges()
+    .subscribe((messages: any) => {
+      this.channelMessages = messages
+
+      console.log('channelMessages: ', this.channelMessages)
     })
   }
 

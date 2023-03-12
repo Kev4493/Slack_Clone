@@ -3,18 +3,18 @@ export class DMmessage {
     authorColor: any;
     messageText: any;
     createdAt: any;
-    // messageFromChannelId: any;
+    messageFromChannelId: any;
     messageFromUserId: any;
-    members: any[];
+    // members: any[];
 
     constructor(obj?: any) { 
         this.author = obj ? obj.author : '';
         this.authorColor = obj ? obj.authorColor : '';
         this.messageText = obj ? obj.message : '';
         this.createdAt = obj ? obj.createdAt : '';
-        // this.messageFromChannelId = obj ? obj.messageFromChannelId : '';
+        this.messageFromChannelId = obj ? obj.messageFromChannelId : '';
         this.messageFromUserId = obj ? obj.messageFromUserId : '';
-        this.members = obj ? obj.members : [];
+        // this.members = obj ? obj.members : [];
     }
 
     public toJSON() {
@@ -23,9 +23,9 @@ export class DMmessage {
             authorColor: this.authorColor,
             messageText: this.messageText,
             createdAt: this.createdAt,
-            // messageFromChannelId: this.messageFromChannelId,
+            messageFromChannelId: this.messageFromChannelId,
             messageFromUserId: this.messageFromUserId,
-            members: this.members
+            // members: this.members
         }
     }
 }
