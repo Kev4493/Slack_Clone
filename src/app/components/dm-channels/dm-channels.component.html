@@ -9,8 +9,8 @@
             <div [ngClass]="getUserActivityStatus(user.userId)" class="online-status"></div>
         </div>
 
-        <div *ngFor="let channel of user.dmChannels" class="single-channel-container">
-            <p [routerLink]="['dm-chatroom/' + channel.dmChannelId]">{{ user.userName }}</p>
+        <div *ngFor="let channel of user.dmChannels" class="single-channel-container" [routerLink]="['dm-chatroom/' + channel.dmChannelId]">
+            <p>{{ user.userName }}</p>
         </div>
 
 

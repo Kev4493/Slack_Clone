@@ -114,7 +114,7 @@ export class DMChatroomComponent {
   getAllMessages() {
     this.firestore
     .collection('directMessages', ref => ref.where('messageFromChannelId', '==', this.dmChannelId).orderBy('createdAt', 'asc'))
-    .valueChanges()
+    .valueChanges({ idField: "messageId" })
     .subscribe((messages: any) => {
       this.channelMessages = messages
 
