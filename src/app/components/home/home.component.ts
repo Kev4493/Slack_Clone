@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { DmChannelService } from 'src/app/services/dm-channel.service';
 import { SetStatusComponent } from '../../dialogs/set-status/set-status.component';
 
 @Component({
@@ -17,7 +18,7 @@ export class HomeComponent {
 
   snackBarDurationInSeconds = 3;
 
-  constructor(public router: Router, private afAuth: AngularFireAuth, public authService: AuthService, private firestore: AngularFirestore, private _snackBar: MatSnackBar, public dialog: MatDialog) { }
+  constructor(public dmChannelService: DmChannelService, public router: Router, private afAuth: AngularFireAuth, public authService: AuthService, private firestore: AngularFirestore, private _snackBar: MatSnackBar, public dialog: MatDialog) { }
 
 
   async ngOnInit() {

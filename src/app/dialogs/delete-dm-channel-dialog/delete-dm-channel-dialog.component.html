@@ -1,0 +1,13 @@
+<div class="confirm-dialog-container">
+    <div class="info-text">
+        <p>Bist du sicher, dass du den Channel löschen möchtest?</p>
+        <br>
+        <p>Dadurch werden alle Dateien und Nachrichten unwiderruflich gelöscht!</p>
+    </div>
+
+    <div class="button-container">
+        <button class="confirm-button delete-button" mat-raised-button (click)="dmChannelService.deleteDmChannelFromDb()">Löschen</button>
+        <button class="confirm-button" mat-raised-button (click)="closeDeleteDmChannelDialog()">Abbrechen</button>
+    </div>
+
+</div>

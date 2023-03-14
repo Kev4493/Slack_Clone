@@ -3,7 +3,7 @@
         <p>Directmessages</p>
     </div>
 
-    <div *ngFor="let user of dmUsers" class="dm-channels-list">
+    <div *ngFor="let user of dmChannelService.dmUsers" class="dm-channels-list">
         <div [style.background-color]="user.userColor" class="profile-initials-container">
             {{ authService.getUserInitials(user.userName) }}
             <div [ngClass]="getUserActivityStatus(user.userId)" class="online-status"></div>

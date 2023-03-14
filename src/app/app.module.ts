@@ -42,6 +42,8 @@ import { DMChatroomComponent } from './components/dm-chatroom/dm-chatroom.compon
 import { DmChannelsComponent } from './components/dm-channels/dm-channels.component';
 import { AddDmChannelDialogComponent } from './dialogs/add-dm-channel-dialog/add-dm-channel-dialog.component';
 import { MatSelectModule } from '@angular/material/select';
+import { DeleteDmChannelDialogComponent } from './dialogs/delete-dm-channel-dialog/delete-dm-channel-dialog.component';
+import { DeleteDmMessageDialogComponent } from './dialogs/delete-dm-message-dialog/delete-dm-message-dialog.component';
 
 
 
@@ -64,6 +66,8 @@ import { MatSelectModule } from '@angular/material/select';
     DMChatroomComponent,
     DmChannelsComponent,
     AddDmChannelDialogComponent,
+    DeleteDmChannelDialogComponent,
+    DeleteDmMessageDialogComponent,
   ],
 
 

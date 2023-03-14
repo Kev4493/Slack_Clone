@@ -3,13 +3,13 @@
     <div class="chatroom-header">
         <div class="channel-name-container">
             <mat-icon>tag</mat-icon>
-            <p >Privatnachricht an {{ chatPartnerProfile?.userName }}</p>
+            <p >Privatnachricht an {{ dmChannelService.chatPartnerProfile?.userName }}</p>
         </div>
         <div class="channel-settings-container">
             <mat-icon [matMenuTriggerFor]="menu">settings</mat-icon>
             <mat-menu #menu="matMenu">
                 <!-- <button (click)="deleteChannelFromDb()" mat-menu-item>Delete {{ channel.channelName }} Channel</button> -->
-                <button (click)="openDeleteChannelDialog()" mat-menu-item>Delete {{ channelService.channel.channelName }} Channel</button>
+                <button (click)="openDeleteDmChannelDialog()" mat-menu-item>Delete this private Conversation</button>
             </mat-menu>
         </div>
     </div>
@@ -19,28 +19,28 @@
         <div class="dm-info-container">
 
             <div class="chatpartner-info">
-                <div [style.background-color]="chatPartnerProfile?.userColor" class="profile-initials-container dm-info-initials-container">
-                    {{ authService.getUserInitials(chatPartnerProfile?.userName) }}
+                <div [style.background-color]="dmChannelService.chatPartnerProfile?.userColor" class="profile-initials-container dm-info-initials-container">
+                    {{ authService.getUserInitials(dmChannelService.chatPartnerProfile?.userName) }}
                     <!-- <div class="online-status" [ngClass]="getUserActivityStatus(chatPartnerProfile?.userId)"></div> -->
                 </div>
 
                 <div class="user-info-container">
                     <div class="name-container">
-                        <p>{{ chatPartnerProfile?.userName }}</p>
-                        <div class="online-status-dm" [ngClass]="getUserActivityStatus(chatPartnerProfile?.userId)"></div>
+                        <p>{{ dmChannelService.chatPartnerProfile?.userName }}</p>
+                        <div class="online-status-dm" [ngClass]="getUserActivityStatus(dmChannelService.chatPartnerProfile?.userId)"></div>
                     </div>
                     <div class="activity-container">
-                        <p>{{ chatPartnerProfile?.userStatusInfo }}</p>
-                        <p>{{ chatPartnerProfile?.userActivityStatus }}</p>
+                        <p>{{ dmChannelService.chatPartnerProfile?.userStatusInfo }}</p>
+                        <p>{{ dmChannelService.chatPartnerProfile?.userActivityStatus }}</p>
                     </div>
 
                 </div>
             </div>
 
-            <p class="info-text">Diese Unterhaltung findet nur zwischen <span>{{ chatPartnerProfile?.userName }}</span> und dir statt.</p>
+            <p class="info-text">Diese Unterhaltung findet nur zwischen <span>{{ dmChannelService.chatPartnerProfile?.userName }}</span> und dir statt.</p>
         </div>
 
-        <div *ngFor="let message of channelMessages" class="messages-container">
+        <div *ngFor="let message of dmMessagesService.channelMessages" class="messages-container">
 
             <div class="full-message-container">
 
@@ -62,7 +62,7 @@
                 <div [matMenuTriggerFor]="menu" class="message-setting-container">
                     <mat-icon>more_vert</mat-icon>
                     <mat-menu #menu="matMenu">
-                        <button (click)="openDeleteMessageDialog(message.messageId, message.messageFromUserId)" mat-menu-item>Delete this message</button>
+                        <button (click)="openDeleteDmMessageDialog(message.messageId, message.messageFromUserId)" mat-menu-item>Delete this message</button>
                     </mat-menu>
                 </div>
 
@@ -71,13 +71,13 @@
         </div>
 
         <div class="message-input-container">
-            <form (ngSubmit)="sendDmMessage()">
+            <form (ngSubmit)="dmMessagesService.sendDmMessage()">
                 <div class="textformatting-container"></div>
-                <input [(ngModel)]="dmMessage.messageText" name="messageText" type="text"
-                    placeholder="Privatnachricht an # {{ chatPartnerProfile?.userName}}">
+                <input [(ngModel)]="dmMessagesService.dmMessage.messageText" name="messageText" type="text"
+                    placeholder="Privatnachricht an # {{ dmChannelService.chatPartnerProfile?.userName}}">
 
                 <div class="send-btn-container">
-                    <img (click)="sendDmMessage()" class="send-icon" src="./assets/img/icons/send-icon.png" alt="">
+                    <img (click)="dmMessagesService.sendDmMessage()" class="send-icon" src="./assets/img/icons/send-icon.png" alt="">
                 </div>
             </form>
         </div>
