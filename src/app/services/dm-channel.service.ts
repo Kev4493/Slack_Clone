@@ -118,14 +118,20 @@ export class DmChannelService {
 
   // User anhand der Member Ids herausfiltern:
   getDmUsersById() {
-    this.firestore
-      .collection('users', ref => ref.where('userId', 'in', this.dmUserIds)) // Hier wird das Problem liegen
-      .valueChanges()
-      .subscribe((changes: any) => {
-        this.dmUsers = changes;
-        console.log('dmUsers: ', this.dmUsers)
-        this.filterDmChannelsForUsers();
-      })
+    if (this.dmUserIds.length > 0) {
+      this.firestore
+        .collection('users', ref => ref.where('userId', 'in', this.dmUserIds)) // Hier wird das Problem liegen
+        .valueChanges()
+        .subscribe((changes: any) => {
+          if (this.dmUserIds.length > 0) {
+            this.dmUsers = changes;
+            // console.log('dmUsers: ', this.dmUsers)
+            this.filterDmChannelsForUsers();
+          }
+        })
+    } else {
+      this.dmUsers = [];
+    }
   }
 
 

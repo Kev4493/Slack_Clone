@@ -45,7 +45,7 @@ export class DmMessagesService {
       .subscribe((messages: any) => {
         this.channelMessages = messages
 
-        console.log('channelMessages: ', this.channelMessages)
+        // console.log('channelMessages: ', this.channelMessages)
       })
   }
 
