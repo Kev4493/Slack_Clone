@@ -16,7 +16,6 @@ import { MessageService } from 'src/app/services/message.service';
 
 export class ChatroomComponent {
 
-
   constructor(private route: ActivatedRoute, private firestore: AngularFirestore, public authService: AuthService, public dialog: MatDialog, public messageService: MessageService, public channelService: ChannelService) { }
 
 

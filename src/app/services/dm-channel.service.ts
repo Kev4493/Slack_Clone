@@ -127,6 +127,8 @@ export class DmChannelService {
             this.dmUsers = changes;
             // console.log('dmUsers: ', this.dmUsers)
             this.filterDmChannelsForUsers();
+          } else {
+            this.dmUsers = [];
           }
         })
     } else {

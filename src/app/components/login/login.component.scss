@@ -119,6 +119,14 @@
                     object-fit: contain;
                 }
             }
+
+            .guest-login-container {
+                margin-top: 2rem;
+
+                .guest-btn {
+                    background-color: #40D9E1;
+                }
+            }
         }
     }
 }

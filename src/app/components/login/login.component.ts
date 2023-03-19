@@ -69,6 +69,21 @@ export class LoginComponent {
   }
 
 
+  guestLogin() {
+    this.authService.loginUser('gast@mail.de', 'gast321').then((result) => {
+      if (result == null) {
+        console.log('logging in...');
+        this.openSnackBar();
+        this.router.navigate(['/home']);
+        this.updateStatusToOnline();
+      } else if (result.isValid == false) {
+        console.log('login error', result);
+        this.firebaseErrorMessage = result.message;
+      }
+    })
+  }
+
+
   updateStatusToOnline() {
     // debugger;
     this.firestore

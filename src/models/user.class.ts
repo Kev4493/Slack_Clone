@@ -22,7 +22,7 @@ export class User {
             userId: this.userId,
             userColor: this.userColor,
             userActivityStatus: this.userActivityStatus,
-            userStatusInfo: this.userStatusInfo
+            userStatusInfo: this.userStatusInfo,
         };
     }
 

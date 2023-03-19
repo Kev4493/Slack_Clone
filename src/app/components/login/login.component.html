@@ -33,23 +33,27 @@
                     <mat-error *ngIf="password?.errors?.['required']">Password is required</mat-error>
                 </mat-form-field>
 
-                <div class="recovery-container">
+                <!-- <div class="recovery-container">
                     <p>Recovery Password</p>
-                </div>
+                </div> -->
 
                 <button class="sign-in-btn" mat-raised-button>Sign in</button>
             </form>
 
             <div class="continue-container">
                 <hr>
-                <p>Or continue with</p>
+                <p>Or continue as guest</p>
                 <hr>
             </div>
 
-            <div class="socialmedia-container">
+            <!-- <div class="socialmedia-container">
                 <img class="socialmedia-logo" src="../../../assets/img/icons/google.png" alt="">
                 <img class="socialmedia-logo" src="../../../assets/img/icons/apple.png" alt="">
                 <img class="socialmedia-logo" src="../../../assets/img/icons/facebook.png" alt="">
+            </div> -->
+
+            <div class="guest-login-container">
+                <button (click)="guestLogin()" class="guest-btn" mat-raised-button>Guest Login</button>
             </div>
 
         </div>

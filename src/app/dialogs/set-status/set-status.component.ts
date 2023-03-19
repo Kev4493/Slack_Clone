@@ -21,7 +21,7 @@ export class SetStatusComponent {
 
 
   addStatusInfoToInput(status: string) {
-    this.status = status
+    this.status = status;
   }
 
   addStatusInfoToDb() {
@@ -29,7 +29,7 @@ export class SetStatusComponent {
       .collection('users')
       .doc(this.authService.user.userId)
       .update({
-        userStatusInfo: this.status
+        userStatusInfo: this.status,
       })
       console.log(this.status);
       

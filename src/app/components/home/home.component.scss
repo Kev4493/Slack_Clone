@@ -27,6 +27,7 @@
     .toolbar-container {
         height: 100vh;
         background-color: #1A1D21;
+        overflow-y: hidden;
 
         mat-toolbar {
             display: flex;

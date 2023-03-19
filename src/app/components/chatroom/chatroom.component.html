@@ -16,6 +16,12 @@
 
     <div class="chatroom-content">
 
+        <div class="info-container">
+            <p>{{ this.authService.getFirstName(authService.user.userName) }}, dies ist ein öffentlicher Channel zu dem Thema <span>{{ channelService.channel.channelName }}</span></p>
+            <p>Deine Nachricht kann von allen Mitgliedern gelesen werden.</p>
+            <p>Sei der erste und sag "Hallo"!</p>
+        </div>
+
         <div *ngFor="let message of messageService.messagesFromDb" class="messages-container">
 
             <div class="full-message-container">
