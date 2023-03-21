@@ -171,3 +171,26 @@ body {
       border: 0.5px solid black;
   }
 }
+
+
+// === 2560px ===
+@media (min-width: 2560px) {
+  .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    display: flex;
+    align-items: center;
+  }
+
+  .profile-initials-container {
+    width: 55px !important;
+    height: 55px !important;
+    font-size: 23px !important;
+  }
+
+  .mat-mdc-menu-content .mat-mdc-menu-item .mdc-list-item__primary-text {
+    font-size: 1.2rem !important;
+  }
+
+  .mat-mdc-option.mdc-list-item {
+    font-size: 1.2rem !important;
+  }
+}

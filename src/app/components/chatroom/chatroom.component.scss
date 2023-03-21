@@ -225,3 +225,82 @@
 
 
 }
+
+
+// === 2560px ===
+
+@media (min-width: 2560px) {
+    .chatroom-container {
+        .chatroom-header {
+            height: 80px !important;
+
+            .channel-name-container {
+
+                .material-icons {
+                    font-size: 30px !important;                    
+                }
+                
+                p {
+                    font-size: 1.2rem !important;
+                }
+            }
+
+            .channel-settings-container {
+                .material-icons {
+                    font-size: 30px !important;
+                }
+            }
+        }
+
+        .chatroom-content {
+            height: calc(100vh - 165px - 159px) !important;
+
+            .info-container {
+                p {
+                    font-size: 1.2rem !important;
+                }
+            }
+
+            .messages-container {
+                .full-message-container {
+                    align-items: center;
+                    margin-bottom: 0.5rem !important;
+
+                    .message-infos-container {
+                        .author {
+                            font-size: 1.2rem !important;
+                        }
+                        .time {
+                            font-size: 1rem !important;
+                        }
+                        .message-text-container {
+                            .message-text {
+                                font-size: 1.2rem;
+                                margin-top: 0.5rem;
+                            }
+                        }
+                    }
+
+                    .message-setting-container {
+                        .material-icons {
+                            font-size: 30px !important;
+                        }
+
+                        mat-menu {
+                            font-size: 1.2rem !important;
+                        }
+                    }
+                }
+            }
+
+            .message-input-container {
+                input {
+                    height: 100px !important;
+                    font-size: 1.2rem !important;
+                }
+            }
+        }
+
+
+    }
+}

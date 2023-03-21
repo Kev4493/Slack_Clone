@@ -50,3 +50,34 @@
         }
     }
 }
+
+// === 2560px ===
+@media (min-width: 2560px) {
+    .channels-container {
+        .channels-headline {
+            margin-bottom: 1rem !important;
+
+            p {
+                font-size: 1.2rem !important;
+            }
+        }
+
+        .channels-list {
+            margin-bottom: 1rem !important;
+
+            p {
+                font-size: 1.2rem !important;
+            }
+        }
+
+        .material-icons {
+            font-size: 25px !important;
+        }
+
+        .channels-add {
+            p {
+                font-size: 1.2rem !important;
+            }
+        }
+    }
+}

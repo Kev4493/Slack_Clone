@@ -6,9 +6,9 @@
     display: flex;
     flex-direction: column;
 
-    p {
+    .headline {
         margin: 0;
-        font-size: 16px;
+        // font-size: 16px;
     }
 
     .status-input-container {
@@ -62,7 +62,7 @@
 
         .delete-status-container {
             margin-top: 1rem;
-            
+
             .delete-status {
                 color: firebrick;
                 font-weight: 700;
@@ -104,15 +104,67 @@
         display: grid;
         grid-template-columns: 100% 0%;
         width: 36%;
-        
+
         button {
-           background: transparent;
-           border: 0;
-           transform: translateX(-40px);
-           cursor: pointer;
-           &:focus {
-              outline: 0;
-           }
+            background: transparent;
+            border: 0;
+            transform: translateX(-40px);
+            cursor: pointer;
+
+            &:focus {
+                outline: 0;
+            }
         }
-     }
+    }
+}
+
+// === 2560px ===
+@media (min-width: 2560px) {
+    .set-status-container {
+        width: 415px !important;
+
+        .headline {
+            font-size: 2rem !important;
+        }
+
+        .status-input-container {
+            margin-top: 2rem !important;
+
+            input {
+                font-size: 1.2rem !important;
+                height: 55px !important;
+            }
+        }
+
+        .pick-status-container {
+            margin-top: 2.5rem !important;
+
+            p {
+                font-size: 1.2rem !important;
+            }
+        }
+
+        .select-status-container {
+            margin-top: 1rem !important;
+
+            p {
+                font-size: 1.2rem !important;
+                margin-top: 1rem !important;
+            }
+        }
+
+        .delete-status-container {
+            margin-top: 1.5rem !important;
+        }
+
+        .button-container {
+            justify-content: center;
+
+            button {
+                font-size: 1.2rem !important;
+                width: unset !important;
+                height: 50px !important;
+            }
+        }
+    }
 }

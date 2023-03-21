@@ -130,3 +130,57 @@
         }
     }
 }
+
+// === 2560px ===
+
+@media (min-width: 2560px) {
+
+    .login-img-container {
+
+        img {
+            width: 950px !important;
+        }
+    }
+
+    .header {
+        font-size: 1.2rem  !important;
+    }
+
+    .header-container {
+        h1 {
+            font-size: 3rem !important;
+        }
+
+        p {
+            font-size: 1.2rem !important;
+            margin-top: 2rem !important;
+        }
+    }
+
+    .login-input {
+        width: 450px !important;
+        height: 90px !important;
+        font-size: 1.2rem !important;
+
+
+        mat-label {
+            font-size: 1.2rem !important;
+        }
+    }
+
+    .sign-in-btn {
+        font-size: 1.2rem;
+    }
+
+    .continue-container {
+        font-size: 1.2rem;
+    }
+
+    .guest-login-container {
+
+        button {
+            font-size: 1.2rem !important;
+            height: 60px;
+        }
+    }
+}

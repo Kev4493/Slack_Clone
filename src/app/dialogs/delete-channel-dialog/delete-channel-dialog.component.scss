@@ -35,3 +35,22 @@
         }
     }
 }
+
+// === 2560px ===
+@media (min-width: 2560px) {
+    .confirm-dialog-container {
+        width: 850px !important;
+
+        .info-text {
+            p {
+                font-size: 1.2rem !important;
+            }
+        }
+    }
+
+    .button-container {
+        button {
+            font-size: 1.2rem !important;
+        }
+    }
+}

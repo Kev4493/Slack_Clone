@@ -118,8 +118,41 @@
             background-color: green;
         }
     }
+}
+
+// === 2560px ===
+
+@media (min-width: 2560px) {
+
+    .sidenav {
+        width: 400px !important;
+        
+        .sidenav-header {
+            height: 85px !important;
+            font-size: 1.5rem !important;
+        }
+    }
 
 
+    .toolbar-container {
+        mat-toolbar {
+            height: 85px !important;
 
+            mat-icon {
+                font-size: 32px !important;
+            }
 
+            .profile-status {
+                p {
+                    font-size: 1.2rem;
+                }
+            }
+
+            .profile-container {
+                width: 50px !important;
+                height: 50px !important;
+                font-size: 20px !important;
+            }
+        }
+    }
 }

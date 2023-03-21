@@ -74,3 +74,36 @@
         }
     }
 }
+
+// === 2560px ===
+@media (min-width: 2560px) {
+    .users-container {
+        margin-top: 2.5rem !important;
+
+        .users-headline {
+            p {
+                font-size: 1.2rem !important;
+                margin-bottom: 1.5rem !important;
+            }
+        }
+
+        .users-list {
+            margin-bottom: 1.5rem !important;
+
+            .profile-initials-container {
+                width: 32px !important;
+                height: 32px !important;
+                font-size: 15px !important;
+            }
+
+            .online-status {
+                width: 13px;
+                height: 13px;
+            }
+
+            .single-user {
+                font-size: 1.2rem;
+            }
+        }
+    }
+}

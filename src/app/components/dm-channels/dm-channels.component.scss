@@ -98,3 +98,52 @@
         }
     }
 }
+
+// === 2560px ===
+@media (min-width: 2560px) {
+    .dm-channels-container {
+        margin-top: 2.5rem !important;
+
+        .dm-channels-headline {
+            p {
+                font-size: 1.2rem !important;
+                margin-bottom: 1.5rem !important;
+            }
+        }
+
+        .dm-channels-list {
+            margin-bottom: 1.5rem !important;
+
+            .profile-initials-container {
+                width: 30px !important;
+                height: 30px !important;
+                font-size: 15px !important;
+            }
+
+            .online-status {
+                width: 13px !important;
+                height: 13px !important;
+            }
+
+            .single-channel-container {
+                p {
+                    font-size: 1.2rem !important;
+                }
+            }
+        }
+
+        .material-icons {
+            font-size: 25px !important;
+        }
+
+        .dm-channel-add {
+            margin-top: 1.5rem !important;
+
+            p {
+                font-size: 1.2rem !important;
+            }
+        }
+    }
+
+
+}
