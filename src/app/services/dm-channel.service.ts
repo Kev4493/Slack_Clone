@@ -125,7 +125,7 @@ export class DmChannelService {
         .subscribe((changes: any) => {
           if (this.dmUserIds.length > 0) {
             this.dmUsers = changes;
-            // console.log('dmUsers: ', this.dmUsers)
+            console.log('dmUsers: ', this.dmUsers)
             this.filterDmChannelsForUsers();
           } else {
             this.dmUsers = [];
