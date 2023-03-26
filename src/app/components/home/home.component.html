@@ -1,6 +1,6 @@
 <mat-drawer-container class="drawer-container" autosize>
 
-    <mat-drawer [opened]="true" #drawer class="sidenav" mode="side">
+    <mat-drawer [opened]="true" #drawer class="sidenav" [mode]="sidenavMode">
         <div class="sidenav-header">
             <p>What's up, {{ authService.getFirstName(authService.user.userName) }} ?</p>
         </div>

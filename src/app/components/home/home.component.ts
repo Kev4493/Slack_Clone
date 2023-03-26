@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialog } from '@angular/material/dialog';
@@ -7,6 +7,9 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { DmChannelService } from 'src/app/services/dm-channel.service';
 import { SetStatusComponent } from '../../dialogs/set-status/set-status.component';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { MediaMatcher } from '@angular/cdk/layout';
+
 
 @Component({
   selector: 'app-home',
@@ -17,14 +20,17 @@ import { SetStatusComponent } from '../../dialogs/set-status/set-status.componen
 export class HomeComponent {
 
   snackBarDurationInSeconds = 3;
+  sidenavMode: any = '';
 
-  constructor(public dmChannelService: DmChannelService, public router: Router, private afAuth: AngularFireAuth, public authService: AuthService, private firestore: AngularFirestore, private _snackBar: MatSnackBar, public dialog: MatDialog) { }
+  constructor(private changeDetectorRef: ChangeDetectorRef, private mediaMatcher: MediaMatcher, private breakpointObserver: BreakpointObserver, public dmChannelService: DmChannelService, public router: Router, private afAuth: AngularFireAuth, public authService: AuthService, private firestore: AngularFirestore, private _snackBar: MatSnackBar, public dialog: MatDialog) { }
 
 
   async ngOnInit() {
     // this.authService.getLoggedInUserId();
     this.authService.getLoggedInUserFromDb();
     this.authService.getAllUsersFromDb();
+    // this.checkScreensize();
+    this.updateSidenavMode();
   }
 
 
@@ -71,7 +77,7 @@ export class HomeComponent {
   }
 
 
-  async updateStatusToOffline() {
+  updateStatusToOffline() {
     this.firestore
       .collection('users')
       .doc(this.authService.user.userId)
@@ -101,5 +107,15 @@ export class HomeComponent {
   openSetStatusDialog() {
     this.dialog.open(SetStatusComponent)
   }
-  
+
+  updateSidenavMode() {
+    this.breakpointObserver.observe([Breakpoints.XSmall]).subscribe(result => {
+      if (result.matches) {
+        this.sidenavMode = 'over';
+      } else {
+        this.sidenavMode = 'side';
+      }
+    });
+  }
+
 }

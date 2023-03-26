@@ -68,7 +68,7 @@
 
                 .register-input {
                     width: 350px;
-                    
+
                     mat-label {
                         font-size: 0.8rem;
                     }
@@ -79,7 +79,7 @@
                     height: 56px;
                     margin-top: 4rem;
                 }
-                
+
             }
 
         }
@@ -115,5 +115,84 @@
 
     .sign-in-btn {
         font-size: 1.2rem;
+    }
+}
+
+// === 1340px ===
+@media (max-width: 1340px) {
+    .register-img-container {
+        img {
+            width: 500px !important;
+        }
+    }
+}
+
+
+// === 1060px ===
+@media (max-width: 1060px) {
+    .register-img-container {
+        img {
+            width: 425px !important;
+        }
+    }
+
+    .header-container {
+        h1 {
+            font-size: 1.5rem !important;
+        }
+    }
+}
+
+// === 900px ===
+@media (max-width: 900px) {
+    .register-img-container {
+        display: none !important;
+    }
+
+    .register-container {
+        justify-content: center;
+    }
+
+    .register-form-container {
+        width: unset !important;
+    }
+}
+
+
+// === 425px ===
+
+@media (max-width: 425px) {
+    .register-img-container {
+        display: none !important;
+    }
+
+    .register-container {
+        justify-content: center;
+    }
+
+    .register-form-container {
+        width: unset !important;
+    }
+
+    .header-container {
+        h1 {
+            font-size: 1.4rem !important;
+        }
+    }
+}
+
+// === 375px ===
+
+@media (max-width: 375px) {
+    .register-input {
+        width: 300px !important;
+    }
+}
+
+
+// === 320px ===
+@media (max-width: 320px) {
+    .register-input {
+        width: unset !important;
     }
 }

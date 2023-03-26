@@ -168,3 +168,10 @@
         }
     }
 }
+
+// === 425px ===
+@media (max-width: 425px) {
+    .set-status-container {
+        width: unset !important;
+    }
+}

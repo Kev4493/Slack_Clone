@@ -126,7 +126,7 @@
 
     .sidenav {
         width: 400px !important;
-        
+
         .sidenav-header {
             height: 85px !important;
             font-size: 1.5rem !important;
@@ -155,4 +155,12 @@
             }
         }
     }
+}
+
+// === 425px ===
+@media (max-width: 425px) {
+    .sidenav {
+        width: 250px !important;
+    }
+
 }

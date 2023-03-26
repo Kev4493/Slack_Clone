@@ -1,7 +1,7 @@
 .channel-dialog-container {
     background-color: #1A1D21;
     color: whitesmoke;
-    width: 500px;
+    max-width: 500px;
     padding: 2rem;
 
     .close-icon {
@@ -106,5 +106,13 @@
                 font-size: 1.2rem !important;
             }
         }
+    }
+}
+
+// === 425px ===
+
+@media (max-width: 425px) {
+    .channel-dialog-container {
+        width: unset !important;
     }
 }

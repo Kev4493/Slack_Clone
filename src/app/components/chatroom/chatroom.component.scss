@@ -228,7 +228,6 @@
 
 
 // === 2560px ===
-
 @media (min-width: 2560px) {
     .chatroom-container {
         .chatroom-header {
@@ -237,9 +236,9 @@
             .channel-name-container {
 
                 .material-icons {
-                    font-size: 30px !important;                    
+                    font-size: 30px !important;
                 }
-                
+
                 p {
                     font-size: 1.2rem !important;
                 }
@@ -270,9 +269,11 @@
                         .author {
                             font-size: 1.2rem !important;
                         }
+
                         .time {
                             font-size: 1rem !important;
                         }
+
                         .message-text-container {
                             .message-text {
                                 font-size: 1.2rem;
@@ -304,3 +305,118 @@
 
     }
 }
+
+// === 1210px ===
+@media (max-width: 1210px) {
+    .message-text-container {
+        max-width: 600px !important;
+    }
+}
+
+// === 1050px ===
+@media (max-width: 1050px) {
+    .message-text-container {
+        max-width: 500px !important;
+    }
+}
+
+// === 940px ===
+@media (max-width: 940px) {
+    .message-text-container {
+        max-width: 350px !important;
+    }
+}
+
+// === 790px ===
+@media (max-width: 790px) {
+    .message-text-container {
+        max-width: 300px !important;
+    }
+}
+
+// === 740px ===
+@media (max-width: 740px) {
+    .message-text-container {
+        max-width: 250px !important;
+    }
+
+    .chatroom-content {
+        padding: 1rem !important;
+    }
+
+    .message-input-container {
+        left: 1rem !important;
+        right: 1rem !important;
+        bottom: 1rem !important;
+    }
+}
+
+// === 650px ===
+@media (max-width: 650px) {
+    .message-text-container {
+        max-width: 400px !important;
+    }
+}
+
+// === 530px ===
+@media (max-width: 530px) {
+    .message-text-container {
+        max-width: 300px !important;
+    }
+
+    .chatroom-content {
+        padding: 1rem !important;
+    }
+
+    .message-input-container {
+        left: 1rem !important;
+        right: 1rem !important;
+        bottom: 1rem !important;
+    }
+}
+
+//  === 425px ===
+@media (max-width: 425px) {
+    .chatroom-content {
+        padding: 1rem !important;
+    }
+
+    .message-input-container {
+        left: 1rem !important;
+        right: 1rem !important;
+        bottom: 1rem !important;
+    }
+
+    .dm-info-container {
+        margin-bottom: 1rem !important;
+    }
+
+    .info-text {
+        font-size: 13px !important;
+    }
+
+    .message-text-container {
+        max-width: 300px !important;
+    }
+}
+
+// === 400px ===
+@media (max-width: 400px) {
+    .message-text-container {
+        max-width: 250px !important;
+    }
+}
+
+// === 320px ===
+@media (max-width: 355px) {
+    .message-text-container {
+        max-width: 200px !important;
+    }
+
+    .channel-name-container {
+        p {
+            font-size: 12px !important;
+        }
+    }
+}
+

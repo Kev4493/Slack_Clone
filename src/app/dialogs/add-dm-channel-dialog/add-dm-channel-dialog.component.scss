@@ -1,7 +1,7 @@
 .dm-channel-dialog-container {
     background-color: #1A1D21;
     color: whitesmoke;
-    width: 500px;
+    // width: 500px;
     padding: 2rem;
 
     .close-icon {
@@ -82,6 +82,23 @@
             button {
                 font-size: 1.2rem !important;
             }
+        }
+    }
+}
+
+// === 600px ===
+@media (max-width: 600px) {
+    .dialog-headline {
+        h1 {
+            font-size: 18px !important;
+        }
+    }
+}
+
+@media (max-width: 475px) {
+    .dialog-headline {
+        h1 {
+            max-width: 200px !important;
         }
     }
 }
