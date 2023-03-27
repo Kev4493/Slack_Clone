@@ -8,7 +8,6 @@
         <div class="channel-settings-container">
             <mat-icon [matMenuTriggerFor]="menu">settings</mat-icon>
             <mat-menu #menu="matMenu">
-                <!-- <button (click)="deleteChannelFromDb()" mat-menu-item>Delete {{ channel.channelName }} Channel</button> -->
                 <button (click)="openDeleteDmChannelDialog()" mat-menu-item>Delete this private Conversation</button>
             </mat-menu>
         </div>
@@ -21,7 +20,6 @@
             <div class="chatpartner-info">
                 <div [style.background-color]="dmChannelService.chatPartnerProfile?.userColor" class="profile-initials-container dm-info-initials-container">
                     {{ authService.getUserInitials(dmChannelService.chatPartnerProfile?.userName) }}
-                    <!-- <div class="online-status" [ngClass]="getUserActivityStatus(chatPartnerProfile?.userId)"></div> -->
                 </div>
 
                 <div class="user-info-container">
@@ -30,10 +28,9 @@
                         <div class="online-status-dm" [ngClass]="getUserActivityStatus(dmChannelService.chatPartnerProfile?.userId)"></div>
                     </div>
                     <div class="activity-container">
-                        <p>{{ dmChannelService.chatPartnerProfile?.userStatusInfo }}</p>
+                        <p>{{ dmChannelService.chatPartnerProfile?.userStatusInfo + dmChannelService.chatPartnerProfile?.userStatusEmoji}}</p>
                         <p>{{ dmChannelService.chatPartnerProfile?.userActivityStatus }}</p>
                     </div>
-
                 </div>
             </div>
 

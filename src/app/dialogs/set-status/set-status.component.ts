@@ -11,7 +11,9 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class SetStatusComponent {
 
+  
   status = '';
+  statusEmoji = '';
 
   constructor(public dialog: MatDialog, private firestore: AngularFirestore, public authService: AuthService) { }
 
@@ -20,8 +22,9 @@ export class SetStatusComponent {
   }
 
 
-  addStatusInfoToInput(status: string) {
+  addStatusInfoToInput(status: string, statusEmoji: string) {
     this.status = status;
+    this.statusEmoji = statusEmoji;
   }
 
   addStatusInfoToDb() {
@@ -30,6 +33,7 @@ export class SetStatusComponent {
       .doc(this.authService.user.userId)
       .update({
         userStatusInfo: this.status,
+        userStatusEmoji: this.statusEmoji
       })
       console.log(this.status);
       
@@ -39,6 +43,7 @@ export class SetStatusComponent {
 
   deleteStatus() {
     this.status = '';
+    this.statusEmoji = '';
     this.addStatusInfoToDb();
   }
 

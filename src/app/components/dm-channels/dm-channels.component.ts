@@ -18,8 +18,90 @@ export class DmChannelsComponent {
   constructor(public dialog: MatDialog, public authService: AuthService, public dmChannelService: DmChannelService, private firestore: AngularFirestore) { }
 
 
-  ngOnInit() {
-    this.dmChannelService.getAllDmChannels();
+  ngOnInit(): void {
+    // this.dmChannelService.getAllDmChannels();
+    this.getAllDmChannels();
+  }
+
+
+  getAllDmChannels() {
+    this.firestore
+      .collection('directMessageChannels', ref => ref.where('memberIds', 'array-contains', this.authService.currentLoggedInUserId))
+      .valueChanges({ idField: 'dmChannelId' })
+      .subscribe((changes: any) => {
+        this.allDmChannels = changes.map((dmChannel: any) => {
+          const otherUserId = dmChannel.memberIds.find((userId: string) => userId !== this.authService.currentLoggedInUserId);
+          return { dmChannelId: dmChannel.dmChannelId, otherUserId: otherUserId };
+        });
+
+        console.log('allDmChannels : ', this.allDmChannels);
+
+      })
+  }
+
+
+  getUsernameById(otherUserId) {
+    let user = this.authService.allUsersFromDb.find(obj => obj.userId === otherUserId);
+
+    if (user) {
+      let userName = user.userName;
+      // console.log(userName);
+      return userName;
+    } else {
+      console.log("otherUserId not found");
+    }
+  }
+
+
+  getUserColorById(otherUserId) {
+    let user = this.authService.allUsersFromDb.find(obj => obj.userId === otherUserId);
+
+    if (user) {
+      let userColor = user.userColor;
+      // console.log(userColor);
+      return userColor;
+    } else {
+      console.log("otherUserId not found");
+    }
+  }
+
+
+  getUserInitialsById(otherUserId) {
+    let user = this.authService.allUsersFromDb.find(obj => obj.userId === otherUserId);
+
+    if (user) {
+      let userName = user.userName;
+      let initials = userName.split(' ').map(name => name[0]).join('');
+      // console.log(initials);
+      return initials;
+    } else {
+      console.log("otherUserId not found");
+    }
+  }
+
+
+  getUserActivityStatusById(otherUserId) {
+    let user = this.authService.allUsersFromDb.find(obj => obj.userId === otherUserId);
+
+    if (user) {
+      let userActivityStatus = user.userActivityStatus;
+      // console.log(userActivityStatus);
+      return userActivityStatus;
+    } else {
+      console.log("otherUserId not found");
+    }
+  }
+
+  getStatusEmojiById(otherUserId) {
+    let user = this.authService.allUsersFromDb.find(obj => obj.userId === otherUserId);
+
+    if (user) {
+      let userStatusEmoji = user.userStatusEmoji;
+      // console.log(userActivityStatus);
+      return userStatusEmoji;
+    } else {
+      console.log("otherUserId not found");
+    }
   }
 
 

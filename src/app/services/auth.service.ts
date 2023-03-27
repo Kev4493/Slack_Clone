@@ -24,10 +24,8 @@ export class AuthService {
 
 
   constructor(private router: Router, private afAuth: AngularFireAuth, private firestore: AngularFirestore) {
-    // Vor dem Login den User überschreiben: ID aus User holen und dann den richtigen User suchen und überschreiben...
     this.userLoggedIn = false
     this.afAuth.onAuthStateChanged((user) => {
-      // debugger;
       if (user) {
         this.userLoggedIn = true;
         // console.log('user', user);
@@ -103,6 +101,7 @@ export class AuthService {
     this.user.userName = this.loggedInUserFromDb[0].userName;
     this.user.userActivityStatus = this.loggedInUserFromDb[0].userActivityStatus;
     this.user.userStatusInfo = this.loggedInUserFromDb[0].userStatusInfo;
+    this.user.userStatusEmoji = this.loggedInUserFromDb[0].userStatusEmoji;
 
     // console.log('Current Logged in Userobject:', this.user);
 
@@ -115,7 +114,7 @@ export class AuthService {
       .valueChanges()
       .subscribe(allUsers => {
         this.allUsersFromDb = allUsers;
-        // console.log('All Users From DB = ', this.allUsersFromDb)
+        console.log('All Users From DB = ', this.allUsersFromDb)
       })
   }
 

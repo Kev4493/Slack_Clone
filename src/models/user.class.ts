@@ -5,6 +5,7 @@ export class User {
     userColor: string;
     userActivityStatus: string;
     userStatusInfo: string;
+    userStatusEmoji: string;
 
     constructor(obj?: any) { 
         this.userName = obj ? obj.userName : '';
@@ -13,6 +14,7 @@ export class User {
         this.userColor = obj ? obj.userColor : '';
         this.userActivityStatus = obj ? obj.userActivityStatus : '';
         this.userStatusInfo = obj ? obj.userStatusInfo : '';
+        this.userStatusEmoji = obj ? obj.userStatusEmoji : '';
     }
 
     public toJSON() {
@@ -23,6 +25,7 @@ export class User {
             userColor: this.userColor,
             userActivityStatus: this.userActivityStatus,
             userStatusInfo: this.userStatusInfo,
+            userStatusEmoji: this.userStatusEmoji
         };
     }
 

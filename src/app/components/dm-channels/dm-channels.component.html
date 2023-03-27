@@ -3,7 +3,7 @@
         <p>Directmessages</p>
     </div>
 
-    <div *ngFor="let user of dmChannelService.dmUsers" class="dm-channels-list">
+    <!-- <div *ngFor="let user of dmChannelService.dmUsers" class="dm-channels-list">
         <div [style.background-color]="user.userColor" class="profile-initials-container">
             {{ authService.getUserInitials(user.userName) }}
             <div [ngClass]="getUserActivityStatus(user.userId)" class="online-status"></div>
@@ -15,8 +15,24 @@
 
 
         <div class="user-status-info"> {{ authService.getStatusIcon(user.userStatusInfo) }}</div>
-        <!-- <div class="user-status-info"> {{ user.userStatusEmoji }}</div>  -->
+    </div> -->
+
+    <div *ngFor="let channel of allDmChannels" class="dm-channels-list">
+
+        <div [style.background-color]="getUserColorById(channel.otherUserId)" class="profile-initials-container">
+            {{ getUserInitialsById(channel.otherUserId) }}
+            <div [ngClass]="getUserActivityStatusById(channel.otherUserId)" class="online-status"></div>
+        </div>
+
+        <div  class="single-channel-container" [routerLink]="['dm-chatroom/' + channel.dmChannelId]">
+            <p>{{ getUsernameById(channel.otherUserId) }}</p>
+        </div>
+
+        <div class="user-status-info"> {{ getStatusEmojiById(channel.otherUserId) }}</div>
     </div>
+
+
+    
 
 
     <div (click)="openAddDmChannelDialog()" class="dm-channel-add">

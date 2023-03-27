@@ -12,11 +12,11 @@
     </div>
 
     <div class="select-status-container">
-        <p (click)="addStatusInfoToInput('In einem Meeting ' + '🗓️')">🗓️ In einem Meeting</p>
-        <p (click)="addStatusInfoToInput('Unterwegs ' + '🚗')">🚗 Unterwegs</p>
-        <p (click)="addStatusInfoToInput('Krank ' + '🤒')">🤒 Krank</p>
-        <p (click)="addStatusInfoToInput('Im Urlaub ' + '🌴')">🌴 Im Urlaub</p>
-        <p (click)="addStatusInfoToInput('Home Office ' + '🧑🏽‍💻')">🧑🏽‍💻 Home Office</p>
+        <p (click)="addStatusInfoToInput('In einem Meeting ' , '🗓️')">🗓️ In einem Meeting</p>
+        <p (click)="addStatusInfoToInput('Unterwegs ' , '🚗')">🚗 Unterwegs</p>
+        <p (click)="addStatusInfoToInput('Krank ' , '🤒')">🤒 Krank</p>
+        <p (click)="addStatusInfoToInput('Im Urlaub ' , '🌴')">🌴 Im Urlaub</p>
+        <p (click)="addStatusInfoToInput('Home Office ' , '🧑🏽‍💻')">🧑🏽‍💻 Home Office</p>
 
         <div *ngIf="this.authService.user.userStatusInfo" class="delete-status-container">
             <p class="delete-status" (click)="deleteStatus()">Aktuellen Status entfernen</p>

@@ -93,55 +93,55 @@ export class DmChannelService {
 
 
   // Alle dmChannels aus dem Firestore holen, indem sich die eingeloggte ID befindet.
-  getAllDmChannels() {
-    this.firestore
-      .collection('directMessageChannels', ref => ref.where('memberIds', 'array-contains', this.authService.currentLoggedInUserId))
-      .valueChanges({ idField: 'dmChannelId' })
-      .subscribe((changes: any) => {
-        this.dmChannels = changes;
-        // console.log('allDmChannels: ', this.dmChannels);
-        this.filterDmChannels()
-      })
-  }
+  // getAllDmChannels() {
+  //   this.firestore
+  //     .collection('directMessageChannels', ref => ref.where('memberIds', 'array-contains', this.authService.currentLoggedInUserId))
+  //     .valueChanges({ idField: 'dmChannelId' })
+  //     .subscribe((changes: any) => {
+  //       this.dmChannels = changes;
+  //       // console.log('allDmChannels: ', this.dmChannels);
+  //       this.filterDmChannels()
+  //     })
+  // }
 
 
   // Member IDs herausfiltern ohne die ID des eingeloggte Nutzers:
-  filterDmChannels() {
-    this.dmUserIds = this.dmChannels
-      .map(dmChannel => dmChannel.memberIds)
-      .flat()
-      .filter(memberId => memberId !== this.authService.currentLoggedInUserId);
-    // console.log('dmUserIds: ', this.dmUserIds);
-    this.getDmUsersById();
-  }
+  // filterDmChannels() {
+  //   this.dmUserIds = this.dmChannels
+  //     .map(dmChannel => dmChannel.memberIds)
+  //     .flat()
+  //     .filter(memberId => memberId !== this.authService.currentLoggedInUserId);
+  //   // console.log('dmUserIds: ', this.dmUserIds);
+  //   this.getDmUsersById();
+  // }
 
 
   // User anhand der Member Ids herausfiltern:
-  getDmUsersById() {
-    if (this.dmUserIds.length > 0) {
-      this.firestore
-        .collection('users', ref => ref.where('userId', 'in', this.dmUserIds)) // Hier wird das Problem liegen
-        .valueChanges()
-        .subscribe((changes: any) => {
-          if (this.dmUserIds.length > 0) {
-            this.dmUsers = changes;
-            console.log('dmUsers: ', this.dmUsers)
-            this.filterDmChannelsForUsers();
-          } else {
-            this.dmUsers = [];
-          }
-        })
-    } else {
-      this.dmUsers = [];
-    }
-  }
+  // getDmUsersById() {
+  //   if (this.dmUserIds.length > 0) {
+  //     this.firestore
+  //       .collection('users', ref => ref.where('userId', 'in', this.dmUserIds)) // Hier wird das Problem liegen
+  //       .valueChanges()
+  //       .subscribe((changes: any) => {
+  //         if (this.dmUserIds.length > 0) {
+  //           this.dmUsers = changes;
+  //           console.log('dmUsers: ', this.dmUsers)
+  //           this.filterDmChannelsForUsers();
+  //         } else {
+  //           this.dmUsers = [];
+  //         }
+  //       })
+  //   } else {
+  //     this.dmUsers = [];
+  //   }
+  // }
 
 
   // dmChannels aus DB dem dmUsers Array hinzufügen:
-  filterDmChannelsForUsers() {
-    this.dmUsers.forEach(user => {
-      user.dmChannels = this.dmChannels.filter(channel => channel.memberIds.includes(user.userId));
-      // console.log('dmUsers: ', this.dmUsers)
-    });
-  }
+  // filterDmChannelsForUsers() {
+  //   this.dmUsers.forEach(user => {
+  //     user.dmChannels = this.dmChannels.filter(channel => channel.memberIds.includes(user.userId));
+  //     // console.log('dmUsers: ', this.dmUsers)
+  //   });
+  // }
 }

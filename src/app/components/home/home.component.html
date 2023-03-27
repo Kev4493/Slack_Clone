@@ -22,7 +22,7 @@
 
             <div class="profile">
                 <div class="profile-status" (click)="openSetStatusDialog()">
-                    <p>{{this.authService.user.userStatusInfo ? this.authService.user.userStatusInfo : 'Status festlegen'}}</p>
+                    <p>{{this.authService.user.userStatusInfo ? this.authService.user.userStatusInfo + this.authService.user.userStatusEmoji : 'Status festlegen'}}</p>
                 </div>
     
                 <div class="profile-container" [style.background-color]="authService.user.userColor" [matMenuTriggerFor]="menu">
