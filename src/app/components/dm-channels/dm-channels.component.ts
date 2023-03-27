@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { AddDmChannelDialogComponent } from 'src/app/dialogs/add-dm-channel-dialog/add-dm-channel-dialog.component';
 import { AuthService } from 'src/app/services/auth.service';
@@ -11,8 +12,10 @@ import { DmChannelService } from 'src/app/services/dm-channel.service';
 })
 export class DmChannelsComponent {
 
+  allDmChannels = [];
 
-  constructor(public dialog: MatDialog, public authService: AuthService, public dmChannelService: DmChannelService) { }
+
+  constructor(public dialog: MatDialog, public authService: AuthService, public dmChannelService: DmChannelService, private firestore: AngularFirestore) { }
 
 
   ngOnInit() {

@@ -26,10 +26,8 @@ export class HomeComponent {
 
 
   async ngOnInit() {
-    // this.authService.getLoggedInUserId();
     this.authService.getLoggedInUserFromDb();
     this.authService.getAllUsersFromDb();
-    // this.checkScreensize();
     this.updateSidenavMode();
   }
 

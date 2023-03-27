@@ -83,18 +83,6 @@ export class AuthService {
   }
 
 
-  // getLoggedInUserId() {
-  //   this.afAuth.user.subscribe((user) => {
-  //     if (!user) return;
-  //     this.currentLoggedInUserId = user.uid
-  //     console.log('Loggedin UserID is:', this.currentLoggedInUserId);
-
-  //     this.getLoggedInUserFromDb();
-
-  //   })
-  // }
-
-
   async getLoggedInUserFromDb() {
     const currentUserCollection = this.firestore.collection('users', ref => ref.where('userId', '==', this.currentLoggedInUserId))
     currentUserCollection.valueChanges().subscribe(user => {
