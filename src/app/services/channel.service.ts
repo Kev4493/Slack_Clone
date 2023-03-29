@@ -26,7 +26,6 @@ export class ChannelService {
       .valueChanges()
       .subscribe((channel: any) => {
         this.channel = new Channel(channel);
-        // console.log('Retrieved current channel:', this.channel);
       })
   }
 
@@ -34,7 +33,6 @@ export class ChannelService {
   deleteChannelFromDb() {
     if (this.authService.user.userId === this.channel.createdFromUserId) {
       this.deleteAllMessagesFromChannel();
-
       this.firestore
         .collection('channels')
         .doc(this.channelId)

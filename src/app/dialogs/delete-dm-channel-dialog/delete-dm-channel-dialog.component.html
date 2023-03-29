@@ -1,13 +1,13 @@
 <div class="confirm-dialog-container">
     <div class="info-text">
-        <p>Bist du sicher, dass du den Channel löschen möchtest?</p>
+        <p>Are you sure you want to delete this private conversation?</p>
         <br>
-        <p>Dadurch werden alle Dateien und Nachrichten unwiderruflich gelöscht!</p>
+        <p>This will permanently delete all files and messages!</p>
     </div>
 
     <div class="button-container">
-        <button class="confirm-button delete-button" mat-raised-button (click)="dmChannelService.deleteDmChannelFromDb()">Löschen</button>
-        <button class="confirm-button" mat-raised-button (click)="closeDeleteDmChannelDialog()">Abbrechen</button>
+        <button class="confirm-button delete-button" mat-raised-button (click)="dmChannelService.deleteDmChannelFromDb()">Delete</button>
+        <button class="confirm-button" mat-raised-button (click)="closeDeleteDmChannelDialog()">Cancel</button>
     </div>
 
 </div>

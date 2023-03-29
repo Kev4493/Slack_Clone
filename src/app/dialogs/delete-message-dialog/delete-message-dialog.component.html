@@ -1,11 +1,11 @@
 <div class="confirm-dialog-container">
     <div class="info-text">
-        <p>Bist du sicher, dass du diese Nachricht unwiederruflich löschen möchtest?</p>
+        <p>Are you sure you want to delete this message irreversibly?</p>
     </div>
 
     <div class="button-container">
-        <button class="confirm-button delete-button" (click)="messageService.deleteMessageFromDb()" mat-raised-button>Löschen</button>
-        <button class="confirm-button" mat-raised-button (click)="closeDialog()">Abbrechen</button>
+        <button class="confirm-button delete-button" (click)="messageService.deleteMessageFromDb()" mat-raised-button>Delete</button>
+        <button class="confirm-button" mat-raised-button (click)="closeDialog()">Cancel</button>
     </div>
 
 </div>

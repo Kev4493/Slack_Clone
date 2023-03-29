@@ -22,7 +22,7 @@
 
             <div class="profile">
                 <div class="profile-status" (click)="openSetStatusDialog()">
-                    <p>{{this.authService.user.userStatusInfo ? this.authService.user.userStatusInfo + this.authService.user.userStatusEmoji : 'Status festlegen'}}</p>
+                    <p>{{this.authService.user.userStatusInfo ? this.authService.user.userStatusInfo + this.authService.user.userStatusEmoji : 'Set status'}}</p>
                 </div>
     
                 <div class="profile-container" [style.background-color]="authService.user.userColor" [matMenuTriggerFor]="menu">
@@ -33,8 +33,8 @@
 
             <!-- Profile Menu -->
             <mat-menu #menu="matMenu" class="profile-menu">
-                <button mat-menu-item [matMenuTriggerFor]="activityStatus">Aktivitätsstatus ändern</button>
-                <button mat-menu-item (click)="logout()">logout</button>
+                <button mat-menu-item [matMenuTriggerFor]="activityStatus">Change activity status</button>
+                <button mat-menu-item (click)="logout()">Logout</button>
             </mat-menu>
 
             <mat-menu #activityStatus="matMenu">

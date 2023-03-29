@@ -3,7 +3,7 @@
     <div class="chatroom-header">
         <div class="channel-name-container">
             <mat-icon>tag</mat-icon>
-            <p>Privatnachricht an {{ dmChannelService.chatPartnerProfile?.userName }}</p>
+            <p>Private message to {{ dmChannelService.chatPartnerProfile?.userName }}</p>
         </div>
         <div class="channel-settings-container">
             <mat-icon [matMenuTriggerFor]="menu">settings</mat-icon>
@@ -28,13 +28,13 @@
                         <div class="online-status-dm" [ngClass]="getUserActivityStatus(dmChannelService.chatPartnerProfile?.userId)"></div>
                     </div>
                     <div class="activity-container">
-                        <p>{{ dmChannelService.chatPartnerProfile?.userStatusInfo + dmChannelService.chatPartnerProfile?.userStatusEmoji}}</p>
+                        <p>{{ dmChannelService.chatPartnerProfile?.userStatusInfo }} {{ dmChannelService.chatPartnerProfile?.userStatusEmoji }}</p>
                         <p>{{ dmChannelService.chatPartnerProfile?.userActivityStatus }}</p>
                     </div>
                 </div>
             </div>
 
-            <p class="info-text">Diese Unterhaltung findet nur zwischen <span>{{ dmChannelService.chatPartnerProfile?.userName }}</span> und dir statt.</p>
+            <p class="info-text">This conversation is only taking place between <span>{{ dmChannelService.chatPartnerProfile?.userName }}</span> and you.</p>
         </div>
 
         <div *ngFor="let message of dmMessagesService.channelMessages" class="messages-container">

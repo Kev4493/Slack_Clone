@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { DeleteChannelDialogComponent } from 'src/app/dialogs/delete-channel-dialog/delete-channel-dialog.component';
@@ -16,7 +15,7 @@ import { MessageService } from 'src/app/services/message.service';
 
 export class ChatroomComponent {
 
-  constructor(private route: ActivatedRoute, private firestore: AngularFirestore, public authService: AuthService, public dialog: MatDialog, public messageService: MessageService, public channelService: ChannelService) { }
+  constructor(private route: ActivatedRoute, public authService: AuthService, public dialog: MatDialog, public messageService: MessageService, public channelService: ChannelService) { }
 
 
   ngOnInit(): void {

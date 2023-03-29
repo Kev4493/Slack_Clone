@@ -1,13 +1,13 @@
 <div class="confirm-dialog-container">
     <div class="info-text">
-        <p>Bist du sicher, dass du den Channel <br><br> <span class="channel-name"># {{ channelService.channel.channelName }}</span> <br><br> löschen möchtest?</p>
+        <p>Are you sure you want to delete the channel <br><br> <span class="channel-name"># {{ channelService.channel.channelName }}</span> <br></p>
         <br>
-        <p>Dadurch werden alle Dateien und Nachrichten unwiderruflich gelöscht!</p>
+        <p>This will permanently delete all files and messages!</p>
     </div>
 
     <div class="button-container">
-        <button class="confirm-button delete-button" mat-raised-button (click)="channelService.deleteChannelFromDb()">Löschen</button>
-        <button class="confirm-button" mat-raised-button (click)="closeDeleteChannelDialog()">Abbrechen</button>
+        <button class="confirm-button delete-button" mat-raised-button (click)="channelService.deleteChannelFromDb()">Delete</button>
+        <button class="confirm-button" mat-raised-button (click)="closeDeleteChannelDialog()">Cancel</button>
     </div>
 
 </div>

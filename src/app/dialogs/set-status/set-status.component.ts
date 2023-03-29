@@ -35,7 +35,7 @@ export class SetStatusComponent {
         userStatusInfo: this.status,
         userStatusEmoji: this.statusEmoji
       })
-      console.log(this.status);
+      // console.log(this.status);
       
     this.closeDialog();
   }

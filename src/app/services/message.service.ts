@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/app/services/auth.service';
 import { Message } from 'src/models/message.class';
+import { DeleteNoticeDialogComponent } from '../dialogs/delete-notice-dialog/delete-notice-dialog.component';
 import { ChannelService } from './channel.service';
 
 @Injectable({
@@ -25,8 +26,6 @@ export class MessageService {
     this.message.createdAt = new Date().getTime();
     this.message.messageFromChannelId = this.channelService.channelId;
     this.message.messageFromUserId = this.authService.user.userId
-
-    // console.log('Current Message is:', this.message);
     this.sendMessageToDb();
     this.message.messageText = '';
   }
@@ -45,7 +44,6 @@ export class MessageService {
       .valueChanges({ idField: "messageId" })
       .subscribe(messages => {
         this.messagesFromDb = messages;
-        console.log('Messages from DB:', this.messagesFromDb);
       })
   };
 
@@ -58,7 +56,8 @@ export class MessageService {
         .delete();
       this.closeDeleteMessageDialog();
     } else {
-      window.alert('Du kannst nur deine eigenen Nachrichten löschen!')
+      this.dialog.closeAll();
+      this.dialog.open(DeleteNoticeDialogComponent);
     }
   }
 

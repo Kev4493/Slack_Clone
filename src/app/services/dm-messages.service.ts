@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { DMmessage } from 'src/models/dm-message.class';
+import { DeleteNoticeDialogComponent } from '../dialogs/delete-notice-dialog/delete-notice-dialog.component';
 import { AuthService } from './auth.service';
 import { DmChannelService } from './dm-channel.service';
 
@@ -21,14 +22,13 @@ export class DmMessagesService {
   sendDmMessage() {
     this.generateDmMessageObject();
     console.log('directmessage :', this.dmMessage)
-
     this.firestore
       .collection('directMessages')
       .add(this.dmMessage.toJSON())
-
     this.dmMessage.messageText = '';
   }
 
+  
   generateDmMessageObject() {
     this.dmMessage.author = this.authService.user.userName;
     this.dmMessage.authorColor = this.authService.user.userColor;
@@ -44,8 +44,6 @@ export class DmMessagesService {
       .valueChanges({ idField: "messageId" })
       .subscribe((messages: any) => {
         this.channelMessages = messages
-
-        // console.log('channelMessages: ', this.channelMessages)
       })
   }
 
@@ -58,7 +56,8 @@ export class DmMessagesService {
         .delete()
       this.closeDeleteDmMessageDialog()
     } else {
-      window.alert('Du kannst nur deine eigenen Nachrichten löschen!')
+      this.dialog.closeAll();
+      this.dialog.open(DeleteNoticeDialogComponent)
     }
   }
 

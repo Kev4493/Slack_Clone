@@ -11,10 +11,6 @@
         p {
             margin: 0;
             text-align: center;
-
-            .channel-name {
-                color: rgba(255, 255, 255, 0.7);
-            }
         }
     }
 
@@ -24,15 +20,11 @@
         justify-content: center;
 
         .confirm-button {
-            background-color: rgba(255, 255, 255, 0.2);
-            color: rgba(255, 255, 255, 0.7);
-            width: 135.3px;
-        }
-
-        .delete-button {
+            // background-color: rgba(255, 255, 255, 0.2);
             background-color: #40D9E1;
+            // color: rgba(255, 255, 255, 0.7);
             color: black;
-            margin-right: 2rem;
+            width: 135.3px;
         }
     }
 }
@@ -41,14 +33,13 @@
 @media (min-width: 2560px) {
     .confirm-dialog-container {
         width: 850px !important;
-
         .info-text {
             p {
                 font-size: 1.2rem !important;
             }
         }
     }
-
+    
     .button-container {
         button {
             font-size: 1.2rem !important;
@@ -62,10 +53,6 @@
         width: unset !important;
     }
 
-    .delete-button {
-        margin-right: unset !important;
-        margin-bottom: 1rem !important;
-    }
 
     .button-container {
         flex-direction: column;

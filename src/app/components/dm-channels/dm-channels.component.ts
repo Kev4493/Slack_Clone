@@ -19,7 +19,6 @@ export class DmChannelsComponent {
 
 
   ngOnInit(): void {
-    // this.dmChannelService.getAllDmChannels();
     this.getAllDmChannels();
   }
 
@@ -33,9 +32,6 @@ export class DmChannelsComponent {
           const otherUserId = dmChannel.memberIds.find((userId: string) => userId !== this.authService.currentLoggedInUserId);
           return { dmChannelId: dmChannel.dmChannelId, otherUserId: otherUserId };
         });
-
-        console.log('allDmChannels : ', this.allDmChannels);
-
       })
   }
 
@@ -45,7 +41,6 @@ export class DmChannelsComponent {
 
     if (user) {
       let userName = user.userName;
-      // console.log(userName);
       return userName;
     } else {
       console.log("otherUserId not found");
@@ -58,7 +53,6 @@ export class DmChannelsComponent {
 
     if (user) {
       let userColor = user.userColor;
-      // console.log(userColor);
       return userColor;
     } else {
       console.log("otherUserId not found");
@@ -72,7 +66,6 @@ export class DmChannelsComponent {
     if (user) {
       let userName = user.userName;
       let initials = userName.split(' ').map(name => name[0]).join('');
-      // console.log(initials);
       return initials;
     } else {
       console.log("otherUserId not found");
@@ -85,19 +78,18 @@ export class DmChannelsComponent {
 
     if (user) {
       let userActivityStatus = user.userActivityStatus;
-      // console.log(userActivityStatus);
       return userActivityStatus;
     } else {
       console.log("otherUserId not found");
     }
   }
 
+
   getStatusEmojiById(otherUserId) {
     let user = this.authService.allUsersFromDb.find(obj => obj.userId === otherUserId);
 
     if (user) {
       let userStatusEmoji = user.userStatusEmoji;
-      // console.log(userActivityStatus);
       return userStatusEmoji;
     } else {
       console.log("otherUserId not found");
@@ -114,6 +106,4 @@ export class DmChannelsComponent {
     const user = this.authService.allUsersFromDb.find(u => u.userId === userId);
     return user ? user.userActivityStatus : '';
   }
-
-
 }

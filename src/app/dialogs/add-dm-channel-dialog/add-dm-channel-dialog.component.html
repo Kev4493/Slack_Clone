@@ -18,7 +18,7 @@
     </mat-form-field>
 
     <div class="button-container">
-        <button (click)="addDmChannel()" mat-raised-button class="create-button" [ngClass]="{ 'enabled-button': selectedDmUser }" >Start Conversation <span *ngIf="selectedDmUser">with {{ this.authService.getFirstName(selectedDmUser.userName) }}</span></button>
+        <button (click)="addDmChannel()" mat-raised-button class="create-button" [ngClass]="{ 'enabled-button': selectedDmUser }" >Start conversation <span *ngIf="selectedDmUser">with {{ this.authService.getFirstName(selectedDmUser.userName) }}</span></button>
     </div>
 
 </div>

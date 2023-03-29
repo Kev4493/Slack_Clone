@@ -14,18 +14,16 @@ export class ChannelsComponent {
 
   constructor(public dialog: MatDialog, private firestore: AngularFirestore) {}
 
+  
   ngOnInit(): void {
     this.firestore
     .collection('channels')
     .valueChanges({idField: 'channelId'})
     .subscribe((changes:any) => {
-      // console.log('Received changes from DB:', changes);
-      
-      
       this.allChannels = changes;
-      // console.log('allChannels:', this.allChannels);
     })
   } 
+
 
   openAddChannelDialog() {
     this.dialog.open(AddChannelDialogComponent)

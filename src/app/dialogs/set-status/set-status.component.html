@@ -1,31 +1,31 @@
 <div class="set-status-container">
 
-    <h1 class="headline">Status festlegen</h1>
+    <h1 class="headline">Set Status</h1>
 
     <div class="status-input-container">
-        <input [(ngModel)]="status" class="status-input" type="text" placeholder="Wie lautet dein Status?" (keyup.enter)="addStatusInfoToDb()">
+        <input [(ngModel)]="status" class="status-input" type="text" placeholder="What's your status?" (keyup.enter)="addStatusInfoToDb()">
         <!-- <img class="emoji-icon" src="./assets/img/icons/smiley.png" alt=""> -->
     </div>
 
     <div class="pick-status-container">
-        <p>Wähle einen Status aus:</p>
+        <p>Select a status:</p>
     </div>
 
     <div class="select-status-container">
-        <p (click)="addStatusInfoToInput('In einem Meeting ' , '🗓️')">🗓️ In einem Meeting</p>
-        <p (click)="addStatusInfoToInput('Unterwegs ' , '🚗')">🚗 Unterwegs</p>
-        <p (click)="addStatusInfoToInput('Krank ' , '🤒')">🤒 Krank</p>
-        <p (click)="addStatusInfoToInput('Im Urlaub ' , '🌴')">🌴 Im Urlaub</p>
+        <p (click)="addStatusInfoToInput('In a meeting ' , '🗓️')">🗓️ In a meeting</p>
+        <p (click)="addStatusInfoToInput('On the go ' , '🚗')">🚗 On the go</p>
+        <p (click)="addStatusInfoToInput('Sick ' , '🤒')">🤒 Sick</p>
+        <p (click)="addStatusInfoToInput('On vacation ' , '🌴')">🌴 On vacation</p>
         <p (click)="addStatusInfoToInput('Home Office ' , '🧑🏽‍💻')">🧑🏽‍💻 Home Office</p>
 
         <div *ngIf="this.authService.user.userStatusInfo" class="delete-status-container">
-            <p class="delete-status" (click)="deleteStatus()">Aktuellen Status entfernen</p>
+            <p class="delete-status" (click)="deleteStatus()">Remove current status</p>
         </div>
     </div>
 
     <div class="button-container">
-        <button class="confirm-button" (click)="closeDialog()" mat-raised-button>Abbrechen</button>
-        <button [ngClass]="{'enabled-button': status !== ''}" [disabled]="status === ''" class="confirm-button save-button" (click)="addStatusInfoToDb()" mat-raised-button>Speichern</button>
+        <button class="confirm-button" (click)="closeDialog()" mat-raised-button>Cancel</button>
+        <button [ngClass]="{'enabled-button': status !== ''}" [disabled]="status === ''" class="confirm-button save-button" (click)="addStatusInfoToDb()" mat-raised-button>Save</button>
     </div>
 
 </div>

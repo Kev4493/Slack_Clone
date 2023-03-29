@@ -44,6 +44,7 @@ import { AddDmChannelDialogComponent } from './dialogs/add-dm-channel-dialog/add
 import { MatSelectModule } from '@angular/material/select';
 import { DeleteDmChannelDialogComponent } from './dialogs/delete-dm-channel-dialog/delete-dm-channel-dialog.component';
 import { DeleteDmMessageDialogComponent } from './dialogs/delete-dm-message-dialog/delete-dm-message-dialog.component';
+import { DeleteNoticeDialogComponent } from './dialogs/delete-notice-dialog/delete-notice-dialog.component';
 
 
 
@@ -68,6 +69,7 @@ import { DeleteDmMessageDialogComponent } from './dialogs/delete-dm-message-dial
     AddDmChannelDialogComponent,
     DeleteDmChannelDialogComponent,
     DeleteDmMessageDialogComponent,
+    DeleteNoticeDialogComponent,
   ],
 
 

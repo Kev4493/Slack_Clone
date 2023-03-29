@@ -8,29 +8,24 @@
         <div class="channel-settings-container">
             <mat-icon [matMenuTriggerFor]="menu">settings</mat-icon>
             <mat-menu #menu="matMenu">
-                <!-- <button (click)="deleteChannelFromDb()" mat-menu-item>Delete {{ channel.channelName }} Channel</button> -->
                 <button (click)="openDeleteChannelDialog()" mat-menu-item>Delete {{ channelService.channel.channelName }} Channel</button>
             </mat-menu>
         </div>
     </div>
 
     <div class="chatroom-content">
-
         <div class="info-container">
-            <p>{{ this.authService.getFirstName(authService.user.userName) }}, dies ist ein öffentlicher Channel zu dem Thema <span>{{ channelService.channel.channelName }}</span></p>
-            <p>Deine Nachricht kann von allen Mitgliedern gelesen werden.</p>
-            <p>Sei der erste und sag "Hallo"!</p>
+            <p>{{ this.authService.getFirstName(authService.user.userName) }}, this is a public channel about <span>{{ channelService.channel.channelName }}</span></p>
+            <p>Your message can be read by all members.</p>
+            <p>Be the first one to say 'hello'!"</p>
         </div>
 
         <div *ngFor="let message of messageService.messagesFromDb" class="messages-container">
-
             <div class="full-message-container">
-
                 <div [style.background-color]="message.authorColor" class="profile-initials-container">
                     {{ authService.getUserInitials(message.author) }}
                     <div class="online-status" [ngClass]="getUserActivityStatus(message.messageFromUserId)"></div>
                 </div>
-
                 <div class="message-infos-container">
                     <div class="author-container">
                         <p class="author">{{ message.author }}</p>
@@ -40,16 +35,13 @@
                         <p class="message-text"> {{ message.messageText }}</p>
                     </div>
                 </div>
-
                 <div [matMenuTriggerFor]="menu" class="message-setting-container">
                     <mat-icon>more_vert</mat-icon>
                     <mat-menu #menu="matMenu">
                         <button (click)="openDeleteMessageDialog(message.messageId, message.messageFromUserId)" mat-menu-item>Delete this message</button>
                     </mat-menu>
                 </div>
-
             </div>
-
         </div>
 
         <div class="message-input-container">
@@ -63,7 +55,6 @@
                 </div>
             </form>
         </div>
-
     </div>
-
+    
 </div>

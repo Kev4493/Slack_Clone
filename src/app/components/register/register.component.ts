@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import tinycolor from 'tinycolor2';
 
@@ -19,7 +16,7 @@ export class RegisterComponent {
 
   hide = true;
 
-  constructor(private authService: AuthService, private router: Router, private afAuth: AngularFireAuth, private firestore: AngularFirestore) {
+  constructor(private authService: AuthService) {
     this.firebaseErrorMessage = '';
   }
 
@@ -53,16 +50,6 @@ export class RegisterComponent {
   }
 
 
-  // generateUserColor() {
-  //   const letters = '0123456789ABCDEF';
-  //   let color = '#';
-  //   for (let i = 0; i < 6; i++) {
-  //     color += letters[Math.floor(Math.random() * 16)];
-  //   }
-  //   this.authService.generatedUserColor = color
-  // }
-
-  
   generateUserColor() {
     const letters = '0123456789ABCDEF';
     let color = '#';

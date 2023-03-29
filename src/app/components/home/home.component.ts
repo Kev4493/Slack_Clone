@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialog } from '@angular/material/dialog';
@@ -8,7 +8,6 @@ import { AuthService } from 'src/app/services/auth.service';
 import { DmChannelService } from 'src/app/services/dm-channel.service';
 import { SetStatusComponent } from '../../dialogs/set-status/set-status.component';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { MediaMatcher } from '@angular/cdk/layout';
 
 
 @Component({
@@ -22,7 +21,7 @@ export class HomeComponent {
   snackBarDurationInSeconds = 3;
   sidenavMode: any = '';
 
-  constructor(private changeDetectorRef: ChangeDetectorRef, private mediaMatcher: MediaMatcher, private breakpointObserver: BreakpointObserver, public dmChannelService: DmChannelService, public router: Router, private afAuth: AngularFireAuth, public authService: AuthService, private firestore: AngularFirestore, private _snackBar: MatSnackBar, public dialog: MatDialog) { }
+  constructor(private breakpointObserver: BreakpointObserver, public dmChannelService: DmChannelService, public router: Router, private afAuth: AngularFireAuth, public authService: AuthService, private firestore: AngularFirestore, private _snackBar: MatSnackBar, public dialog: MatDialog) { }
 
 
   async ngOnInit() {
@@ -106,6 +105,7 @@ export class HomeComponent {
     this.dialog.open(SetStatusComponent)
   }
 
+
   updateSidenavMode() {
     this.breakpointObserver.observe([Breakpoints.XSmall]).subscribe(result => {
       if (result.matches) {
@@ -115,5 +115,4 @@ export class HomeComponent {
       }
     });
   }
-
 }

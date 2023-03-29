@@ -10,6 +10,7 @@ export class UsersComponent {
 
   constructor(public authService: AuthService) { }
 
+  
   getUserActivityStatus(userId: string) {
     const user = this.authService.allUsersFromDb.find(u => u.userId === userId);
     return user ? user.userActivityStatus : '';

@@ -85,10 +85,8 @@ export class LoginComponent {
 
 
   updateStatusToOnline() {
-    // debugger;
     this.firestore
       .collection('users')
-      // .doc(this.authService.user.userId)
       .doc(this.authService.currentLoggedInUserId)
       .update({
         userActivityStatus: "online"

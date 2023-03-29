@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
-import { map } from 'rxjs';
 import { User } from 'src/models/user.class';
 
 @Injectable({
@@ -28,7 +27,6 @@ export class AuthService {
     this.afAuth.onAuthStateChanged((user) => {
       if (user) {
         this.userLoggedIn = true;
-        // console.log('user', user);
         this.currentLoggedInUserId = user.uid
       } else {
         this.userLoggedIn = false;
@@ -84,10 +82,8 @@ export class AuthService {
   async getLoggedInUserFromDb() {
     const currentUserCollection = this.firestore.collection('users', ref => ref.where('userId', '==', this.currentLoggedInUserId))
     currentUserCollection.valueChanges().subscribe(user => {
-      // console.log(user);
       if (user[0]['userId'] == this.currentLoggedInUserId) {
         this.loggedInUserFromDb = user;
-
         this.generateUserObject();
       }
     })
@@ -102,9 +98,6 @@ export class AuthService {
     this.user.userActivityStatus = this.loggedInUserFromDb[0].userActivityStatus;
     this.user.userStatusInfo = this.loggedInUserFromDb[0].userStatusInfo;
     this.user.userStatusEmoji = this.loggedInUserFromDb[0].userStatusEmoji;
-
-    // console.log('Current Logged in Userobject:', this.user);
-
   }
 
 
@@ -114,7 +107,6 @@ export class AuthService {
       .valueChanges()
       .subscribe(allUsers => {
         this.allUsersFromDb = allUsers;
-        console.log('All Users From DB = ', this.allUsersFromDb)
       })
   }
 
@@ -141,19 +133,6 @@ export class AuthService {
 
       if (firstName.length >= 1) {
         return firstName[0];
-      }
-    }
-    return '';
-  }
-
-
-  getStatusIcon(userStatusInfo: string) {
-    if (userStatusInfo) {
-      const emoji = userStatusInfo.split(' ');  // Die Strings werden aufgeteilt.
-      const lastItem = emoji[emoji.length-1]    // Dann hole ich mir das letzte Element aus dem String = Emoji
-
-      if (emoji.length >= 1) {
-        return lastItem;
       }
     }
     return '';
