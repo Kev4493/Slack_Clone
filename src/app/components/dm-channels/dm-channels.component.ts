@@ -42,8 +42,6 @@ export class DmChannelsComponent {
     if (user) {
       let userName = user.userName;
       return userName;
-    } else {
-      console.log("otherUserId not found");
     }
   }
 
@@ -54,8 +52,6 @@ export class DmChannelsComponent {
     if (user) {
       let userColor = user.userColor;
       return userColor;
-    } else {
-      console.log("otherUserId not found");
     }
   }
 
@@ -67,8 +63,6 @@ export class DmChannelsComponent {
       let userName = user.userName;
       let initials = userName.split(' ').map(name => name[0]).join('');
       return initials;
-    } else {
-      console.log("otherUserId not found");
     }
   }
 
@@ -79,8 +73,6 @@ export class DmChannelsComponent {
     if (user) {
       let userActivityStatus = user.userActivityStatus;
       return userActivityStatus;
-    } else {
-      console.log("otherUserId not found");
     }
   }
 
@@ -91,8 +83,6 @@ export class DmChannelsComponent {
     if (user) {
       let userStatusEmoji = user.userStatusEmoji;
       return userStatusEmoji;
-    } else {
-      console.log("otherUserId not found");
     }
   }
 

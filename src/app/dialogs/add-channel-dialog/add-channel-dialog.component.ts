@@ -26,9 +26,6 @@ export class AddChannelDialogComponent {
     this.firestore
     .collection('channels')
     .add(this.channel.toJSON())  // Es können keine Objekte auf Firebase hochgeladen werden. Deshalb .toJSON()
-    .then((result:any) => {
-      console.log('adding channel finished', result);
-    })
     this.closeDialog();
     this.openSnackBar();
   }

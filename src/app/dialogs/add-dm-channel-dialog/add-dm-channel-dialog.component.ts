@@ -18,7 +18,6 @@ export class AddDmChannelDialogComponent {
 
 
   addDmChannel() {
-    // console.log('selected user: ', this.selectedDmUser);
     this.addDmChannelToDb();
     this.closeDialog();
   }
@@ -26,7 +25,6 @@ export class AddDmChannelDialogComponent {
 
   generateObject() {
     this.dmChannel.memberIds = [this.selectedDmUser.userId, this.authService.user.userId]
-    // console.log('DMChannelObject: ', this.dmChannel);
   }
 
 

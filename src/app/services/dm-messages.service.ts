@@ -21,7 +21,6 @@ export class DmMessagesService {
 
   sendDmMessage() {
     this.generateDmMessageObject();
-    console.log('directmessage :', this.dmMessage)
     this.firestore
       .collection('directMessages')
       .add(this.dmMessage.toJSON())
