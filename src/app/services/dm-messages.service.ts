@@ -20,14 +20,16 @@ export class DmMessagesService {
 
 
   sendDmMessage() {
-    this.generateDmMessageObject();
-    this.firestore
-      .collection('directMessages')
-      .add(this.dmMessage.toJSON())
-    this.dmMessage.messageText = '';
+    if (this.dmMessage.messageText) {
+      this.generateDmMessageObject();
+      this.firestore
+        .collection('directMessages')
+        .add(this.dmMessage.toJSON())
+      this.dmMessage.messageText = '';
+    }
   }
 
-  
+
   generateDmMessageObject() {
     this.dmMessage.author = this.authService.user.userName;
     this.dmMessage.authorColor = this.authService.user.userColor;

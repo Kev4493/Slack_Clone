@@ -30,6 +30,7 @@
             width: 200px;
             height: 50px;
             border-radius: 12px;
+
             &:hover {
                 transform: scale(1.05);
             }
@@ -42,4 +43,116 @@
         top: 94px;
         right: 0;
     }
+}
+
+@media (min-width: 2560px) {
+    .welcome-container {
+        img {
+            width: 1330px !important;
+            top: 0 !important;
+            bottom: 0 !important;
+            margin-top: auto !important;
+            margin-bottom: auto !important;
+        }
+
+        h1 {
+            font-size: 6rem !important;
+        }
+
+        p {
+            font-size: 2rem !important;
+        }
+
+        button {
+            font-size: 1.5rem !important;
+            width: 315px !important;
+            height: 70px !important;
+        }
+    }
+}
+
+
+@media (max-width: 1385px) {
+    .welcome-container {
+        img {
+            width: 500px !important;
+            top: 0 !important;
+            bottom: 0 !important;
+            margin-top: auto !important;
+            margin-bottom: auto !important;
+        }
+
+        h1 {
+            font-size: 3rem !important;
+        }
+
+
+        p {
+            font-size: 1rem !important;
+            margin-top: 1rem !important;
+        }
+    }
+}
+
+
+@media (max-width: 975px) {
+    .welcome-container {
+        padding: 2rem;
+        justify-content: center !important;
+
+        h1 {
+            font-size: 2rem !important;
+            text-align: center;
+        }
+
+        p {
+            font-size: 1rem !important;
+            margin-top: 0 !important;
+        }
+
+        img {
+            display: none;
+            width: 480px !important;
+            top: 0 !important;
+            bottom: 0 !important;
+            right: 0px !important;
+            left: -14px !important;
+            margin-top: auto !important;
+            margin-bottom: auto !important;
+            margin-left: unset !important;
+            margin-right: unset !important;
+        }
+
+        button {
+            margin-top: 3rem !important;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+}
+
+
+@media (max-width: 410px) {
+
+    .welcome-container {
+        p {
+            font-size: 0.8rem !important;
+        }
+    }
+
+}
+
+@media (max-width: 370px) {
+
+    .welcome-container {
+
+        h1 {
+            font-size: 1.6rem !important;
+        }
+
+        p {
+            font-size: 0.7rem !important;
+        }
+    }
+
 }

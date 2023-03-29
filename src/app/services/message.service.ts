@@ -21,13 +21,15 @@ export class MessageService {
 
 
   sendMessage() {
-    this.message.author = this.authService.user.userName
-    this.message.authorColor = this.authService.user.userColor
-    this.message.createdAt = new Date().getTime();
-    this.message.messageFromChannelId = this.channelService.channelId;
-    this.message.messageFromUserId = this.authService.user.userId
-    this.sendMessageToDb();
-    this.message.messageText = '';
+    if (this.message.messageText) {
+      this.message.author = this.authService.user.userName
+      this.message.authorColor = this.authService.user.userColor
+      this.message.createdAt = new Date().getTime();
+      this.message.messageFromChannelId = this.channelService.channelId;
+      this.message.messageFromUserId = this.authService.user.userId
+      this.sendMessageToDb();
+      this.message.messageText = '';
+    }
   }
 
 

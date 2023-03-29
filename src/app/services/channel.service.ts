@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Channel } from 'src/models/channel.class';
+import { DeleteNoticeDialogComponent } from '../dialogs/delete-notice-dialog/delete-notice-dialog.component';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -41,7 +42,8 @@ export class ChannelService {
       this.openSnackBar();
       this.router.navigate(['/home'])
     } else {
-      window.alert('Du hast diesen Channel nicht erstellt!')
+      this.dialog.closeAll();
+      this.dialog.open(DeleteNoticeDialogComponent);
     }
   }
 
