@@ -3,7 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { ChatroomComponent } from './components/chatroom/chatroom.component';
 import { DMChatroomComponent } from './components/dm-chatroom/dm-chatroom.component';
 import { HomeComponent } from './components/home/home.component';
+import { ImprintComponent } from './components/imprint/imprint.component';
 import { LoginComponent } from './components/login/login.component';
+import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 import { RegisterComponent } from './components/register/register.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { AuthGuard } from './services/auth.guard';
@@ -13,6 +15,8 @@ const routes: Routes = [
   { path: 'welcome', component: WelcomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'imprint', component: ImprintComponent },
+  { path: 'privacy-policy', component: PrivacyPolicyComponent },
   {
     path: 'home', component: HomeComponent, canActivate: [AuthGuard], children: [
       { path: 'channel-chatroom/:id', component: ChatroomComponent },

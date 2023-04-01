@@ -1,0 +1,19 @@
+.imprint-container {
+    background-color: #10151F;
+    color: rgba(255, 255, 255, 0.5);
+    padding: 3rem;
+
+    .header {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 2rem;
+
+        p {
+            cursor: pointer;
+
+            &:hover {
+                color: #40D9E1;
+            }
+        }
+    }
+}

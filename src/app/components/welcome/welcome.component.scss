@@ -43,6 +43,27 @@
         top: 94px;
         right: 0;
     }
+
+    .imprint-container {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: #10151F;
+        color: rgba(255, 255, 255, 0.5);
+        display: flex;
+        justify-content: flex-end;
+
+        p {
+            margin-right: 2rem;
+            margin-bottom: 2rem;
+            cursor: pointer;
+
+            &:hover {
+                color: #40D9E1;
+            }
+        }
+    }
 }
 
 @media (min-width: 2560px) {
